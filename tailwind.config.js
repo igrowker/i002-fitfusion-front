@@ -24,6 +24,9 @@ export default {
       lato: ["Lato", "sans-serif"],
       inter: ["Inter", "sans-serif"],
     },
+    backgroundImage: {
+      "pattern": "url('./src/assets/bg.png')",
+    }
   },
   plugins: [],
 };
