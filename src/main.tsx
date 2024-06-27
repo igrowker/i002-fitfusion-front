@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout.tsx';
+import HomePage from './views/HomePage/HomePage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         index : true, 
-        element : <h1 className="text-center text-white font-bold" > Estoy en el Home </h1>
+        element : <HomePage/>
       },
       {
         path : '/profile', 
