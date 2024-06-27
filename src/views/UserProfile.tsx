@@ -19,7 +19,7 @@ export default function UserProfile() {
           </svg>
         </button>
 
-        <p className=" font-bold text-base text-black">Mi perfil</p>
+        <p className=" font-bold text-base text-black font-lato">Mi perfil</p>
         <button className=" rounded-full p-6 border-2 border-gray-300 flex justify-center items-center cursor-pointer">
           <svg
             width="20"
@@ -39,7 +39,7 @@ export default function UserProfile() {
       </header>
       <div className=" rounded-full bg-cover  w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />
 
-      <p className=" font-bold text-2xl text-black mt-4">Jordi Garcia Ferre</p>
+      <p className=" font-bold text-heading-lg text-black mt-4 font-lato">Jordi Garcia Ferre</p>
 
       <div className=" flex flex-row w-full justify-center items-center pt-8 px-6">
         <div className=" flex flex-col gap-2 items-center justify-center px-4">
@@ -58,9 +58,9 @@ export default function UserProfile() {
             />
           </svg>
 
-          <p className=" text-lg text-black font-bold">246</p>
+          <p className=" text-heading text-black font-bold font-lato">246</p>
 
-          <p className=" text-sm text-gray-300 font-black">Calorias totales</p>
+          <p className=" text-heading-sm text-gray-300 font-black font-lato">Calorias totales</p>
         </div>
 
         <div className=" flex flex-col gap-2 items-center justify-center px-4">
@@ -79,14 +79,14 @@ export default function UserProfile() {
             />
           </svg>
 
-          <p className=" text-lg text-black font-bold">682</p>
+          <p className=" text-heading text-black font-bold font-lato">682</p>
 
-          <p className=" text-sm text-gray-300 font-black">Seguidores</p>
+          <p className=" text-heading-sm text-gray-300 font-black font-lato">Seguidores</p>
         </div>
       </div>
 
       <div className=" flex flex-row w-full justify-between items-center pt-9  px-6">
-        <p className=" font-bold text-lg">Comienza a entrenar hoy</p>
+        <p className=" font-bold text-heading font-lato">Comienza a entrenar hoy</p>
         <svg
           width="24"
           height="24"
