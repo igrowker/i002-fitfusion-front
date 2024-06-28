@@ -6,15 +6,15 @@ export default function TeacherBanner() {
   return (
     <>
       {data?.map((user) => (
-        <div
+        <article
           key={user.id}
           className={`flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
             user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
           }`}
         >
           <div className=" flex flex-row gap-4 items-center">
-            <div
-              className={`rounded-full bg-cover w-14 h-14 bg-[url('/${user.image}.jfif')] bg-center`}
+            <img
+              className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url('/${user.image}.jfif')]`}
             />
             <div className=" flex flex-col justify-start">
               <p className=" text-heading-sm text-white font-medium">
@@ -44,7 +44,7 @@ export default function TeacherBanner() {
               {user.kcal} Kcal
             </p>
           </div>
-        </div>
+        </article>
       ))}
     </>
   );
