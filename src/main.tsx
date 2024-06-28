@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout.tsx';
 import HomePage from './views/HomePage/HomePage.tsx';
 import ClassesList from './views/ClassesList/ClassesList.tsx';
+import UserProfile from './views/UserProfile.tsx';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path : '/profile', 
-        element : <h1 className="text-center text-white font-bold"> Estoy en el Profile </h1>
+        element : <UserProfile/>
       },
       {
         path : '/trainer-profile', 

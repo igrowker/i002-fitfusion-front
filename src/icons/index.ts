@@ -7,3 +7,5 @@ export { FisioSVG } from "./FisioSVG";
 export { HeartSVG } from "./HeartSVG";
 export { GymWeightSVG } from "./GymWeightSVG";
 export { LocationSVG } from './LocationSVG'
+export { MenuSVG } from "./MenuSVG";
+export { CloseSVG } from "./CloseSVG";
