@@ -4,3 +4,6 @@ export { CirclesSVG } from "./CirclesSVG";
 export { HealingSVG } from "./HealingSVG";
 export { DumbbellSVG } from "./DumbbellSVG";
 export { FisioSVG } from "./FisioSVG";
+export { HeartSVG } from "./HeartSVG";
+export { GymWeightSVG } from "./GymWeightSVG";
+export { LocationSVG } from './LocationSVG'

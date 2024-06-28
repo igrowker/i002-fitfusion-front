@@ -4,6 +4,7 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout.tsx';
 import HomePage from './views/HomePage/HomePage.tsx';
+import ClassesList from './views/ClassesList/ClassesList.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path : '/classes', 
-        element : <h1 className="text-center text-white font-bold"> Estoy en el ClassList </h1>
+        element : <ClassesList/>
       },
       {
         path : '/class-detail/:id', 

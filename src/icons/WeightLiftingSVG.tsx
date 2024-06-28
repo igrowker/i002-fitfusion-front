@@ -1,8 +1,8 @@
-export const WeightLiftingSVG = ({ fill = "#C1FF72" }: { fill?: string }) => {
+export const WeightLiftingSVG = ({ height = '26' , width = '26' , fill = "#C1FF72" }: { height?: string; width?: string; fill?: string }) => {
   return (
     <svg
-      height="26"
-      width="26"
+      height={height}
+      width={width}
       viewBox="0 0 26 26"
       xmlns="http://www.w3.org/2000/svg"
     >
