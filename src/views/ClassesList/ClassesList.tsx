@@ -156,9 +156,7 @@ const ClassesList = () => {
   return (
     <div className="bg-white bg-cover max-w-full max-h-full " >
 
-
-
-        <ul className=" flex flex-col justify-around items-center gap-4">
+        <ul className="flex flex-col justify-around items-center gap-4 max-h-full md:flex-row flex-wrap">
             {
                 classes.map( (fitClass : Classes) => {
                     return (
