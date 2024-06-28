@@ -11,7 +11,7 @@ import {
 const HomePage = () => {
   return (
     <>
-      <div className="container flex flex-col gap-y-8 text-center items-center py-4 px-8">
+      <div className="container flex flex-col justify-center gap-y-8 text-center items-center py-4 px-8">
         <div className="flex flex-col items-center text-white gap-y-4">
           <h1 className="text-heading-xl font-lato font-bold">
             REVOLUCIONA TU FORMA DE ENTRENAR
@@ -30,7 +30,7 @@ const HomePage = () => {
           src={landingImg}
           alt="Landing image"
         />
-        <CirclesSVG />
+        <CirclesSVG className="text-lima-100" />
         <div className="w-full -skew-y-6 md:-skew-y-3 h-24 bg-lima-100 absolute bottom-0 z-50"></div>
       </div>
       <div className="container flex flex-col gap-y-8 text-center items-center py-24 px-8">
@@ -54,25 +54,25 @@ const HomePage = () => {
 
       <div className="container flex flex-col gap-y-4 px-16 py-8 text-white">
         <div className="flex gap-x-4">
-          <WeightLiftingSVG />
+          <WeightLiftingSVG className="text-lima-100" />
           <p className="font-lato font-normal text-heading">ENTRENADORES</p>
         </div>
         <div className="flex gap-x-4">
-          <DumbbellSVG />
+          <DumbbellSVG className="text-lima-100" />
           <p className="font-lato font-normal text-heading">
             CLASES PERSONALIZADAS
           </p>
         </div>
         <div className="flex gap-x-4">
-          <DinnerSVG />
+          <DinnerSVG className="text-lima-100" />
           <p className="font-lato font-normal text-heading">NUTRICIÓN</p>
         </div>
         <div className="flex gap-x-4">
-          <FisioSVG />
+          <FisioSVG className="text-lima-100" />
           <p className="font-lato font-normal text-heading">FISIOTERAPIA</p>
         </div>
         <div className="flex gap-x-4">
-          <HealingSVG />
+          <HealingSVG className="text-lima-100" />
           <p className="font-lato font-normal text-heading">REHABILITACIÓN</p>
         </div>
       </div>

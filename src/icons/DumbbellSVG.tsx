@@ -1,23 +1,18 @@
-export const DumbbellSVG = ({
-  fill = "#C1FF72",
-  width = "26px",
-  height = "26px",
-}: {
-  fill?: string;
-  width?: string;
-  height?: string;
-}) => {
+import { SVGProps } from "react";
+
+export const DumbbellSVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      stroke={fill}
+      stroke="currentColor"
       fill="none"
       strokeWidth="2"
-      viewBox="0 0 24 24"
+      viewBox="0 0 26 26"
       strokeLinecap="round"
       strokeLinejoin="round"
-      height={height}
-      width={width}
+      height="26px"
+      width="26px"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path d="m6.5 6.5 11 11"></path>
       <path d="m21 21-1-1"></path>
