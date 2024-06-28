@@ -1,4 +1,5 @@
 import landingImg from "../../assets/landing-img.png";
+import { Header } from "../../components";
 import {
   WeightLiftingSVG,
   CirclesSVG,
@@ -11,6 +12,7 @@ import {
 const HomePage = () => {
   return (
     <>
+      <Header />
       <div className="container flex flex-col justify-center gap-y-8 text-center items-center py-4 px-8">
         <div className="flex flex-col items-center text-white gap-y-4">
           <h1 className="text-heading-xl font-lato font-bold">
