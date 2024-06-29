@@ -25,8 +25,8 @@ function Header() {
 
       <nav
         className={`${
-          !isOpen ? "hidden" : ""
-        } fixed top-0 left-0 bottom-0 w-full justify-center items-center bg-black-bg z-50`}
+          !isOpen ? "h-0" : "h-[100%]"
+        } fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-50 overflow-hidden origin-top duration-700 w-[100vw]`}
       >
         <Configuration toggleMenu={toggleMenu} />
       </nav>

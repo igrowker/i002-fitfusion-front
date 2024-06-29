@@ -10,10 +10,6 @@ export default function UserProfile() {
 
       <ProfileData />
 
-    
-
-
-
       <ClasesProfile />
     </main>
   );
