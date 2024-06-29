@@ -1,6 +1,3 @@
-
-
-
 export type Classes = {
     id: number ; 
     title: string ; 

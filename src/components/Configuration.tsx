@@ -1,4 +1,4 @@
-import { CloseButtonProfileSVG } from "../icons/CloseButtonProfileSVG";
+import { CloseButtonProfileSVG } from "../icons";
 
 type ConfigurationProps = {
   toggleMenu: () => void;

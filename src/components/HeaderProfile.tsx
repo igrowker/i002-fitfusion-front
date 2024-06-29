@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Configuration from "./Configuration";
-import { CloseButtonProfileSVG } from "../icons/CloseButtonProfileSVG";
-import { ConfigurationToolSVG } from "../icons/ConfigurationToolSVG";
+import { CloseButtonProfileSVG, ConfigurationToolSVG } from "../icons";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,9 +15,9 @@ function Header() {
         <CloseButtonProfileSVG />
       </button>
 
-      <p className=" font-bold text-base text-black font-lato">Mi perfil</p>
+      <p className="font-bold text-base text-black font-lato">Mi perfil</p>
       <button
-        className=" rounded-full p-6 border-2 border-gray-300 flex justify-center items-center cursor-pointer"
+        className="rounded-full p-6 border-2 border-gray-300 flex justify-center items-center cursor-pointer"
         onClick={toggleMenu}
       >
         <ConfigurationToolSVG />

@@ -1,4 +1,4 @@
-import { BicicleSVG } from "../icons/BicicleSVG";
+import { BicicleSVG } from "../icons";
 
 export default function ClasesLayout() {
   return (
