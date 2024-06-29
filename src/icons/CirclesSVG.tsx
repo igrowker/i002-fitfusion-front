@@ -10,8 +10,8 @@ export const CirclesSVG = (props: SVGProps<SVGSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <circle cx="89" cy="110" r="108" stroke="currentColor" stroke-width="4" />
-      <circle cx="89" cy="110" r="58" stroke="currentColor" stroke-width="4" />
+      <circle cx="89" cy="110" r="108" stroke="currentColor" strokeWidth="4" />
+      <circle cx="89" cy="110" r="58" stroke="currentColor" strokeWidth="4" />
     </svg>
   );
 };

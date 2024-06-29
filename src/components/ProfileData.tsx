@@ -1,5 +1,4 @@
-import { LightingSVG } from "../icons/LightingSVG";
-import { FollowersSVG } from "./FollowersSVG";
+import { FollowersSVG, LightingSVG } from "../icons";
 
 function ProfileData() {
   return (
