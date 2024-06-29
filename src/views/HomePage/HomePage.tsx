@@ -1,5 +1,5 @@
 import landingImg from "../../assets/landing-img.png";
-import { Header } from "../../components";
+import { Footer, Header } from "../../components";
 import {
   WeightLiftingSVG,
   CirclesSVG,
@@ -78,6 +78,7 @@ const HomePage = () => {
           <p className="font-lato font-normal text-heading">REHABILITACIÓN</p>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
