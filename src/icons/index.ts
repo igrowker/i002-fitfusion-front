@@ -6,3 +6,5 @@ export { DumbbellSVG } from "./DumbbellSVG";
 export { FisioSVG } from "./FisioSVG";
 export { MenuSVG } from "./MenuSVG";
 export { CloseSVG } from "./CloseSVG";
+export { FacebookSVG } from "./FacebookSVG";
+export { InstagramSVG } from "./InstagramSVG";

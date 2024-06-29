@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { Footer } from ".";
 
 const Layout = () => {
   return (
     <>
       <Outlet />
-      <h1 className="text-center text-white font-bold"> Aca va el footer</h1>
+      <Footer/>
     </>
   );
 };

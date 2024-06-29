@@ -7,6 +7,7 @@ export default {
       "black": "#000000",
       "black-bg": "#060215",
       white: "#F8F8F8",
+      "footer-gray": "#E9EDF7",
       "gray-100": "#E6E5E5",
       "gray-300": "#C2BDBD",
       "lima-100": "#C1FF72",
@@ -19,6 +20,7 @@ export default {
       "heading-md": "20px",
       "heading": "16px",
       "heading-sm": "14px",
+      "heading-xs": "10px",
     },
     fontFamily: {
       lato: ["Lato", "sans-serif"],
