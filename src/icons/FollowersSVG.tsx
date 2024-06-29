@@ -6,7 +6,7 @@ export const FollowersSVG = (props: SVGProps<SVGSVGElement>) => {
       width="16"
       height="17"
       viewBox="0 0 16 17"
-      fill="none"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >

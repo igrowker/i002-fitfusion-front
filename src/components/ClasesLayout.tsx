@@ -1,6 +1,6 @@
 import { BicicleSVG } from "../icons";
 
-export default function ClasesLayout() {
+export const ClasesLayout = () => {
   return (
     <article className=" mx-6 my-8 rounded-xl border-2 border-gray-100 p-6">
       <div className=" flex flex-row justify-between gap-2  items-center border-b-2 border-gray-100 pb-2">
@@ -40,3 +40,5 @@ export default function ClasesLayout() {
     </article>
   );
 }
+
+export default ClasesLayout;

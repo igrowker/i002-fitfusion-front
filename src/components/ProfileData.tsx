@@ -1,6 +1,6 @@
 import { FollowersSVG, LightingSVG } from "../icons";
 
-function ProfileData() {
+export const ProfileData = () => {
   return (
     <>
       <img className=" rounded-full bg-cover  w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />

@@ -10,7 +10,7 @@ type ConfigurationProps = {
   toggleMenu: () => void;
 };
 
-function Configuration({ toggleMenu }: ConfigurationProps) {
+export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
   return (
     <>
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
