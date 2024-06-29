@@ -13,4 +13,6 @@ export { HeartSVG } from "./HeartSVG";
 export { LightingSVG } from "./LightingSVG";
 export { LocationSVG } from "./LocationSVG";
 export { MenuSVG } from "./MenuSVG";
+export { FacebookSVG } from "./FacebookSVG";
+export { InstagramSVG } from "./InstagramSVG";
 export { WeightLiftingSVG } from "./WeightLiftingSVG";
