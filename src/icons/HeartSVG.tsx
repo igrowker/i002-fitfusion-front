@@ -5,7 +5,7 @@ export const HeartSVG = (props: SVGProps<SVGSVGElement>) => {
     <svg
       width="12px"
       height="12px"
-      fill="#86BA43"
+      fill="currentColor"
       viewBox="0 0 12 12"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
