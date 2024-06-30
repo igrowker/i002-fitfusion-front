@@ -29,15 +29,16 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
         <p className=" font-lato font-black text-heading px-6">Cuenta</p>
         <div className=" flex px-6 items-center mt-5 justify-between">
           <div className="flex gap-3 items-center">
-          <img className=" rounded-full bg-cover w-14 h-14 bg-[url('/profile.jfif')] bg-center" />
-          <div>
-            <p className=" font-lato font-bold text-heading">Nombre usuario</p>
-            <p className=" font-lato font-bold text-heading-sm">Pro</p>
-          </div>
+            <img className=" rounded-full bg-cover w-14 h-14 bg-[url('/profile.jfif')] bg-center" />
+            <div>
+              <p className=" font-lato font-bold text-heading">
+                Nombre usuario
+              </p>
+              <p className=" font-lato font-bold text-heading-sm">Pro</p>
+            </div>
           </div>
 
-          <ArrowSVG/>
-
+          <ArrowSVG />
         </div>
       </div>
 
@@ -96,6 +97,6 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
       </ul>
     </>
   );
-}
+};
 
 export default Configuration;
