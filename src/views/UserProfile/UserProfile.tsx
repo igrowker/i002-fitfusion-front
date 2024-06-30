@@ -1,4 +1,4 @@
-import { ClasesProfile, HeaderProfile, ProfileData } from "../../components";
+import { HeaderProfile, ProfileData, Switch } from "../../components";
 
 export const UserProfile = () => {
   return (
@@ -7,7 +7,7 @@ export const UserProfile = () => {
 
       <ProfileData />
 
-      <ClasesProfile />
+      <Switch />
     </main>
   );
 };

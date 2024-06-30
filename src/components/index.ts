@@ -6,3 +6,5 @@ export { Header } from "./Header";
 export { HeaderProfile } from "./HeaderProfile";
 export { ProfileData } from "./ProfileData";
 export { TeacherBanner } from "./TeacherBanner";
+export { CaloriesProfile } from "./CaloriesProfile";
+export { Switch } from "./Switch";
