@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Configuration from "./Configuration";
+import { Configuration } from "./";
 import { CloseButtonProfileSVG, ConfigurationToolSVG } from "../icons";
 
-function Header() {
+export const HeaderProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,6 +32,6 @@ function Header() {
       </nav>
     </header>
   );
-}
+};
 
-export default Header;
+export default HeaderProfile;

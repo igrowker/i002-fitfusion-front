@@ -2,7 +2,7 @@ import { classes } from "../../data/db";
 import { WeightLiftingSVG, HeartSVG, LocationSVG } from "../../icons";
 import { Classes } from "../../types/classesTypes";
 
-const ClassesList = () => {
+export const ClassesList = () => {
   return (
     <div className="bg-white bg-cover max-w-full max-h-full ">
       <ul className="flex flex-col justify-around items-center gap-4 max-h-full md:flex-row flex-wrap">

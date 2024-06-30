@@ -9,7 +9,7 @@ import {
   FisioSVG,
 } from "../../icons";
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <>
       <Header />
@@ -78,7 +78,7 @@ const HomePage = () => {
           <p className="font-lato font-normal text-heading">REHABILITACIÓN</p>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
