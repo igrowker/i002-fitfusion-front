@@ -13,8 +13,8 @@ export const Footer = () => {
                     <p className="font-lato text-white font-extrabold text-heading-sm">FITFUSION</p>
                 </div>
                 <div className="flex justify-evenly content-center pt-4">
-                    <FacebookSVG />
-                    <InstagramSVG/>  
+                    <FacebookSVG className="text-lima-100" />
+                    <InstagramSVG className="text-lima-100"/>  
                 </div>
             </div>
             <div className="ml-auto flex flex-col justify-evenly text-right">

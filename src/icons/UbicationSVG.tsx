@@ -3,8 +3,8 @@ import { SVGProps } from "react";
 export const UbicationSVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width="18"
-      height="20"
+      width="18px"
+      height="20px"
       viewBox="0 0 18 20"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"

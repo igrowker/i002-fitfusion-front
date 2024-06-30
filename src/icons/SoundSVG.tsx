@@ -3,8 +3,8 @@ import { SVGProps } from "react";
 export const SoundSVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width="16"
-      height="16"
+      width="16px"
+      height="16px"
       viewBox="0 0 16 16"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"

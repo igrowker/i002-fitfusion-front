@@ -6,7 +6,7 @@ export const GymWeightSVG = (props: SVGProps<SVGSVGElement>) => {
       width="12px"
       height="12px"
       viewBox="0 0 12 12"
-      fill="#86BA43"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
