@@ -3,8 +3,8 @@ import { SVGProps } from "react";
 export const PrivacySVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width="16"
-      height="20"
+      width="16px"
+      height="20px"
       viewBox="0 0 16 20"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"

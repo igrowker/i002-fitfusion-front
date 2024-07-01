@@ -21,14 +21,14 @@ export const ClassesList = () => {
                   </h3>
                 </div>
                 <div className="flex items-center gap-2 ">
-                  <LocationSVG />
+                  <LocationSVG className="text-lima-200 w-4" />
                   <p className="font-DMsans font-medium text-heading-sm text-gray-500 ">
                     {" "}
                     {fitClass.type}{" "}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 ">
-                  <WeightLiftingSVG height="12px" width="12px" fill="#86BA43" />
+                  <WeightLiftingSVG className="text-lima-200 w-4" />
                   <p className="font-DMsans font-medium text-heading-sm text-gray-500 ">
                     {" "}
                     {fitClass.instructor.name}{" "}
@@ -36,7 +36,7 @@ export const ClassesList = () => {
                 </div>
                 <div className="flex items-center gap-2 ">
                   <div>
-                    <HeartSVG />
+                    <HeartSVG className="text-lima-200 w-4" />
                   </div>
                   <p className="font-DMsans font-medium text-heading-sm text-gray-500 ">
                     {" "}

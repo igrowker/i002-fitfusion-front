@@ -25,7 +25,7 @@ export const ClasesLayout = () => {
         </p>
         <div className=" rounded-xl border-2 border-gray-100 p-6 mt-4 flex flex-row justify-between items-center gap-4">
           <div className=" p-3 bg-gray-100 rounded-xl">
-            <BicicleSVG />
+            <BicicleSVG className="text-black"/>
           </div>
 
           <div className=" flex flex-col justify-center gap-2">
