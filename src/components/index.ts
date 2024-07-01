@@ -8,3 +8,4 @@ export { ProfileData } from "./ProfileData";
 export { TeacherBanner } from "./TeacherBanner";
 export { CaloriesProfile } from "./CaloriesProfile";
 export { Switch } from "./Switch";
+export { CaloriesCalculator } from "./CaloriesCalculator"
