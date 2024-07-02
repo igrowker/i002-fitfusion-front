@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { HomePage, ClassesList, UserProfile } from "./views";
 import { AuthLayout } from "./layouts";
+import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
   },
   {
     path: "trainer-profile",
-    element: <h1>Trainer Profile</h1>,
+    element: <TrainerProfilePage />,
   },
   {
     path: "classes",
