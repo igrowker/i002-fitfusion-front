@@ -1,4 +1,5 @@
-import { ColonSVG, LightingSVG } from "../icons";
+import { ColonSVG, FireSVG, LightingSVG } from "../icons";
+import { HeartBigSVG } from "../icons/HeartBigSVG";
 
 export const CaloriesCalculator = () => {
   return (
@@ -13,14 +14,14 @@ export const CaloriesCalculator = () => {
 
       <div className=" flex flex-row mt-12 w-[100%] justify-between">
         <div className=" flex flex-col items-center gap-2">
-          <LightingSVG />
+          <HeartBigSVG/>
           <p className=" font-bold text-heading font-lato">246 Kcal</p>
           <p className=" font-bold text-heading-sm font-lato text-gray-300">
             Ultimos 7 dias
           </p>
         </div>
         <div className=" flex flex-col items-center gap-2">
-          <LightingSVG />
+          <FireSVG/>
           <p className=" font-bold text-heading font-lato">84 Kcal</p>
           <p className=" font-bold text-heading-sm font-lato text-gray-300">
             Ayer
