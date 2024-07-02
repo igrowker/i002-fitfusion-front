@@ -25,7 +25,7 @@ export const teachers: Teacher[] = [
   },
 ];
 
-export const classes: Classes[] = [
+export const DBclasses: Classes[] = [
   {
     id: 1,
     title: "Funcional",
@@ -101,7 +101,7 @@ export const classes: Classes[] = [
     },
     level: "Fuerte",
     type: "En gimnasio",
-    status: "Disponible",
+    status: "No disponible",
   },
   {
     id: 6,

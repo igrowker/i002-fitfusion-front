@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Configuration } from "./";
-import { CloseButtonProfileSVG, ConfigurationToolSVG } from "../icons";
+import { CloseButtonProfileSVG, ColonSVG, ConfigurationToolSVG, LeftArrowSVG } from "../icons";
 
-export const HeaderProfile = () => {
+type HeaderProfilePropsTypes = {
+  closeButton : boolean
+  text : string 
+  showConfig : boolean
+}
+export const HeaderProfile = ({closeButton , text = 'Mi perfil' , showConfig} : HeaderProfilePropsTypes) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -11,16 +16,19 @@ export const HeaderProfile = () => {
 
   return (
     <header className=" flex flex-row w-full justify-between items-center pt-14 px-6">
-      <button className=" rounded-full p-6 border-2 border-gray-300 flex justify-center items-center cursor-pointer">
-        <CloseButtonProfileSVG />
+      <button className=" min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer">
+         { closeButton ? <CloseButtonProfileSVG /> : <LeftArrowSVG />} 
       </button>
 
-      <p className="font-bold text-base text-black font-lato">Mi perfil</p>
+      <p className="font-bold text-base text-black font-lato">{ text }</p>
+      
       <button
-        className="rounded-full p-6 border-2 border-gray-300 flex justify-center items-center cursor-pointer"
+        className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
         onClick={toggleMenu}
       >
-        <ConfigurationToolSVG />
+        { showConfig ? <ConfigurationToolSVG /> : <ColonSVG className="text-black" /> }
+        
+        
       </button>
 
       <nav
