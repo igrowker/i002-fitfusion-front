@@ -9,3 +9,4 @@ export { TeacherBanner } from "./TeacherBanner";
 export { CaloriesProfile } from "./CaloriesProfile";
 export { Switch } from "./Switch";
 export { CaloriesCalculator } from "./CaloriesCalculator"
+export {ClassesFilter} from './ClassesFilter'
