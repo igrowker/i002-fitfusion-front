@@ -8,4 +8,7 @@ export { ProfileData } from "./ProfileData";
 export { TeacherBanner } from "./TeacherBanner";
 export { CaloriesProfile } from "./CaloriesProfile";
 export { Switch } from "./Switch";
-export { CaloriesCalculator } from "./CaloriesCalculator"
+export { CaloriesCalculator } from "./CaloriesCalculator";
+export { FilterClasses } from "./FilterClasses";
+export { FilterButton } from "./FilterButton";
+export { FilterCard } from "./FilterCard"

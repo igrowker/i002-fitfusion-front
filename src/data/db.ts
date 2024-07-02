@@ -120,7 +120,7 @@ export const classes: Classes[] = [
       class_type: "CrossFit",
     },
     level: "Fuerte",
-    type: "En gimnasio",
+    type: "Virtual",
     status: "Disponible",
   },
   {
@@ -140,7 +140,7 @@ export const classes: Classes[] = [
       class_type: "Baile",
     },
     level: "Suave",
-    type: "En gimnasio",
+    type: "En casa",
     status: "Disponible",
   },
   {
@@ -160,7 +160,7 @@ export const classes: Classes[] = [
       class_type: "Entrenamiento Cardiovascular",
     },
     level: "Fuerte",
-    type: "En gimnasio",
+    type: "Aire libre",
     status: "Disponible",
   },
   {

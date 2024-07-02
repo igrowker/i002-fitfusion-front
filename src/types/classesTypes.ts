@@ -20,6 +20,6 @@ export type Instructor = {
     class_type: string ;
 }
 
-type ClassesType = 'Aire libre' | 'En casa' | 'En gimnasio' | 'Virtual'  
+export type ClassesType = 'Aire libre' | 'En casa' | 'En gimnasio' | 'Virtual'  
 type ClassesLevel = 'Suave' | 'Fuerte'   
 type ClassesStatus = 'Disponible' | 'No disponible' 
