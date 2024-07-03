@@ -18,3 +18,5 @@ export { LightingSVG } from "./LightingSVG";
 export { LocationSVG } from "./LocationSVG";
 export { MenuSVG } from "./MenuSVG";
 export { WeightLiftingSVG } from "./WeightLiftingSVG";
+export { RightArrowSVG } from "./RightArrowSVG";
+export { LeftArrowSVG } from "./LeftArrowSVG";

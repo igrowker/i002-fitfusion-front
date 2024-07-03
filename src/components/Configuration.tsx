@@ -1,6 +1,5 @@
-import { CloseButtonProfileSVG } from "../icons";
+import { CloseButtonProfileSVG, RightArrowSVG } from "../icons";
 import { AddCoachSVG } from "../icons/AddCoachSVG";
-import { ArrowSVG } from "../icons/ArrowSVG";
 import { NotificationSVG } from "../icons/NotificationSVG";
 import { PrivacySVG } from "../icons/PrivacySVG";
 import { SoundSVG } from "../icons/SoundSVG";
@@ -18,7 +17,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
           Configuracion
         </p>
         <button
-          className=" rounded-full p-6 border-2 border-gray-300 flex justify-center items-center cursor-pointer"
+          className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
           onClick={toggleMenu}
         >
           <CloseButtonProfileSVG />
@@ -38,7 +37,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
             </div>
           </div>
 
-          <ArrowSVG />
+          <RightArrowSVG />
         </div>
       </div>
 
@@ -50,7 +49,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
             </div>
             <p className=" font-lato font-bold text-heading">Ubicacion</p>
           </div>
-          <ArrowSVG />
+          <RightArrowSVG />
         </li>
 
         <li className=" flex flex-row justify-between">
@@ -60,7 +59,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
             </div>
             <p className=" font-lato font-bold text-heading">Notificaciones</p>
           </div>
-          <ArrowSVG />
+          <RightArrowSVG />
         </li>
 
         <li className=" flex flex-row justify-between">
@@ -72,7 +71,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
               Agregar entrenador
             </p>
           </div>
-          <ArrowSVG />
+          <RightArrowSVG />
         </li>
 
         <li className=" flex flex-row justify-between">
@@ -82,7 +81,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
             </div>
             <p className=" font-lato font-bold text-heading">Sonidos</p>
           </div>
-          <ArrowSVG />
+          <RightArrowSVG />
         </li>
 
         <li className=" flex flex-row justify-between">
@@ -92,7 +91,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
             </div>
             <p className=" font-lato font-bold text-heading">Privacidad</p>
           </div>
-          <ArrowSVG />
+          <RightArrowSVG />
         </li>
       </ul>
     </>
