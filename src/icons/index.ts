@@ -20,3 +20,4 @@ export { MenuSVG } from "./MenuSVG";
 export { WeightLiftingSVG } from "./WeightLiftingSVG";
 export { RightArrowSVG } from "./RightArrowSVG";
 export { LeftArrowSVG } from "./LeftArrowSVG";
+export { CornerCirclesSVG } from "./CornerCirclesSVG";
