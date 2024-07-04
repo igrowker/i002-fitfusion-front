@@ -6,6 +6,13 @@ export default {
       borderRadius: {
         large: "1.8rem",
       },
+      boxShadow: {
+        'custom': '0px 8px 24px 0px rgba(74, 136, 12, 1)',
+      },
+      backgroundImage: {
+        pattern: "url('/src/assets/bg.png')",
+        patternInstructors: "url('/src/assets/bgInstructors.png')",
+      },
     },
     colors: {
       black: "#000000",
@@ -18,6 +25,9 @@ export default {
       "lima-100": "#C1FF72",
       "lima-200": "#8CBB51",
       "lima-300": "#45592C",
+      "lima-400": "#86BA43",
+      "lima-500": "#4A880C",
+      "lima-500": "#8FFF00",
     },
     fontSize: {
       "heading-xl": "36px",
@@ -31,9 +41,6 @@ export default {
       lato: ["Lato", "sans-serif"],
       inter: ["Inter", "sans-serif"],
       DMsans: ["DM Sans", "sans-serif"],
-    },
-    backgroundImage: {
-      pattern: "url('./src/assets/bg.png')",
     },
   },
   plugins: [],

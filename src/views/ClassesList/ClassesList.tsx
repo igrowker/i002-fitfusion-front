@@ -3,8 +3,11 @@ import { DBclasses } from "../../data/db";
 import { WeightLiftingSVG, HeartSVG, LocationSVG } from "../../icons";
 import { Classes } from "../../types/classesTypes";
 import { ClassesFilter, HeaderProfile } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 export const ClassesList = () => {
+
+  const navigate = useNavigate()
 
   const originalClasses = useRef(DBclasses)
 
@@ -43,6 +46,10 @@ export const ClassesList = () => {
     })
   }
 
+  const handleClick = (classId:number) => {
+    navigate(`/class-detail/${classId}`)
+  }
+
   console.log('filters' , filters)
   return (
     <div className="bg-white bg-cover max-w-full max-h-full py-4 ">
@@ -61,10 +68,13 @@ export const ClassesList = () => {
               return (
                 <li
                   key={fitClass.id}
-                  className="w-5/6 flex justify-around max-w-80 hover:cursor-pointer "
+                  className="w-5/6 flex justify-around max-w-80"
                 >
                   <img src={fitClass.image} className="w-36 h-36 rounded-large" />
-                  <div className="flex flex-col items-start justify-center gap-1">
+                  <div 
+                    className="flex flex-col items-start justify-center gap-1 hover:cursor-pointer "
+                    onClick={ () => handleClick(fitClass.id)}
+                  >
                     <div className=" w-full flex justify-center text-center">
                       <h3 className="font-DMsans font-bold text-heading max-w-28">
                         {" "}
