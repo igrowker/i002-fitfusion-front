@@ -10,6 +10,7 @@ import { HomePage, ClassesList, UserProfile, ClassDetails } from "./views";
 import { AuthLayout } from "./layouts";
 import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
 import LoginPage from "./views/LoginPage/LoginPage";
+import RegisterPage from "./views/RegisterPage/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: (
-          <h1 className="text-center text-white font-bold">
-            Estoy en el Register
-          </h1>
-        ),
+        element: <RegisterPage />,
       },
     ],
   },

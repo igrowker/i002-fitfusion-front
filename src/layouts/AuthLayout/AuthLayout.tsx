@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 
 export const AuthLayout = () => {
   return (
-    <div className="border-2 border-white bg-black text-white px-6 h-full flex flex-col items-center min-h-screen">
+    <div className="bg-black text-white px-6 h-full flex flex-col items-center min-h-screen">
       <div className="flex flex-col items-center mb-16">
         <img className="mb-6" src={logo} alt="Logo" />
 
