@@ -34,7 +34,7 @@ export const HeaderProfile = ({closeButton , text = 'Mi perfil' , showConfig} : 
       <nav
         className={`${
           !isOpen ? "h-0" : "h-[100%]"
-        } fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-50 overflow-hidden origin-top duration-700 w-[100vw]`}
+        } fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-50 overflow-hidden origin-top duration-500 w-[100vw]`}
       >
         <Configuration toggleMenu={toggleMenu} />
       </nav>
