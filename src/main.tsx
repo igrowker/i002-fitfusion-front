@@ -9,6 +9,7 @@ import {
 import { HomePage, ClassesList, UserProfile, ClassDetails } from "./views";
 import { AuthLayout } from "./layouts";
 import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
+import LoginPage from "./views/LoginPage/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: (
-          <h1 className="text-center text-white font-bold">
-            Estoy en el Login
-          </h1>
-        ),
+        element: <LoginPage />,
       },
       {
         path: "register",
@@ -55,7 +52,7 @@ const router = createBrowserRouter([
   },
   {
     path: "class-detail/:id",
-    element: <ClassDetails />
+    element: <ClassDetails />,
   },
   {
     path: "nutrition",
