@@ -9,6 +9,7 @@ import {
 import { HomePage, ClassesList, UserProfile, ClassDetails } from "./views";
 import { AuthLayout } from "./layouts";
 import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
+import { ContactForm } from './views/ContactForm/ContactForm';
 
 const router = createBrowserRouter([
   {
@@ -75,9 +76,7 @@ const router = createBrowserRouter([
   },
   {
     path: "contact",
-    element: (
-      <h1 className="text-center text-white font-bold">Estoy en el Contact</h1>
-    ),
+    element: <ContactForm />,
   },
   {
     path: "about-us",
