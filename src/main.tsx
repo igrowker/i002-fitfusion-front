@@ -6,7 +6,7 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { HomePage, ClassesList, UserProfile, ClassDetails } from "./views";
+import { HomePage, ClassesList, UserProfile, ClassDetails, CalendarComponent } from "./views";
 import { AuthLayout } from "./layouts";
 import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
 import LoginPage from "./views/LoginPage/LoginPage";
@@ -50,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "class-detail/:id",
     element: <ClassDetails />,
+  },
+  {
+    path: "/calendar",
+    element: <CalendarComponent />,
   },
   {
     path: "nutrition",
