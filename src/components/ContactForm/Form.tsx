@@ -43,10 +43,7 @@ export const Form = () => {
 
 	};
 
-    console.log('form' , form)
-
 	return (
-		// <form className="" noValidate validated={validated} onSubmit={handleSubmit}>
 		<form className=""  onSubmit={handleSubmit}>
 			<div className="mb-4">
 				<input
