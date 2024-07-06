@@ -28,6 +28,7 @@ export default {
       "lima-400": "#86BA43",
       "lima-500": "#4A880C",
       "lima-500": "#8FFF00",
+      "green-100": "#17B530",
     },
     fontSize: {
       "heading-xl": "36px",
