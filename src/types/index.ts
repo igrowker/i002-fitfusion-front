@@ -18,5 +18,7 @@ export type User = {
     height: number,
     activity: string,
     image: string,
-    kcal: number
+    kcal: number,
+    new_password: string,
+    current_password: string,   
 }

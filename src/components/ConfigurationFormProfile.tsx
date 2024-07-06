@@ -18,10 +18,15 @@ export const ConfigurationFormProfile = ({
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<User>({ defaultValues: data });
 
   const onSubmit = (data: User) => console.log(data);
+
+  const password = watch("new_password");
+  const current_password = watch("current_password");
+  const new_password = watch("new_password");
 
   return (
     <>
@@ -67,8 +72,14 @@ export const ConfigurationFormProfile = ({
             type="text"
             placeholder="Cambiar Nombre"
             className="w-full p-3  border border-gray-100 rounded-lg"
-            {...register("name", {})}
+            {...register("name", {
+              pattern: {
+                value: /^([a-zA-Z0-9_\s]+).{2,}$/,
+                message: "No es un nombre permitido",
+              },
+            })}
           />
+          {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         </div>
 
         <div className="mb-5 space-y-3">
@@ -83,8 +94,16 @@ export const ConfigurationFormProfile = ({
             type="text"
             placeholder="Cambiar ubicacion"
             className="w-full p-3  border border-gray-100 rounded-lg"
-            {...register("residence", {})}
+            {...register("residence", {
+              pattern: {
+                value: /^([a-zA-Z0-9_\s]+).{2,}$/,
+                message: "No es una ubicacion permitida",
+              },
+            })}
           />
+          {errors.residence && (
+            <ErrorMessage>{errors.residence.message}</ErrorMessage>
+          )}
         </div>
 
         <div className="mb-5 space-y-3">
@@ -114,14 +133,19 @@ export const ConfigurationFormProfile = ({
             className="font-lato font-black text-heading-sm text-gray-500"
             htmlFor="weight"
           >
-            Peso
+            Peso (kg)
           </label>
           <input
             id="weight"
             type="number"
             placeholder="Cambiar Peso"
             className="w-full p-3  border border-gray-100 rounded-lg"
-            {...register("weight", {})}
+            {...register("weight", {
+              pattern: {
+                value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
+                message: "No es un peso permitido",
+              },
+            })}
           />
         </div>
 
@@ -130,14 +154,19 @@ export const ConfigurationFormProfile = ({
             className="font-lato font-black text-heading-sm text-gray-500"
             htmlFor="height"
           >
-            Altura
+            Altura (cm)
           </label>
           <input
             id="height"
             type="number"
             placeholder="Cambiar Altura"
             className="w-full p-3  border border-gray-100 rounded-lg"
-            {...register("height", {})}
+            {...register("height", {
+              pattern: {
+                value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
+                message: "No es una altura permitida",
+              },
+            })}
           />
         </div>
 
@@ -169,23 +198,35 @@ export const ConfigurationFormProfile = ({
             className="font-lato font-black text-heading-sm text-gray-500"
             htmlFor="current_password"
           >
-            Cambiar Password
+            Password
           </label>
           <input
             id="current_password"
             type="password"
             placeholder="Password Actual"
             className="w-full p-3  border border-gray-100 rounded-lg"
+            {...register("current_password", {
+              required: "El password actual es obligatorio",
+            })}
           />
+          {errors.current_password && (
+            <ErrorMessage>{errors.current_password.message}</ErrorMessage>
+          )}
         </div>
 
         <div className="mb-5 space-y-3">
+          <label
+            className="font-lato font-black text-heading-sm text-gray-500"
+            htmlFor="current_password"
+          >
+            Cambiar Password
+          </label>
           <input
-            id="password"
+            id="new_password"
             type="password"
             placeholder="Nuevo Password"
             className="w-full p-3  border border-gray-100 rounded-lg"
-            {...register("password", {
+            {...register("new_password", {
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[a-z]).{8,}$/,
                 message:
@@ -193,18 +234,38 @@ export const ConfigurationFormProfile = ({
               },
             })}
           />
-          {errors.password && (
-            <ErrorMessage>{errors.password.message}</ErrorMessage>
+          {errors.new_password && (
+            <ErrorMessage>{errors.new_password.message}</ErrorMessage>
           )}
         </div>
-        <div className="mb-5 space-y-3">
-          <input
-            id="password_confirmation"
-            type="password"
-            placeholder="Repetir Nuevo Password"
-            className="w-full p-3  border border-gray-100 rounded-lg"
-          />
-        </div>
+
+        {new_password && (
+          <div className="mb-5 space-y-3">
+            <label
+              className="font-lato font-black text-heading-sm text-gray-500"
+              htmlFor="current_password"
+            >
+              Repetir Nuevo Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Repetir Nuevo Password"
+              className="w-full p-3  border border-gray-100 rounded-lg"
+              {...register("password", {
+                required: "El password actual es obligatorio",
+                validate: (value) =>
+                  (value === password &&
+                    "El Password no coincide..." &&
+                    value !== current_password) ||
+                  "El Password no puede ser igual al actual...",
+              })}
+            />
+            {errors.password && (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            )}
+          </div>
+        )}
 
         <input
           type="submit"
