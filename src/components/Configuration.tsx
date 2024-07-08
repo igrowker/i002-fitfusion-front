@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { CloseButtonProfileSVG, RightArrowSVG } from "../icons";
-
+import { User } from "../types";
 import GreenButton from "./GreenButton";
 import ConfigurationFormProfile from "./ConfigurationFormProfile";
 
+
 type ConfigurationProps = {
   toggleMenu: () => void;
+  data: User
 };
 
-export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
+export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const editing = () => {
     setIsEditing(!isEditing);
   };
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+) =>  window.location.href='/auth'
 
   return (
     <>
@@ -48,14 +53,14 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
         </div>
       </div>
 
-      <GreenButton text={"Cerrar Sesion"} />
+      <GreenButton text={"Cerrar Sesion"} handleClick={handleClick} /> 
 
       <nav
         className={`${
           !isEditing ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        <ConfigurationFormProfile editing={editing} />
+        <ConfigurationFormProfile data={data} editing={editing} />
       </nav>
     </>
   );

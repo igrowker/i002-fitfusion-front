@@ -1,11 +1,15 @@
 type GreenButtonProps = {
-    text: string
-}
+  text: string;
+  handleClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => string
 
-export const GreenButton = ({text}: GreenButtonProps) => {
+};
+
+export const GreenButton = ({ text, handleClick }: GreenButtonProps) => {
   return (
-    <button className=" bg-[#C1FF72] rounded-xl m-6 w-[327px] h-[64px] font-lato text-heading font-bold">{text}</button>
-  )
-}
+    <button className=" bg-[#C1FF72] rounded-xl m-6 w-[327px] h-[64px] font-lato text-heading font-bold" onClick={handleClick}>
+      {text}
+    </button>
+  );
+};
 
-export default GreenButton
+export default GreenButton;
