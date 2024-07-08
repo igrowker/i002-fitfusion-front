@@ -3,10 +3,13 @@ import { HeaderProfile } from "../../components"
 import { Classes } from "../../types/classesTypes"
 import { CornerCirclesSVG, DumbbellSVG, HeartSVG, LightingSVG } from "../../icons"
 import { UserSVG } from "../../icons/UserSVG"
+import { useNavigate } from "react-router-dom"
 
 
 
 export const ClassDetails = () => {
+
+    const navigate = useNavigate()
 
     const [classInfo, setClassInfo] = useState<Classes>({
         id: 1,
@@ -28,6 +31,7 @@ export const ClassDetails = () => {
         status: "Disponible",
     },)
 
+    const handleClick = () => {navigate('/calendar')}
 
   return (
     <div 
@@ -64,6 +68,7 @@ export const ClassDetails = () => {
                 </div>
                 <button 
                     className="font-lato font-bold text-heading bg-lima-100 max-w-80 w-full rounded-lg py-2 mt-5"
+                    onClick={handleClick}
                 > Ver calendario</button>
                 <div className="w-full my-6">
                     <p className="font-DMsans font-bold text-heading text-left"> Información </p>

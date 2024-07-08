@@ -11,3 +11,4 @@ export { Switch } from "./Switch";
 export { CaloriesCalculator } from "./CaloriesCalculator"
 export {ClassesFilter} from './ClassesFilter'
 export { ContactFormCard } from './ContactForm/ContactFormCard'
+export { ClassTeacherCard } from './ClassTeacherCard'

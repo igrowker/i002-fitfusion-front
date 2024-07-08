@@ -7,6 +7,9 @@ export type Classes = {
     level: ClassesLevel ;
     type: ClassesType ;
     status : ClassesStatus ;
+    length : string;
+    calories : string;
+    hour : string;
 }
 
 
