@@ -1,29 +1,22 @@
-import { ContactFormCard } from "../../components";
-
+import { Form, Header } from "../../components";
 
 export const ContactForm = () => {
-	return (
-		<section className="ezy__contact11 light bg-black-bg overflow-hidden md:h-screen">
-            
-			<div
-				className="bg-pattern bg-no-repeat bg-left-bottom bg-cover py-14"
-			>
-				<div className="container px-4">
-					<div className="grid grid-cols-12 py-6">
-						<div className="col-span-12 lg:col-span-4 mb-12 lg:mb-0">
-							<h2 className="font-lato text-white  text-2xl leading-none font-bold md:text-[40px] mb-6">
-								Hola, ¿cómo podemos ayudarte?
-							</h2>
-						</div>
-						<div className="col-span-12 lg:col-span-5 lg:col-start-8">
-							<ContactFormCard />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className="ezy__contact11-blank-card"></div>
-		</section>
-	);
+  return (
+    <section className="flex flex-col items-center p-6 box-border bg-black-bg md:h-screen">
+      <Header />
+
+      <div className="flex flex-col items-center ">
+        <h1 className="font-lato text-white text-heading-xl leading-none font-bold md:text-[40px] my-6">
+          CONTÁCTANOS
+        </h1>
+        <p className="text-center text-white font-lato text-lg px-8">
+          Por favor, completa el formulario y nos pondremos en contacto contigo
+          a la velocidad de la luz.
+        </p>
+      </div>
+      <div className="box-border min-w-80 mt-9 overflow-auto">
+        <Form />
+      </div>
+    </section>
+  );
 };
-
-
