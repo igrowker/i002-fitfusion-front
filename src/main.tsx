@@ -12,6 +12,7 @@ import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
 import { ContactForm } from './views/ContactForm/ContactForm';
 import LoginPage from "./views/LoginPage/LoginPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
+import Nutritionist from "./views/Nutritionist/Nutritionist";
 
 const router = createBrowserRouter([
   {
@@ -59,9 +60,7 @@ const router = createBrowserRouter([
   {
     path: "nutrition",
     element: (
-      <h1 className="text-center text-white font-bold">
-        Estoy en el Nutrition
-      </h1>
+      <Nutritionist />
     ),
   },
   {
