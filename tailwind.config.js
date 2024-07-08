@@ -21,6 +21,7 @@ export default {
       white: "#F8F8F8",
       "gray-100": "#E6E5E5",
       "gray-300": "#C2BDBD",
+      "gray-400": "#BFBFBF",
       "gray-500": "#7F7F7F",
       "lima-100": "#C1FF72",
       "lima-200": "#8CBB51",

@@ -30,4 +30,5 @@
 
 .react-calendar__month-view__weekdays abbr {
     text-decoration: none;
+    /* color: #86BA43 ; */
 }
