@@ -1,12 +1,3 @@
-export type Teacher = {
-    id: number,
-    name: string,
-    activity: string,
-    image: string,
-    kcal: number
-}
-
-
 export type User = {
     id: number,
     name: string,
@@ -20,5 +11,6 @@ export type User = {
     image: string,
     kcal: number,
     new_password: string,
-    current_password: string,   
+    current_password: string,  
+    auth: boolean 
 }

@@ -3,26 +3,42 @@ import { PencilSVG } from "../icons/PencilSVG";
 import { User } from "../types";
 import ErrorMessage from "./ErrorMessage";
 import RedButton from "./RedButton";
+import { useUser } from "../hooks/useUser";
 
 import { useForm } from "react-hook-form";
+
 
 type ConfigurationFormProfileProps = {
   editing: () => void;
   data: User;
 };
 
+
 export const ConfigurationFormProfile = ({
   editing,
   data,
 }: ConfigurationFormProfileProps) => {
+
+
+  const { dataUser } = useUser();
+
+  const user = dataUser.find(user => user.auth === true)
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<User>({ defaultValues: data });
+  } = useForm<User>({ defaultValues: user });
 
-  const onSubmit = (data: User) => console.log(data);
+
+
+  const onSubmit = (data: User) => {
+console.log(data)
+  }
+
+
+  
 
   const password = watch("new_password");
   const current_password = watch("current_password");
