@@ -14,3 +14,13 @@ export type User = {
     current_password: string,  
     auth: boolean 
 }
+
+export type Nutritionist = {
+    id: number,
+    name: string,
+    residence: string,
+    email: string,
+    image: string,
+    phone: number,
+    description: string
+}
