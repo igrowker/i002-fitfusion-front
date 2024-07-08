@@ -10,6 +10,7 @@ export type Classes = {
     length : string;
     calories : string;
     hour : string;
+    kcal: number
 }
 
 

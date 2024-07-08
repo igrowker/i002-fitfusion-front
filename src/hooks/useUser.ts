@@ -1,15 +1,23 @@
-import type { Teacher } from "../types";
-import { teachers } from "../data/db";
+import { DBclasses, user } from "../data/db";
 import { useEffect, useState } from "react";
+import { Classes } from "../types/classesTypes";
+import { User } from "../types";
 
 export const useUser = () => {
-  const [data, setData] = useState<Teacher[]>([]);
+  const [dataClass, setDataClass] = useState<Classes[]>([]);
+
+  const [dataUser, setDataUser] = useState<User[]>([]);
 
   useEffect(() => {
-    setData(teachers);
+    setDataClass(DBclasses);
+  }, []);
+
+  useEffect(() => {
+    setDataUser(user);
   }, []);
 
   return {
-    data,
+    dataClass,
+    dataUser,
   };
 };

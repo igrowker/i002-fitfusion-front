@@ -2,11 +2,11 @@ import { useUser } from "../hooks/useUser";
 import { FireSVG } from "../icons/FireSVG";
 
 export const TeacherBanner = () => {
-  const { data } = useUser();
+  const { dataClass } = useUser();
 
   return (
     <>
-      {data?.map((user) => (
+      {dataClass?.map((user) => (
         <article
           key={user.id}
           className={`flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
@@ -15,13 +15,13 @@ export const TeacherBanner = () => {
         >
           <div className=" flex flex-row gap-4 items-center">
             <img
-              className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url('/${user.image}.jfif')]`}
+              className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url(${user.image})]`}
             />
             <div className=" flex flex-col justify-start">
               <p className=" text-heading-sm text-white font-medium">
-                {user.name}
+                {user.instructor.name}
               </p>
-              <p className=" text-heading-sm text-gray-100">{user.activity}</p>
+              <p className=" text-heading-sm text-gray-100">{user.title}</p>
             </div>
           </div>
 
@@ -36,6 +36,6 @@ export const TeacherBanner = () => {
       ))}
     </>
   );
-}
+};
 
 export default TeacherBanner;
