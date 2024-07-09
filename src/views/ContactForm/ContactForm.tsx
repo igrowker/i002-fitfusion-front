@@ -1,10 +1,8 @@
-import { Form, Header } from "../../components";
+import { Form } from "../../components";
 
 export const ContactForm = () => {
   return (
     <section className="flex flex-col items-center p-6 box-border bg-black-bg md:h-screen">
-      <Header />
-
       <div className="flex flex-col items-center ">
         <h1 className="font-lato text-white text-heading-xl leading-none font-bold md:text-[40px] my-6">
           CONTÁCTANOS

@@ -1,11 +1,12 @@
 
+import { Link } from "react-router-dom"
 import logo from "../assets/logo.png"
 import { FacebookSVG, InstagramSVG } from "../icons"
 
 
 export const Footer = () => {
   return (
-    <footer className="bg-black-bg bg-cover w-full ">
+    <footer className="bg-black-bg bg-cover w-full h-full">
         <div className="flex justify-start border-solid border-y-2 border-y-lima-100 mx-8 md:px-16 " >
             <div className="py-4">
                 <div>
@@ -18,13 +19,13 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="ml-auto flex flex-col justify-evenly text-right">
-                <p className="font-lato text-white font-normal text-heading-sm">SOBRE NOSOTROS</p>
-                <p className="font-lato text-white font-normal text-heading-sm">CONTACTO</p>
+                <Link to={"/about-us"} className="font-lato text-white font-normal text-heading-sm">SOBRE NOSOTROS</Link>
+                <Link to={"/contact"} className="font-lato text-white font-normal text-heading-sm">CONTACTO</Link>
             </div>
 
         </div>
 
-        <div className="mb-5 pt-3 flex justify-center text-center">
+        <div className="pt-3 flex justify-center text-center">
             <p className="font-lato text-footer-gray font-light text-heading-xs" >FITFUSION® 2024 - Todos los derechos reservados | Privacidad y Cookies</p>
         </div>
     </footer>
