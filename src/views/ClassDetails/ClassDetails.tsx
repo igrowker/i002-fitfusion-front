@@ -29,14 +29,17 @@ export const ClassDetails = () => {
         level: "Fuerte",
         type: "En gimnasio",
         status: "Disponible",
+        length : '',
+        calories : '',
+        hour : '',
+        kcal: 300
     },)
 
     const handleClick = () => {navigate('/calendar')}
 
   return (
     <div 
-        // className="bg-lima-100 bg-pattern h-screen bg-cover bg-center md:"
-        className="bg-lima-100 bg-pattern h-screen bg-cover bg-center flex flex-col md:bg-none"
+        className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100"
     >   
         <HeaderProfile closeButton={true} text={classInfo.title} showConfig={false} />
         <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
@@ -52,26 +55,32 @@ export const ClassDetails = () => {
                 <div className="absolute -top-8 flex justify-center items-center w-16 h-16 rounded-full bg-lima-100  shadow-custom">
                     <UserSVG fill="white"/>
                 </div>
-                <div className="flex gap-4 pt-16">
+                <div className="w-full flex justify-evenly pt-16">
                     <div className=" flex flex-col items-center justify-between">
                         <HeartSVG width={24} height={24}/>
-                        {classInfo.title}
+                        <p className="text-heading-sm font-bold font-DMsans">
+                            {classInfo.title}
+                        </p>
                     </div>
                     <div className=" flex flex-col items-center justify-between">
                         <DumbbellSVG width={24} height={24}/>
-                        {classInfo.title}
+                        <p className="text-heading-sm font-bold font-DMsans">
+                            {classInfo.title}
+                        </p>
                     </div>
                     <div className=" flex flex-col items-center justify-between">
                         <LightingSVG width={24} height={24}/>
-                        {classInfo.title}
+                        <p className="text-heading-sm font-bold font-DMsans">
+                            {classInfo.title}
+                        </p>
                     </div>
                 </div>
                 <button 
-                    className="font-lato font-bold text-heading bg-lima-100 max-w-80 w-full rounded-lg py-2 mt-5"
+                    className="bg-lima-100 text-black font-lato text-heading font-bold rounded-xl w-full py-2 max-w-4xl mt-5"
                     onClick={handleClick}
                 > Ver calendario</button>
                 <div className="w-full my-6">
-                    <p className="font-DMsans font-bold text-heading text-left"> Información </p>
+                    <h3 className="text-heading-md font-DMsans font-bold"> Información </h3>
                     <p className="font-DMsans font-normal text-heading-sm text-gray-500 mt-3">
                         {classInfo.description}
                     </p>
