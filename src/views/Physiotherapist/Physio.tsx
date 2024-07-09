@@ -3,10 +3,10 @@ import { HeaderProfile } from "../../components";
 import { useUser } from "../../hooks/useUser";
 import { ColonSVG, RightArrowSVG } from "../../icons";
 import { PhoneSVG } from "../../icons/PhoneSVG";
-import NutritionCard from "../../components/NutritionCard";
 import { useNavigate } from "react-router-dom";
+import PhysioCard from "../../components/PhysioCard";
 
-export const Nutritionist = () => {
+export const Physio = () => {
   const { dataNut } = useUser();
 
   const [item, setItem] = useState(dataNut);
@@ -25,13 +25,13 @@ export const Nutritionist = () => {
       <HeaderProfile
         handleClick={handleClick}
         closeButton={false}
-        text={"Nutricionistas"}
+        text={"Fisioterapeutas"}
         showConfig={false}
       />
 
       <div className=" flex flex-row w-full justify-between items-center mt-5 pt-2 px-6 ">
         <p className=" font-bold text-heading font-lato">
-          Contacta a nuestros nutricionistas
+          Contacta a nuestros fisioterapeutas
         </p>
         <ColonSVG className="text-gray-500" />
       </div>
@@ -82,11 +82,11 @@ export const Nutritionist = () => {
             item.length === 0 ? "w-0" : "w-[100vw]"
           }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
         >
-          <NutritionCard item={item} setItem={setItem} />
+          <PhysioCard item={item} setItem={setItem} />
         </nav>
       </div>
     </main>
   );
 };
 
-export default Nutritionist;
+export default Physio;
