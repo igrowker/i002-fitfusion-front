@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { HeaderProfile } from "../../components"
 import { Classes } from "../../types/classesTypes"
-import { CornerCirclesSVG, DumbbellSVG, HeartSVG, LightingSVG } from "../../icons"
+import { CornerCirclesSVG, DumbbellSVG, HeartSVG, LightingSVG, RightArrowSVG } from "../../icons"
 import { UserSVG } from "../../icons/UserSVG"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 
@@ -35,7 +35,7 @@ export const ClassDetails = () => {
         kcal: 300
     },)
 
-    const handleClick = () => {navigate('/calendar')}
+    const handleClick = (to:string) => {navigate(`${to}`)}
 
   return (
     <div 
@@ -77,13 +77,22 @@ export const ClassDetails = () => {
                 </div>
                 <button 
                     className="bg-lima-100 text-black font-lato text-heading font-bold rounded-xl w-full py-2 max-w-4xl mt-5"
-                    onClick={handleClick}
+                    onClick={() => handleClick('/calendar')}
                 > Ver calendario</button>
                 <div className="w-full my-6">
                     <h3 className="text-heading-md font-DMsans font-bold"> Información </h3>
                     <p className="font-DMsans font-normal text-heading-sm text-gray-500 mt-3">
                         {classInfo.description}
                     </p>
+
+                    {/* Pendiente de definir estilos */}
+                    <div 
+                        className="flex items-center" 
+                        onClick={() => handleClick('/trainer-profile')}
+                    >
+                        <h3  >Conoce a tu entrenador   </h3>
+                        <RightArrowSVG  width={36} height={36} />
+                    </div>
                 </div>
 
             </div>
