@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import landingImg from "../../assets/landing-img.png";
 import {
   WeightLiftingSVG,
@@ -20,9 +21,11 @@ export const HomePage = () => {
             Clases personalizadas y apoyo profesional desde donde quieras!
           </p>
         </div>
-        <button className="bg-lima-100 text-black rounded-2xl px-12 py-2 font-semibold">
-          Empieza gratis
-        </button>
+        <Link to="/auth/">
+          <button className="bg-lima-100 text-black rounded-2xl px-12 py-2 font-semibold">
+            Empieza gratis
+          </button>
+        </Link>
       </div>
       <div className="relative h-[380px] w-full z-30 mt-8">
         <img

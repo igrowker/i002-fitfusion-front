@@ -51,10 +51,19 @@ export const ClassesList = () => {
   }
 
   console.log('filters' , filters)
+
+
+
+ 
+  const handle = () => {
+    navigate("");
+  };
+
+
   return (
     <div className="bg-white bg-cover max-w-full max-h-full py-4 ">
 
-      <HeaderProfile closeButton={false} text="Clases" showConfig={false} />
+      <HeaderProfile handleClick={handle} closeButton={false} text="Clases" showConfig={false} />
 
       <ClassesFilter filters={filters} handleSelectChange={handleSelectChange} resetClasses={resetClasses}  />
 

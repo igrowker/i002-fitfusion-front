@@ -17,7 +17,7 @@ export const Switch = () => {
             !show ? "pointer-events-none bg-white" : " bg-gray-300"
           }`}
         >
-          Logros
+          Clases
         </button>
         <button
           onClick={() => handleSwitch()}
@@ -25,11 +25,11 @@ export const Switch = () => {
             show ? "pointer-events-none bg-white" : " bg-gray-300"
           }`}
         >
-          Clases
+          Logros
         </button>
       </div>
 
-      {!show ? <CaloriesProfile /> : <ClasesProfile />}
+      {!show ? <ClasesProfile /> :  <CaloriesProfile />}
     </>
   );
 };

@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { HeaderProfile, ProfileData, Switch } from "../../components";
 
 export const UserProfile = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("");
+  };
   return (
     <main className=" bg-white flex flex-col items-center">
-      <HeaderProfile closeButton={true} text={'Mi perfil'} showConfig={true} />
+      <HeaderProfile handleClick={handleClick} closeButton={false} text={'Mi perfil'} showConfig={false} />
 
       <ProfileData />
 

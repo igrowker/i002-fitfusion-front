@@ -2,12 +2,18 @@ import { useState } from "react";
 import { Configuration } from "./";
 import { CloseButtonProfileSVG, ColonSVG, ConfigurationToolSVG, LeftArrowSVG } from "../icons";
 
+
 type HeaderProfilePropsTypes = {
   closeButton : boolean
   text : string 
   showConfig : boolean
+  handleClick: () => void
+
+
 }
-export const HeaderProfile = ({closeButton , text = 'Mi perfil' , showConfig} : HeaderProfilePropsTypes) => {
+export const HeaderProfile = ({closeButton , text = 'Mi perfil' , showConfig, handleClick} : HeaderProfilePropsTypes) => {
+
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -16,7 +22,7 @@ export const HeaderProfile = ({closeButton , text = 'Mi perfil' , showConfig} : 
 
   return (
     <header className="relative z-10 flex flex-row w-full justify-between items-center pt-14 px-6">
-      <button className=" min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer">
+      <button onClick={() => handleClick()} className=" min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer">
          { closeButton ? <CloseButtonProfileSVG /> : <LeftArrowSVG />} 
       </button>
 
