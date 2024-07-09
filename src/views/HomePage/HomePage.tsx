@@ -1,5 +1,4 @@
 import landingImg from "../../assets/landing-img.png";
-import { Footer, Header } from "../../components";
 import {
   WeightLiftingSVG,
   CirclesSVG,
@@ -12,7 +11,6 @@ import {
 export const HomePage = () => {
   return (
     <div className="bg-black bg-pattern bg-no-repeat bg-cover">
-      <Header />
       <div className="container flex flex-col justify-center gap-y-8 text-center items-center py-4 px-8">
         <div className="flex flex-col items-center text-white gap-y-4">
           <h1 className="text-heading-xl font-lato font-bold">
@@ -78,7 +76,6 @@ export const HomePage = () => {
           <p className="font-lato font-normal text-heading">REHABILITACIÓN</p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

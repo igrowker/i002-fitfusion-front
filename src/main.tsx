@@ -6,18 +6,48 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { HomePage, ClassesList, UserProfile, ClassDetails, CalendarComponent } from "./views";
+import {
+  HomePage,
+  ClassesList,
+  UserProfile,
+  ClassDetails,
+  CalendarComponent,
+} from "./views";
 import { AuthLayout } from "./layouts";
 import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
-import { ContactForm } from './views/ContactForm/ContactForm';
+import { ContactForm } from "./views/ContactForm/ContactForm";
 import LoginPage from "./views/LoginPage/LoginPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
 import Nutritionist from "./views/Nutritionist/Nutritionist";
+import AboutUsPage from "./views/AboutUsPage/AboutUsPage";
+import PrincipalLayout from "./layouts/PrincipalLayout/PrincipalLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <PrincipalLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "contact",
+        element: <ContactForm />,
+      },
+      {
+        path: "about-us",
+        element: <AboutUsPage />,
+      },
+      {
+        path: "privacy-policy",
+        element: (
+          <h1 className="text-center text-white font-bold">
+            Estoy en el PrivacyPolicy
+          </h1>
+        ),
+      },
+    ],
   },
   {
     path: "auth",
@@ -59,33 +89,13 @@ const router = createBrowserRouter([
   },
   {
     path: "nutrition",
-    element: (
-      <Nutritionist />
-    ),
+    element: <Nutritionist />,
   },
   {
     path: "physiotherapist",
     element: (
       <h1 className="text-center text-white font-bold">
         Estoy en el Physiotherapist
-      </h1>
-    ),
-  },
-  {
-    path: "contact",
-    element: <ContactForm />,
-  },
-  {
-    path: "about-us",
-    element: (
-      <h1 className="text-center text-white font-bold">Estoy en el AboutUs</h1>
-    ),
-  },
-  {
-    path: "privacy-policy",
-    element: (
-      <h1 className="text-center text-white font-bold">
-        Estoy en el PrivacyPolicy
       </h1>
     ),
   },
