@@ -7,16 +7,16 @@ import { UbicationSVG } from "../icons/UbicationSVG";
 import { PhoneSVG } from "../icons/PhoneSVG";
 import { EmailSVG } from "../icons/EmailSVG";
 
-type NutritionCardProps = {
+type PhysioCardProps = {
   item: Nutritionist[];
   setItem: React.Dispatch<React.SetStateAction<Nutritionist[]>>;
 };
 
-export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
+export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
     setItem([]);
-    navigate("/nutrition");
+    navigate("/physiotherapist");
   };
   return (
     <>
@@ -84,4 +84,4 @@ export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
   );
 };
 
-export default NutritionCard;
+export default PhysioCard;

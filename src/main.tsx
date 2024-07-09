@@ -21,6 +21,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage";
 import Nutritionist from "./views/Nutritionist/Nutritionist";
 import AboutUsPage from "./views/AboutUsPage/AboutUsPage";
 import PrincipalLayout from "./layouts/PrincipalLayout/PrincipalLayout";
+import Physio from "./views/Physiotherapist/Physio";
 
 const router = createBrowserRouter([
   {
@@ -93,11 +94,7 @@ const router = createBrowserRouter([
   },
   {
     path: "physiotherapist",
-    element: (
-      <h1 className="text-center text-white font-bold">
-        Estoy en el Physiotherapist
-      </h1>
-    ),
+    element: <Physio />,
   },
   {
     path: "*",
