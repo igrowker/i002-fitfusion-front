@@ -19,7 +19,7 @@ export const TrainerProfilePage = () => {
   return (
     <div className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100">
       <HeaderProfile
-        closeButton={true}
+        closeButton={false}
         text={"Martín Torres Lugo"}
         showConfig={false}
       />

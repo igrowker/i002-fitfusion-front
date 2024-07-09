@@ -41,7 +41,7 @@ export const ClassDetails = () => {
     <div 
         className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100"
     >   
-        <HeaderProfile closeButton={true} text={classInfo.title} showConfig={false} />
+        <HeaderProfile navigateTo="/classes" closeButton={false} text={classInfo.title} showConfig={false} />
         <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
         <div className="flex flex-col items-center flex-1">
             <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">

@@ -4,6 +4,7 @@ import { useUser } from "../../hooks/useUser";
 import { ColonSVG, RightArrowSVG } from "../../icons";
 import { PhoneSVG } from "../../icons/PhoneSVG";
 import NutritionCard from "../../components/NutritionCard";
+import { useNavigate } from "react-router-dom";
 
 export const Nutritionist = () => {
   const { dataNut } = useUser();
@@ -14,12 +15,15 @@ export const Nutritionist = () => {
     const newItem = dataNut.filter((newVal) => newVal.id === id);
     setItem(newItem);
   };
-
-  console.log(item);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("");
+  };
 
   return (
     <main className=" bg-white">
       <HeaderProfile
+        handleClick={handleClick}
         closeButton={false}
         text={"Nutricionistas"}
         showConfig={false}
@@ -73,7 +77,13 @@ export const Nutritionist = () => {
           </article>
         ))}
 
-        {item ? <NutritionCard item={item} setItem={setItem} /> : <p>nada</p>}
+        <nav
+          className={`${
+            item.length === 0 ? "w-0" : "w-[100vw]"
+          }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+        >
+          <NutritionCard item={item} setItem={setItem} />
+        </nav>
       </div>
     </main>
   );

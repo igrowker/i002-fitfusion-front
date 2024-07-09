@@ -1,13 +1,20 @@
 import { useState } from "react";
-import { CloseButtonProfileSVG, RightArrowSVG } from "../icons";
+import {
+  CloseButtonProfileSVG,
+  DinnerSVG,
+  DumbbellSVG,
+  FisioSVG,
+  FollowersSVG,
+  RightArrowSVG,
+} from "../icons";
 import { User } from "../types";
 import GreenButton from "./GreenButton";
 import ConfigurationFormProfile from "./ConfigurationFormProfile";
-
+import { Link } from "react-router-dom";
 
 type ConfigurationProps = {
   toggleMenu: () => void;
-  data: User
+  data: User;
 };
 
 export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
@@ -17,15 +24,13 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
     setIsEditing(!isEditing);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-) =>  window.location.href='/auth'
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+    (window.location.href = "/auth");
 
   return (
     <>
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
-        <p className=" font-bold text-base text-black font-lato">
-          Configuracion
-        </p>
+        <p className=" font-bold text-base text-black font-lato"></p>
         <button
           className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
           onClick={toggleMenu}
@@ -34,7 +39,83 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
         </button>
       </div>
 
-      <div className="pb-8 pt-10" onClick={editing}>
+      <div className="pb-8 pt-10">
+        <p className=" font-lato font-black text-heading px-6">Accesos</p>
+
+        <Link
+          to="/profile"
+          className=" flex px-6 items-center mt-5 justify-between"
+        >
+          <div className="flex gap-3 items-center">
+            <div className=" flex h-12 w-12 justify-center items-center bg-gray-100 rounded-full">
+              <FollowersSVG />
+            </div>
+
+            <div>
+              <p className=" font-lato font-bold text-heading">Mi Perfil</p>
+            </div>
+          </div>
+
+          <RightArrowSVG />
+        </Link>
+
+        <Link
+          to="/classes"
+          className=" flex px-6 items-center mt-5 justify-between"
+        >
+          <div className="flex gap-3 items-center">
+            <div className=" flex h-12 w-12 justify-center items-center bg-gray-100 rounded-full">
+              <DumbbellSVG />
+            </div>
+
+            <div>
+              <p className=" font-lato font-bold text-heading">Buscar Clases</p>
+            </div>
+          </div>
+
+          <RightArrowSVG />
+        </Link>
+
+        <Link
+          to="/nutrition"
+          className=" flex px-6 items-center mt-5 justify-between"
+        >
+          <div className="flex gap-3 items-center">
+            <div className=" flex h-12 w-12 justify-center items-center bg-gray-100 rounded-full">
+              <DinnerSVG />
+            </div>
+
+            <div>
+              <p className=" font-lato font-bold text-heading">
+                Conoce nuestros Nutricionistas
+              </p>
+            </div>
+          </div>
+
+          <RightArrowSVG />
+        </Link>
+
+        <Link
+          to="/physiotherapist"
+          className=" flex px-6 items-center mt-5 justify-between"
+        >
+          <div className="flex gap-3 items-center">
+            <div className=" flex h-12 w-12 justify-center items-center bg-gray-100 rounded-full">
+              <FisioSVG />
+            </div>
+
+            <div>
+              <p className=" font-lato font-bold text-heading">
+                Conoce nuestros Fisioterapeutas
+              </p>
+            </div>
+          </div>
+
+          <RightArrowSVG />
+        </Link>
+      </div>
+
+      <div className="pb-8 pt-5" onClick={editing}>
         <p className=" font-lato font-black text-heading px-6">Cuenta</p>
         <div className=" flex px-6 items-center mt-5 justify-between">
           <div className="flex gap-3 items-center">
@@ -53,7 +134,7 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
         </div>
       </div>
 
-      <GreenButton text={"Cerrar Sesion"} handleClick={handleClick} /> 
+      <GreenButton text={"Cerrar Sesion"} handleClick={handleClick} />
 
       <nav
         className={`${

@@ -1,13 +1,24 @@
+import { useState } from "react";
 import { useUser } from "../hooks/useUser";
 import { FireSVG } from "../icons/FireSVG";
+import ClassCard from "./ClassCard";
+
 
 export const TeacherBanner = () => {
   const { dataClass } = useUser();
+
+  const [item, setItem] = useState(dataClass);
+
+  const filterItem = (id: number) => {
+    const newItem = dataClass.filter((newVal) => newVal.id === id);
+    setItem(newItem);
+  };
 
   return (
     <>
       {dataClass?.map((user) => (
         <article
+          onClick={() => filterItem(user.id)}
           key={user.id}
           className={`flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
             user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
@@ -34,6 +45,14 @@ export const TeacherBanner = () => {
           </div>
         </article>
       ))}
+
+      <nav
+        className={`${
+          item.length === 0 ? "w-0" : "w-[100vw]"
+        }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+      >
+        <ClassCard item={item} setItem={setItem} />
+      </nav>
     </>
   );
 };
