@@ -14,10 +14,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 type ConfigurationProps = {
   toggleMenu: () => void;
-  data: User;
+  user: User
+
 };
 
-export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
+export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const editing = () => {
@@ -144,7 +145,7 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
           !isEditing ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        <ConfigurationFormProfile data={data} editing={editing} />
+        <ConfigurationFormProfile user={user} editing={editing} />
       </nav>
     </div>
   );

@@ -3,26 +3,20 @@ import { PencilSVG } from "../icons/PencilSVG";
 import { User } from "../types";
 import ErrorMessage from "./ErrorMessage";
 import RedButton from "./RedButton";
-import { useUser } from "../hooks/useUser";
 
 import { useForm } from "react-hook-form";
-
+import { useState } from "react";
 
 type ConfigurationFormProfileProps = {
   editing: () => void;
-  data: User;
+  user: User;
 };
-
 
 export const ConfigurationFormProfile = ({
   editing,
-  data,
+  user,
 }: ConfigurationFormProfileProps) => {
-
-
-  const { dataUser } = useUser();
-
-  const user = dataUser.find(user => user.auth === true)
+  const [userEdit, setuserEdit] = useState(user);
 
   const {
     register,
@@ -31,14 +25,11 @@ export const ConfigurationFormProfile = ({
     formState: { errors },
   } = useForm<User>({ defaultValues: user });
 
-
-
   const onSubmit = (data: User) => {
-console.log(data)
-  }
+    setuserEdit(data);
+  };
 
-
-  
+  console.log(userEdit);
 
   const password = watch("new_password");
   const current_password = watch("current_password");
@@ -290,9 +281,7 @@ console.log(data)
         />
       </form>
 
-<RedButton text={"Eliminar cuenta"} />
-
-    
+      <RedButton text={"Eliminar cuenta"} />
     </div>
   );
 };
