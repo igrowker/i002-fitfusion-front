@@ -1,6 +1,4 @@
 import {
-  CloseButtonProfileSVG,
-  ColonSVG,
   CornerCirclesSVG,
   DumbbellSVG,
   HeartSVG,
@@ -16,9 +14,15 @@ export const TrainerProfilePage = () => {
   const handleClick = () => {
     navigate("/calendar");
   };
+
+  const handleBack = () => {
+    navigate("");
+  };
+
   return (
     <div className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100">
       <HeaderProfile
+        handleClick={handleBack}
         closeButton={false}
         text={"Martín Torres Lugo"}
         showConfig={false}
@@ -78,7 +82,6 @@ export const TrainerProfilePage = () => {
         </div>
       </div>
     </div>
-
   );
 };
 
