@@ -1,10 +1,7 @@
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../../components/ErrorMessage";
-
-type LoginForm = {
-  email: string;
-  password: string;
-};
+import { LoginForm } from "../../types/formTypes";
+import { Link } from "react-router-dom";
 
 export const LoginPage = () => {
   const { register, handleSubmit, formState } = useForm<LoginForm>();
@@ -89,7 +86,7 @@ export const LoginPage = () => {
           </button>
           <p className="text-gray-500 text-heading-sm w-full text-center">
             ¿No tienes cuenta?{" "}
-            <a className="text-lima-100 text-heading-sm">Regístrate</a>
+            <Link to="/auth/register" className="text-lima-100 text-heading-sm">Regístrate</Link>
           </p>
         </div>
       </form>
