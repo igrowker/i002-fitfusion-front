@@ -11,12 +11,11 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-black w-full h-full flex justify-between items-center px-4">
-      <div></div>
-      <img src={logo} alt="Logo image" width={64} />
+    <header className="bg-black w-full h-full flex  justify-between items-center px-4 relative">
+      <img src={logo} alt="Logo image" width={64} className="m-auto" />
       <MenuSVG
         onClick={toggleMenu}
-        className="text-white cursor-pointer float-end"
+        className="text-white cursor-pointer float-end absolute right-3 md:right-28"
       />
       <nav
         className={`${
@@ -26,7 +25,7 @@ export const Header = () => {
         <ul className="flex flex-col w-full gap-6  items-center h-full">
           <li className="self-end m-4">
             <CloseSVG
-              className="text-white cursor-pointer"
+              className="text-white cursor-pointer float-end absolute right-3 md:right-28"
               onClick={toggleMenu}
             />
           </li>
