@@ -10,7 +10,7 @@ import {
 import { User } from "../types";
 import GreenButton from "./GreenButton";
 import ConfigurationFormProfile from "./ConfigurationFormProfile";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type ConfigurationProps = {
   toggleMenu: () => void;
@@ -24,8 +24,11 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
     setIsEditing(!isEditing);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-    (window.location.href = "/auth");
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/auth");
+  };
 
   return (
     <div className="flex flex-col min-[566px]:max-w-xl m-auto justify-between">

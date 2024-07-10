@@ -1,6 +1,7 @@
 type GreenButtonProps = {
   text: string;
-  handleClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => string
+  handleClick: () => void
+
 
 };
 
