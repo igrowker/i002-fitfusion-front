@@ -11,7 +11,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-black-bg w-full h-full flex justify-between items-center px-4">
+    <header className="bg-black w-full h-full flex justify-between items-center px-4">
       <div></div>
       <img src={logo} alt="Logo image" width={64} />
       <MenuSVG

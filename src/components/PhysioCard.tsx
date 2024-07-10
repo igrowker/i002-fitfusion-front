@@ -23,7 +23,7 @@ export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
       {item.map((nut) => (
         <div
           key={nut.id}
-          className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100"
+          className="bg-lima-100/60 bg-cover bg-center flex flex-col  items-center"
         >
           <HeaderProfile
             handleClick={handleClick}
@@ -40,14 +40,14 @@ export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
                 alt={nut.name}
               />
             </div>
-            <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl md:rounded-3xl md:flex-0 md:max-h-96">
+            <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl  pb-6 md:rounded-3xl md:flex-0 md:mb-6">
               <div className="absolute -top-8 flex justify-center items-center w-16 h-16 rounded-full bg-lima-100  shadow-custom">
                 <UserSVG fill="white" />
               </div>
               <div className="w-full flex justify-evenly pt-16">
                 <div className="w-full flex justify-evenly">
                   <div className="flex flex-col items-center justify-center">
-                   <EmailSVG/>
+                    <EmailSVG />
                     <p className="text-heading-sm font-bold font-DMsans">
                       {nut.email}
                     </p>
@@ -67,7 +67,7 @@ export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
                 </div>
               </div>
 
-              <div className="w-full my-6">
+              <div className="w-full mt-6">
                 <h3 className="text-heading-md font-DMsans font-bold">
                   {" "}
                   Información{" "}

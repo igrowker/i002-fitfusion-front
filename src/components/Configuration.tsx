@@ -28,7 +28,7 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
     (window.location.href = "/auth");
 
   return (
-    <>
+    <div className="flex flex-col min-[566px]:max-w-xl m-auto justify-between">
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
         <p className=" font-bold text-base text-black font-lato"></p>
         <button
@@ -39,7 +39,7 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
         </button>
       </div>
 
-      <div className="pb-8 pt-10">
+      <div className="pb-8 pt-10 ">
         <p className=" font-lato font-black text-heading px-6">Accesos</p>
 
         <Link
@@ -143,7 +143,7 @@ export const Configuration = ({ toggleMenu, data }: ConfigurationProps) => {
       >
         <ConfigurationFormProfile data={data} editing={editing} />
       </nav>
-    </>
+    </div>
   );
 };
 
