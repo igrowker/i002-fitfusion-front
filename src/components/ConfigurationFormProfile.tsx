@@ -3,26 +3,20 @@ import { PencilSVG } from "../icons/PencilSVG";
 import { User } from "../types";
 import ErrorMessage from "./ErrorMessage";
 import RedButton from "./RedButton";
-import { useUser } from "../hooks/useUser";
 
 import { useForm } from "react-hook-form";
-
+import { useState } from "react";
 
 type ConfigurationFormProfileProps = {
   editing: () => void;
-  data: User;
+  user: User;
 };
-
 
 export const ConfigurationFormProfile = ({
   editing,
-  data,
+  user,
 }: ConfigurationFormProfileProps) => {
-
-
-  const { dataUser } = useUser();
-
-  const user = dataUser.find(user => user.auth === true)
+  const [userEdit, setuserEdit] = useState(user);
 
   const {
     register,
@@ -31,21 +25,18 @@ export const ConfigurationFormProfile = ({
     formState: { errors },
   } = useForm<User>({ defaultValues: user });
 
-
-
   const onSubmit = (data: User) => {
-console.log(data)
-  }
+    setuserEdit(data);
+  };
 
-
-  
+  console.log(userEdit);
 
   const password = watch("new_password");
   const current_password = watch("current_password");
   const new_password = watch("new_password");
 
   return (
-    <>
+    <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
         <p className=" font-bold text-base text-black font-lato">
           Editar Perfil
@@ -58,7 +49,7 @@ console.log(data)
         </button>
       </div>
       <div className=" flex flex-col items-center mb-10">
-        <div className=" relative ">
+        <div className=" relative cursor-pointer ">
           <img className=" rounded-full bg-cover w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />
 
           <div className=" rounded-full bg-lima-100 border-2 h-9 w-9 absolute right-0 bottom-0 flex items-center justify-center">
@@ -286,12 +277,12 @@ console.log(data)
         <input
           type="submit"
           value="Guardar Cambios"
-          className="bg-[#C1FF72] rounded-xl w-[327px] h-[64px] font-lato text-heading font-bold"
+          className=" cursor-pointer bg-[#C1FF72] rounded-xl w-[327px] h-[64px] font-lato text-heading font-bold min-[566px]:w-full"
         />
       </form>
 
       <RedButton text={"Eliminar cuenta"} />
-    </>
+    </div>
   );
 };
 
