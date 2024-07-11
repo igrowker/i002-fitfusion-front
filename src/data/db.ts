@@ -43,6 +43,7 @@ export const DBclasses: Classes[] = [
     id: 1,
     title: "Funcional",
     description: "Clase de una hora en la que trabajarás todo tu cuerpo",
+    date: "2024-12-12",
     image:
       "https://images.unsplash.com/photo-1561579890-3ace74d8e378?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -67,6 +68,7 @@ export const DBclasses: Classes[] = [
     title: "Yoga",
     description:
       "Una clase relajante centrada en la flexibilidad y la relajación",
+    date: "2024-10-14",
     image:
       "https://images.unsplash.com/photo-1607962776833-7ec9ef952784?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -90,6 +92,7 @@ export const DBclasses: Classes[] = [
     id: 3,
     title: "Pilates",
     description: "Fortalece tu núcleo con nuestras clases de pilates",
+    date: "2024-09-26",
     image:
       "https://plus.unsplash.com/premium_photo-1663039803597-2c24cbebf1c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -113,6 +116,7 @@ export const DBclasses: Classes[] = [
     id: 4,
     title: "Spinning",
     description: "Entrenamiento intensivo de ciclismo",
+    date: "2024-07-23",
     image:
       "https://images.unsplash.com/photo-1608216958660-afe291732df0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -133,10 +137,35 @@ export const DBclasses: Classes[] = [
     hour: "11 a.m",
   },
   {
+    id: 5,
+    title: "Zumba",
+    description: "Entrenamiento intensivo de zumba",
+    date: "2024-07-23",
+    image:
+      "https://images.unsplash.com/photo-1608216958660-afe291732df0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    instructor: {
+      id: 4,
+      user_id: 4,
+      name: "Emily Johnson",
+      bio: "Instructor certificado de Spinning apasionado por el fitness y el entrenamiento de resistencia.",
+      professional_title: "Instructor de Spinning Certificado",
+      years_experience: "4 años",
+      class_type: "Spinning",
+    },
+    level: "Fuerte",
+    type: "En gimnasio",
+    status: "No disponible",
+    length: "35 min",
+    calories: "600 Kcal",
+    kcal: 150,
+    hour: "9 a.m",
+  },
+  {
     id: 6,
     title: "CrossFit",
     description:
       "Entrenamiento de alta intensidad que combina diferentes disciplinas",
+    date: "2024-07-25",
     image:
       "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -161,6 +190,7 @@ export const DBclasses: Classes[] = [
     title: "Clase de Baile",
     description:
       "Disfruta aprendiendo diversos estilos de baile en una clase dinámica",
+    date: "2024-07-10",
     image:
       "https://images.unsplash.com/photo-1561579890-3ace74d8e378?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -185,6 +215,7 @@ export const DBclasses: Classes[] = [
     title: "Entrenamiento Cardiovascular",
     description:
       "Mejora tu resistencia y salud cardiovascular con este entrenamiento",
+    date: "2024-08-21",
     image:
       "https://plus.unsplash.com/premium_photo-1663039803597-2c24cbebf1c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
@@ -209,6 +240,7 @@ export const DBclasses: Classes[] = [
     title: "Boxeo",
     description:
       "Aprende las técnicas básicas y avanzadas del boxeo con nuestros entrenadores",
+    date: "2024-08-21",
     image:
       "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     instructor: {
