@@ -46,6 +46,11 @@ export const Header = () => {
             </Link>
           </li>
           <li onClick={toggleMenu}>
+            <Link to="/privacy-policy" className="text-white">
+              PRIVACIDAD
+            </Link>
+          </li>
+          <li onClick={toggleMenu}>
             <Link to="/auth/" className=" md:z-30">
               <button className="bg-lima-100 text-black rounded-2xl px-12 py-2 font-semibold md:z-30 md:text-heading-md">
                 Empieza gratis
