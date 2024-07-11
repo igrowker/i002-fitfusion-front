@@ -21,8 +21,19 @@ export const CalendarComponent = () => {
     // las clases que hay en esa fecha
   }, [value]);
 
+  function getClassesByDate(date: Date): Classes[] {
+    return classList.filter((singleClass) => {
+      const classDate = new Date(singleClass.date);
+      return (
+        classDate.getDate() + 1 === date.getDate() &&
+        classDate.getMonth() === date.getMonth() &&
+        classDate.getFullYear() === date.getFullYear()
+      );
+    });
+  }
+
   return (
-    <div className="h-full bg-lima-100 bg-pattern bg-cover bg-center flex flex-col md:bg-none">
+    <div className="min-h-screen h-full bg-lima-100 bg-pattern bg-cover bg-center flex flex-col md:bg-none">
       <HeaderProfile
         closeButton={false}
         text={"Calendario de clases"}
@@ -46,22 +57,22 @@ export const CalendarComponent = () => {
               Clases disponibles{" "}
             </p>
             <ul className="flex flex-col items-center gap-3">
-              {classList.map((singleClass) => {
-                return (
-                  <li
+              {getClassesByDate(value as Date).length > 0 ? (
+                getClassesByDate(value as Date).map((singleClass) => (
+                  <ClassTeacherCard
                     key={singleClass.id}
-                    className="hover:cursor-pointer min-w-80"
-                  >
-                    <ClassTeacherCard
-                      img={singleClass.image}
-                      name={singleClass.title}
-                      descOrLength={singleClass.length}
-                      calories={singleClass.calories}
-                      hour={singleClass.hour}
-                    />
-                  </li>
-                );
-              })}
+                    img={singleClass.image}
+                    name={singleClass.title}
+                    descOrLength={singleClass.length}
+                    calories={singleClass.calories}
+                    hour={singleClass.hour}
+                  />
+                ))
+              ) : (
+                <p className="font-DMsans font-normal text-heading-sm text-gray-500">
+                  No hay clases disponibles en esta fecha
+                </p>
+              )}
             </ul>
           </div>
         </div>
