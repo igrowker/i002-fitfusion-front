@@ -1,6 +1,6 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { HeaderProfile } from "../../components";
-import { Classes } from "../../types/classesTypes";
+// import { Classes } from "../../types/classesTypes";
 import {
   CornerCirclesSVG,
   DumbbellSVG,
@@ -14,29 +14,53 @@ import { useNavigate } from "react-router-dom";
 export const ClassDetails = () => {
   const navigate = useNavigate();
 
-  const [classInfo, setClassInfo] = useState<Classes>({
-    id: 1,
-    title: "Funcional",
-    description: "Clase de una hora en la que trabajarás todo tu cuerpo",
-    image:
-      "https://plus.unsplash.com/premium_photo-1663039803597-2c24cbebf1c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    instructor: {
+  // const [classInfo, setClassInfo] = useState<Classes>({
+  //   id: 1,
+  //   title: "Funcional",
+  //   description: "Clase de una hora en la que trabajarás todo tu cuerpo",
+  //   image:
+  //     "https://plus.unsplash.com/premium_photo-1663039803597-2c24cbebf1c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  //   instructor: {
+  //     id: 1,
+  //     user_id: 1,
+  //     name: "John Doe",
+  //     bio: "Entrenador Funcional Certificado con 5 años de experiencia.",
+  //     professional_title: "Entrenador Funcional Certificado",
+  //     years_experience: "5 años",
+  //     class_type: "Entrenamiento Funcional",
+  //   },
+  //   level: "Fuerte",
+  //   type: "En gimnasio",
+  //   status: "Disponible",
+  //   length: "",
+  //   calories: "",
+  //   hour: "",
+  //   kcal: 300,
+  // });
+
+  const classInfo = {
       id: 1,
-      user_id: 1,
-      name: "John Doe",
-      bio: "Entrenador Funcional Certificado con 5 años de experiencia.",
-      professional_title: "Entrenador Funcional Certificado",
-      years_experience: "5 años",
-      class_type: "Entrenamiento Funcional",
-    },
-    level: "Fuerte",
-    type: "En gimnasio",
-    status: "Disponible",
-    length: "",
-    calories: "",
-    hour: "",
-    kcal: 300,
-  });
+      title: "Funcional",
+      description: "Clase de una hora en la que trabajarás todo tu cuerpo",
+      image:
+        "https://plus.unsplash.com/premium_photo-1663039803597-2c24cbebf1c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      instructor: {
+        id: 1,
+        user_id: 1,
+        name: "John Doe",
+        bio: "Entrenador Funcional Certificado con 5 años de experiencia.",
+        professional_title: "Entrenador Funcional Certificado",
+        years_experience: "5 años",
+        class_type: "Entrenamiento Funcional",
+      },
+      level: "Fuerte",
+      type: "En gimnasio",
+      status: "Disponible",
+      length: "",
+      calories: "",
+      hour: "",
+      kcal: 300,
+    }
 
   const handleClick = (to: string) => {
     navigate(`${to}`);
