@@ -7,6 +7,7 @@ import 'react-calendar/dist/Calendar.css'
 import './LocalCalendar.css'
 import { DBclasses } from "../../data/db";
 import { Classes } from "../../types/classesTypes";
+import { useNavigate } from "react-router-dom";
 
 export const CalendarComponent = () => {
 
@@ -20,12 +21,17 @@ export const CalendarComponent = () => {
     
 
     console.log(`este es el valor ${value}`);
+
+    const navigate = useNavigate();
+    const handleClick = () => {
+      navigate("");
+    };
     
   return (
     <div 
         className="h-full bg-lima-100 bg-pattern bg-cover bg-center flex flex-col md:bg-none"
     >   
-        <HeaderProfile closeButton={false} text={'Calendario de clases'} showConfig={false} />
+        <HeaderProfile handleClick={handleClick} closeButton={false} text={'Calendario de clases'} showConfig={false} />
         <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
         <div className="flex flex-col items-center flex-1">
             <div className="calendarContainer m-11">

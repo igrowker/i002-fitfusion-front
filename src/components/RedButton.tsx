@@ -1,11 +1,13 @@
 type RedButtonProps = {
-    text: string
-}
+  text: string;
+};
 
-export const RedButton = ({text}: RedButtonProps) => {
+export const RedButton = ({ text }: RedButtonProps) => {
   return (
-    <button className=" bg-[#F73B3B] rounded-xl m-6 w-[327px] h-[64px] font-lato text-heading font-bold text-white">{text}</button>
-  )
-}
+    <button className=" bg-[#F73B3B] rounded-xl m-6 w-[327px] h-[64px] font-lato text-heading font-bold text-white min-[566px]:mx-auto">
+      {text}
+    </button>
+  );
+};
 
-export default RedButton
+export default RedButton;
