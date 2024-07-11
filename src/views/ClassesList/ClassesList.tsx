@@ -72,7 +72,7 @@ export const ClassesList = () => {
         {classes.length === 0 ? (
           <h2>No existen clases para la combinacion de filtros seleccionada</h2>
         ) : (
-          <ul className="flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3 ">
+          <ul className=" cursor-pointer flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3 ">
             {classes.map((fitClass: Classes) => {
               return (
                 <li
