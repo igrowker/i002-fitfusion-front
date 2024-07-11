@@ -121,7 +121,7 @@ export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
 
       <div className="pb-8 pt-5" onClick={editing}>
         <p className=" font-lato font-black text-heading px-6">Cuenta</p>
-        <div className=" flex px-6 items-center mt-5 justify-between">
+        <div className=" flex px-6 items-center mt-5 justify-between cursor-pointer">
           <div className="flex gap-3 items-center">
             <img className=" rounded-full bg-cover w-14 h-14 bg-[url('/profile.jfif')] bg-center" />
             <div>

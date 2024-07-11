@@ -49,7 +49,7 @@ export const ConfigurationFormProfile = ({
         </button>
       </div>
       <div className=" flex flex-col items-center mb-10">
-        <div className=" relative ">
+        <div className=" relative cursor-pointer ">
           <img className=" rounded-full bg-cover w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />
 
           <div className=" rounded-full bg-lima-100 border-2 h-9 w-9 absolute right-0 bottom-0 flex items-center justify-center">
@@ -277,7 +277,7 @@ export const ConfigurationFormProfile = ({
         <input
           type="submit"
           value="Guardar Cambios"
-          className="bg-[#C1FF72] rounded-xl w-[327px] h-[64px] font-lato text-heading font-bold min-[566px]:w-full"
+          className=" cursor-pointer bg-[#C1FF72] rounded-xl w-[327px] h-[64px] font-lato text-heading font-bold min-[566px]:w-full"
         />
       </form>
 

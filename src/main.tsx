@@ -22,6 +22,7 @@ import Nutritionist from "./views/Nutritionist/Nutritionist";
 import AboutUsPage from "./views/AboutUsPage/AboutUsPage";
 import PrincipalLayout from "./layouts/PrincipalLayout/PrincipalLayout";
 import Physio from "./views/Physiotherapist/Physio";
+import Privacy from "./views/Privacy/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -42,11 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "privacy-policy",
-        element: (
-          <h1 className="text-center text-white font-bold">
-            Estoy en el PrivacyPolicy
-          </h1>
-        ),
+        element: <Privacy />,
       },
     ],
   },

@@ -21,7 +21,7 @@ export const Physio = () => {
   };
 
   return (
-    <>
+    <div className="bg-white flex flex-col items-center h-screen">
       <div className=" hidden min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
         <Header />
       </div>
@@ -40,12 +40,12 @@ export const Physio = () => {
           <ColonSVG className="text-gray-500" />
         </div>
 
-        <div className=" mt-8 gap-6 flex justify-center items-center flex-col min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
+        <div className="pb-6 mt-8 gap-6 flex justify-center items-center flex-col min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
           {dataNut?.map((user) => (
             <article
               onClick={() => filterItem(user.id)}
               key={user.id}
-              className={`flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
+              className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
                 user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
               }`}
             >
@@ -91,10 +91,10 @@ export const Physio = () => {
         </div>
       </main>
 
-      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
+      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:bottom-0  ">
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 
