@@ -4,7 +4,7 @@ import { FacebookSVG, InstagramSVG } from "../icons";
 
 export const Footer = () => {
   return (
-    <footer className="bg-black bg-cover w-full h-full ">
+    <footer className="bg-black-bg bg-cover w-full h-full ">
       <div className="flex justify-start border-solid border-y-2 border-y-lima-100 mx-8 md:px-16 ">
         <div className="py-4 min-[566px]:flex-row min-[566px]:flex min-[566px]:items-center min-[566px]:gap-6">
           <div>

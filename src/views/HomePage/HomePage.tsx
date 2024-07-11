@@ -11,7 +11,7 @@ import {
 
 export const HomePage = () => {
   return (
-    <div className="bg-black bg-pattern bg-no-repeat bg-cover">
+    <div className="bg-black-bg bg-pattern bg-no-repeat bg-cover">
       <div className=" flex flex-col justify-center gap-y-8 text-center items-center py-4 px-8 md:z-30">
         <div className="flex flex-col items-center text-white gap-y-4">
           <h1 className="text-heading-xl font-lato font-bold">
