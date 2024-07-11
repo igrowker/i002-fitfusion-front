@@ -20,7 +20,7 @@ export const Header = () => {
       <nav
         className={`${
           !isOpen ? "hidden" : ""
-        } fixed top-0 left-0 w-full justify-center items-center pb-6 bg-black-bg z-50 rounded-b-2xl shadow-lg shadow-lima-100/35`}
+        } fixed top-0 left-0 w-full h-screen justify-center items-center pb-6 bg-black-bg z-50 overflow-hidden `}
       >
         <ul className="flex flex-col w-full gap-6  items-center h-full">
           <li className="self-end m-4">
@@ -34,21 +34,7 @@ export const Header = () => {
               INICIO
             </Link>
           </li>
-          <li>
-            <Link to="/classes" className="text-white">
-              SERVICIOS
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="text-white">
-              ENTRENADORES
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="text-white">
-              PLANES
-            </Link>
-          </li>
+
           <li>
             <Link to="/about-us" className="text-white">
               SOBRE NOSOTROS
@@ -59,6 +45,11 @@ export const Header = () => {
               CONTACTO
             </Link>
           </li>
+          <Link to="/auth/" className=" md:z-30">
+            <button className="bg-lima-100 text-black rounded-2xl px-12 py-2 font-semibold md:z-30 md:text-heading-md">
+              Empieza gratis
+            </button>
+          </Link>
         </ul>
       </nav>
     </header>
