@@ -7,6 +7,7 @@ import "./LocalCalendar.css";
 import { DBclasses } from "../../data/db";
 import { Classes } from "../../types/classesTypes";
 import { useNavigate } from "react-router-dom";
+import PayPage from "../../components/PayPage";
 
 export const CalendarComponent = () => {
   type ValuePiece = Date | null;
@@ -21,8 +22,15 @@ export const CalendarComponent = () => {
     // las clases que hay en esa fecha
   }, [value]);
 
+  const [item, setItem] = useState<Classes[]>([]);
+
+  const filterItem = (id: number) => {
+    const newItem = classList.filter((newVal) => newVal.id === id);
+    setItem(newItem);
+  };
+
   return (
-    <div className="min-h-screen h-full bg-lima-100 bg-pattern bg-cover bg-center flex flex-col md:bg-none">
+    <div className="bg-lima-100/60 bg-cover bg-center flex flex-col items-center">
       <HeaderProfile
         closeButton={false}
         text={"Calendario de clases"}
@@ -30,8 +38,8 @@ export const CalendarComponent = () => {
         handleClick={() => navigate(-1)}
       />
       <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
-      <div className="flex flex-col items-center flex-1">
-        <div className="calendarContainer mb-11">
+      <div className="flex flex-col items-center flex-1 ">
+        <div className="calendarContainer my-11">
           <Calendar
             onChange={onChange}
             value={value}
@@ -39,27 +47,36 @@ export const CalendarComponent = () => {
             minDate={new Date()}
           />
         </div>
-        <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl md:rounded-3xl md:flex-0 md:max-h-96">
+        <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl md:rounded-3xl md:flex-0 min-[566px]:mb-6">
           <div className="w-full my-6">
             <p className="font-DMsans font-bold text-heading text-left mb-4">
               {" "}
               Clases disponibles{" "}
             </p>
-            <ul className="flex flex-col items-center gap-3">
+            <ul className="flex flex-col items-center gap-3 cursor-pointer">
               {classList.map((singleClass) => (
-                <ClassTeacherCard
-                  key={singleClass.id}
-                  img={singleClass.image}
-                  name={singleClass.title}
-                  descOrLength={singleClass.length}
-                  calories={singleClass.calories}
-                  hour={singleClass.hour}
-                />
+                <li onClick={() => filterItem(singleClass.id)} key={singleClass.id} id={singleClass.title}>
+                  <ClassTeacherCard
+                    
+                    img={singleClass.image}
+                    name={singleClass.title}
+                    descOrLength={singleClass.length}
+                    calories={singleClass.calories}
+                    hour={singleClass.hour}
+                  />
+                </li>
               ))}
             </ul>
           </div>
         </div>
       </div>
+      <nav
+            className={`${
+              item.length === 0 ? "w-0" : "w-[100vw]"
+            }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+          >
+            <PayPage item={item} setItem={setItem} />
+          </nav>
     </div>
   );
 };
