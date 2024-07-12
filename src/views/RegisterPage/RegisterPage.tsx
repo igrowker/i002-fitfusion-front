@@ -1,14 +1,31 @@
 import { useForm } from "react-hook-form";
 import { RegisterForm } from "../../types/formTypes";
 import ErrorMessage from "../../components/ErrorMessage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { apiCall } from "../../services/apiCall";
 
 export const RegisterPage = () => {
+
+  const navigate = useNavigate()
   const { register, handleSubmit, formState } = useForm<RegisterForm>();
 
   const onSubmit = (data: RegisterForm) => {
-    console.log(data);
+
+    const body = { name : data.name, email : data.email , password : data.password, rolId : 2 }
+
+    apiCall({ url : '/auth/register' , method :  'POST', token : '', body } )
+    .then((res) => {
+      // dejo el log para que haga el build
+      console.log(res)
+      navigate('/auth/login')
+  
+    }).catch(error => console.log(error))
+
   };
+
+  const handlePrivacyClick = () => {
+    navigate('/privacy-policy')
+  }
 
   return (
     <div className="w-full flex flex-col items-center justify-center gap-y-12 max-w-lg h-full">
@@ -78,6 +95,9 @@ export const RegisterPage = () => {
               },
             })}
           />
+          {formState.errors.password && (
+            <ErrorMessage>{formState.errors.password.message}</ErrorMessage>
+          )}
         </div>
         <div className="flex flex-col items-center gap-y-4 w-full">
           <div className="flex justify-between w-full">
@@ -91,8 +111,9 @@ export const RegisterPage = () => {
                 })}
               />
               <label
-                className="text-lima-100 text-heading-sm font-bold"
+                className="text-lima-100 text-heading-sm font-bold cursor-pointer"
                 htmlFor="terms"
+                onClick={handlePrivacyClick}
               >
                 Acepto las políticas de privacidad
               </label>
