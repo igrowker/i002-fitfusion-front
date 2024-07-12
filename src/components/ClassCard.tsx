@@ -24,7 +24,7 @@ export const ClassCard = ({ item, setItem }: ClassCardProps) => {
       {item.map((clase) => (
         <div
           key={clase.id}
-          className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100"
+          className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center h-screen"
         >
           <HeaderProfile
             handleClick={handleList}
@@ -33,7 +33,7 @@ export const ClassCard = ({ item, setItem }: ClassCardProps) => {
             showConfig={false}
           />
           <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
-          <div className="flex flex-col items-center flex-1">
+          <div className="flex flex-col items-center flex-1 min-[566px]:pb-6">
             <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
               <img
                 className="w-full h-full object-cover"

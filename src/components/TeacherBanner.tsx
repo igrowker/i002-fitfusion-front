@@ -20,7 +20,7 @@ export const TeacherBanner = () => {
         <article
           onClick={() => filterItem(user.id)}
           key={user.id}
-          className={`flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
+          className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
             user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
           }`}
         >

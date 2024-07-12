@@ -23,7 +23,7 @@ export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
       {item.map((nut) => (
         <div
           key={nut.id}
-          className="bg-lima-100/60 bg-cover bg-center flex flex-col  items-center"
+          className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center"
         >
           <HeaderProfile
             handleClick={handleClick}
