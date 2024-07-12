@@ -29,7 +29,7 @@ export const ConfigurationFormProfile = ({
     setuserEdit(data);
   };
 
-  console.log(userEdit);
+  // console.log(userEdit);
 
   const password = watch("new_password");
   const current_password = watch("current_password");

@@ -5,13 +5,14 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 interface apiCallProps {
     url : string
     method : HttpMethod
-    token : string
     body? : any
     headers? : Record<string, string>
 }
 
 
-export const  apiCall = async ({ url , method, token , body , headers } : apiCallProps ) => {
+export const  apiCall = async ({ url , method , body , headers } : apiCallProps ) => {
+
+    const token = localStorage.getItem("token");
 
     return fetch(`${environment.API_URL}${url}`,{
       method : method, 

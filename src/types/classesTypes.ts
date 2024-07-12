@@ -21,7 +21,8 @@ export type Instructor = {
   bio: string | null ;
   professional_title: string | null ;
   years_experience: number | null ;
-  class_type: string;
+  class_type: string | null | undefined;
+  image? : string | null | undefined 
 };
 
 type ClassesType = "Aire libre" | "En casa" | "En gimnasio" | "Virtual";
@@ -59,8 +60,10 @@ export interface Teacher {
     Bio:               string;
     YearsExperience:   number;
     User:              User;
+    ClassType? : string | null | undefined
 }
 
 export interface User {
     Name: string;
+    Image? : string
 }

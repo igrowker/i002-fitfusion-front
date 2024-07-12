@@ -17,13 +17,12 @@ import { adaptClassformat } from "../../services/adaptClassesFormat";
 export const ClassDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const token = localStorage.getItem("token") || "";
 
   const [classInfo, setClassInfo] = useState<Classes>();
 
   // esto creo que lo podriamos evitar trayendo la info de redux 
   useEffect(() => {
-    apiCall({ url: `/classes/${id}`, method: "GET", token })
+    apiCall({ url: `/classes/${id}`, method: "GET" })
       .then((res) => {
         return res.json();
       })
@@ -109,7 +108,7 @@ export const ClassDetails = () => {
                 {/* Pendiente de definir estilos */}
                 <div
                   className="flex items-center flex-row justify-between pt-6 cursor-pointer"
-                  onClick={() => handleClick("/trainer-profile")}
+                  onClick={() => handleClick(`/trainer-profile/${classInfo.instructor.id}`)}
                 >
                   <p className=" font-lato text-heading">
                     Conoce al Entrenador:{" "}

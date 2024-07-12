@@ -9,7 +9,7 @@ export const LoginPage = () => {
   const { register, handleSubmit, formState } = useForm<LoginForm>();
 
   const onSubmit = (data: LoginForm) => {
-    apiCall({ url: "/auth/login", method: "POST", token: "", body: data })
+    apiCall({ url: "/auth/login", method: "POST", body: data })
       .then((res) => { return res.json(); })
       .then((data) => {
         // guardar datos del usuario en redux?
