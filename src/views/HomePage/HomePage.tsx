@@ -29,7 +29,7 @@ export const HomePage = () => {
       </div>
       <div className="relative h-[380px] w-full z-30 mt-8 md:z-0 md:mt-40">
         <img
-          className="absolute right-0 max-w-80 z-30 md:max-w-xl md:bottom-6 md:z-0"
+          className="absolute right-0 max-w-80 z-30 md:max-w-lg md:bottom-10 md:z-0"
           src={landingImg}
           alt="Landing image"
         />
@@ -37,7 +37,7 @@ export const HomePage = () => {
         <div className="w-full -skew-y-6 md:-skew-y-3 h-24 bg-lima-100 absolute bottom-0 z-50"></div>
       </div>
       <div className=" flex flex-col gap-y-8 text-center items-center py-24 px-8">
-        <p className="text-white font-normal text-heading-md">
+        <p className="text-white font-normal text-heading-md md:max-w-4xl">
           FitFusion elimina las barreras de desplazamiento, tiempo y ansiedad
           proporcionando clases adaptadas a tus necesidades, desde donde te
           sientas más cómodo. Con entrenadores certificados, fisioterapeutas y

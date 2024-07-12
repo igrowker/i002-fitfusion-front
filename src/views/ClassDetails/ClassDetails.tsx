@@ -71,7 +71,7 @@ export const ClassDetails = () => {
   };
 
   return (
-    <div className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col md:bg-lima-100">
+    <div className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col items-center ">
       <HeaderProfile
         handleClick={handleBack}
         closeButton={false}
@@ -79,7 +79,7 @@ export const ClassDetails = () => {
         showConfig={false}
       />
       <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
-      <div className="flex flex-col items-center flex-1">
+      <div className="flex flex-col items-center flex-1  min-[566px]:pb-6 ">
         <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
           <img
             className="w-full h-full object-cover"
@@ -89,7 +89,7 @@ export const ClassDetails = () => {
         </div>
         <div
           id="prueba"
-          className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl md:rounded-3xl md:flex-0 md:max-h-96"
+          className=" w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl md:rounded-3xl md:flex-0 md:max-h-96"
         >
           <div className="absolute -top-8 flex justify-center items-center w-16 h-16 rounded-full bg-lima-100  shadow-custom">
             <UserSVG fill="white" />
@@ -132,7 +132,7 @@ export const ClassDetails = () => {
 
             {/* Pendiente de definir estilos */}
             <div
-              className="flex items-center flex-row justify-between pt-6"
+              className="flex items-center flex-row justify-between pt-6 cursor-pointer"
               onClick={() => handleClick("/trainer-profile")}
             >
               <p className=" font-lato text-heading">Conoce al Entrenador: <span className="font-bold text-[18px] "> {classInfo.instructor.name}</span></p>
