@@ -1,13 +1,24 @@
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../../components/ErrorMessage";
 import { LoginForm } from "../../types/formTypes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { apiCall } from "../../services/apiCall";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm<LoginForm>();
 
   const onSubmit = (data: LoginForm) => {
-    console.log(data);
+    apiCall({ url: "/auth/login", method: "POST", token: "", body: data })
+      .then((res) => { return res.json(); })
+      .then((data) => {
+        // guardar datos del usuario en redux?
+
+        localStorage.setItem("token", data.token);
+
+        navigate("/classes");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -62,7 +73,7 @@ export const LoginPage = () => {
           )}
         </div>
         <div className="flex flex-col items-center gap-y-4 w-full">
-          <div className="flex justify-between w-full">
+          {/* <div className="flex justify-between w-full">
             <div className="flex items-center gap-x-1">
               <input
                 className="w-6 h-6 accent-lima-200"
@@ -80,13 +91,15 @@ export const LoginPage = () => {
             <a className="text-lima-100 text-heading-sm" href="#">
               He olvidado mi contraseña
             </a>
-          </div>
-          <button className="bg-lima-100 rounded-lg text-black w-full p-1">
+          </div> */}
+          <button className="bg-lima-100 rounded-lg text-black w-full p-1 mt-3">
             Iniciar sesión
           </button>
           <p className="text-gray-500 text-heading-sm w-full text-center">
             ¿No tienes cuenta?{" "}
-            <Link to="/auth/register" className="text-lima-100 text-heading-sm">Regístrate</Link>
+            <Link to="/auth/register" className="text-lima-100 text-heading-sm">
+              Regístrate
+            </Link>
           </p>
         </div>
       </form>
