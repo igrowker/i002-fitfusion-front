@@ -10,9 +10,7 @@ export const LoginPage = () => {
 
   const onSubmit = (data: LoginForm) => {
     apiCall({ url: "/auth/login", method: "POST", token: "", body: data })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => { return res.json(); })
       .then((data) => {
         // guardar datos del usuario en redux?
 

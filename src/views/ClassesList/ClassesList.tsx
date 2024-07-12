@@ -1,21 +1,43 @@
-import { useRef, useState } from "react";
-import { DBclasses } from "../../data/db";
+import { useEffect, useRef, useState } from "react";
 import { WeightLiftingSVG, HeartSVG, LocationSVG } from "../../icons";
 import { Classes } from "../../types/classesTypes";
 import { ClassesFilter, Footer, Header, HeaderProfile } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { apiCall } from "../../services/apiCall";
+import { adaptClassesformat } from "../../services/adaptClassesFormat";
 
 export const ClassesList = () => {
   const navigate = useNavigate();
-
-  const originalClasses = useRef(DBclasses);
+  const token = localStorage.getItem('token') || ''
 
   const [filters, setfilters] = useState({
     type: "Tipo",
     level: "Nivel",
     status: "Estado",
   });
-  const [classes, setclasses] = useState(DBclasses);
+  const [classes, setclasses] = useState<Classes[] | []>([]);
+
+  const originalClasses = useRef<Classes[] | []>([]);
+
+  useEffect(() => {
+    apiCall({ url: "/classes/getAllClasses", method: "GET", token })
+    .then((res) => { return res.json(); })
+    .then((data) => {
+      // guardar datos del clases en redux?
+
+      // console.log('data' , data );
+
+      const adaptedClasses = adaptClassesformat(data)
+
+      setclasses(adaptedClasses)
+      originalClasses.current = adaptedClasses
+      
+    })
+    .catch((error) => console.log(error));
+  }, [])
+  
+
+
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const className = e.target.name as keyof Classes;
