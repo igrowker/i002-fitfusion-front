@@ -26,7 +26,9 @@ export const LoginPage = () => {
             Correo electrónico
           </label>
           <input
-            className="rounded w-full p-2 text-black"
+            className={`rounded w-full  p-2 text-black border-spacing-1 ${
+              formState.errors.email && " outline-[#F73B3B]"
+            }`}
             type="email"
             placeholder="Correo Electrónico"
             {...register("email", {
@@ -46,7 +48,9 @@ export const LoginPage = () => {
             Contraseña
           </label>
           <input
-            className="rounded w-full p-2 text-black"
+            className={`rounded w-full  p-2 text-black border-spacing-1 ${
+              formState.errors.password && " outline-[#F73B3B]"
+            }`}
             type="password"
             placeholder="Contraseña"
             {...register("password", {
@@ -86,7 +90,9 @@ export const LoginPage = () => {
           </button>
           <p className="text-gray-500 text-heading-sm w-full text-center">
             ¿No tienes cuenta?{" "}
-            <Link to="/auth/register" className="text-lima-100 text-heading-sm">Regístrate</Link>
+            <Link to="/auth/register" className="text-lima-100 text-heading-sm">
+              Regístrate
+            </Link>
           </p>
         </div>
       </form>

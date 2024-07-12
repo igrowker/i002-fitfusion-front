@@ -78,7 +78,9 @@ export const ConfigurationFormProfile = ({
             id="name"
             type="text"
             placeholder="Cambiar Nombre"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.name && " outline-[#F73B3B]"
+            }`}
             {...register("name", {
               pattern: {
                 value: /^([a-zA-Z0-9_\s]+).{2,}$/,
@@ -100,7 +102,9 @@ export const ConfigurationFormProfile = ({
             id="residence"
             type="text"
             placeholder="Cambiar ubicacion"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.residence && " outline-[#F73B3B]"
+            }`}
             {...register("residence", {
               pattern: {
                 value: /^([a-zA-Z0-9_\s]+).{2,}$/,
@@ -124,7 +128,9 @@ export const ConfigurationFormProfile = ({
             id="age"
             type="number"
             placeholder="Cambiar Edad"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.age && " outline-[#F73B3B]"
+            }`}
             {...register("age", {
               pattern: {
                 value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
@@ -146,7 +152,9 @@ export const ConfigurationFormProfile = ({
             id="weight"
             type="number"
             placeholder="Cambiar Peso"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.weight && " outline-[#F73B3B]"
+            }`}
             {...register("weight", {
               pattern: {
                 value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
@@ -154,6 +162,9 @@ export const ConfigurationFormProfile = ({
               },
             })}
           />
+          {errors.weight && (
+            <ErrorMessage>{errors.weight.message}</ErrorMessage>
+          )}
         </div>
 
         <div className="mb-5 space-y-3">
@@ -167,7 +178,9 @@ export const ConfigurationFormProfile = ({
             id="height"
             type="number"
             placeholder="Cambiar Altura"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.height && " outline-[#F73B3B]"
+            }`}
             {...register("height", {
               pattern: {
                 value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
@@ -175,6 +188,9 @@ export const ConfigurationFormProfile = ({
               },
             })}
           />
+          {errors.height && (
+            <ErrorMessage>{errors.height.message}</ErrorMessage>
+          )}
         </div>
 
         <div className="mb-5 space-y-3">
@@ -188,7 +204,9 @@ export const ConfigurationFormProfile = ({
             id="email"
             type="text"
             placeholder="Cambiar Email"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.email && " outline-[#F73B3B]"
+            }`}
             {...register("email", {
               pattern: {
                 value:
@@ -211,7 +229,9 @@ export const ConfigurationFormProfile = ({
             id="current_password"
             type="password"
             placeholder="Password Actual"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.current_password && " outline-[#F73B3B]"
+            }`}
             {...register("current_password", {
               required: "El password actual es obligatorio",
             })}
@@ -232,7 +252,9 @@ export const ConfigurationFormProfile = ({
             id="new_password"
             type="password"
             placeholder="Nuevo Password"
-            className="w-full p-3  border border-gray-100 rounded-lg"
+            className={`w-full p-3  border border-gray-100 rounded-lg ${
+              errors.new_password && " outline-[#F73B3B]"
+            }`}
             {...register("new_password", {
               pattern: {
                 value: /^(?=.*[0-9])(?=.*[a-z]).{8,}$/,
@@ -258,7 +280,9 @@ export const ConfigurationFormProfile = ({
               id="password"
               type="password"
               placeholder="Repetir Nuevo Password"
-              className="w-full p-3  border border-gray-100 rounded-lg"
+              className={`w-full p-3  border border-gray-100 rounded-lg ${
+                errors.password && " outline-[#F73B3B]"
+              }`}
               {...register("password", {
                 required: "El password actual es obligatorio",
                 validate: (value) =>

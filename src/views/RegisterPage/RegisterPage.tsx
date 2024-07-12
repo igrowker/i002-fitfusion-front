@@ -24,7 +24,9 @@ export const RegisterPage = () => {
             Nombre
           </label>
           <input
-            className="rounded w-full p-2 text-black"
+            className={`rounded w-full  p-2 text-black border-spacing-1 ${
+              formState.errors.name && " outline-[#F73B3B]"
+            }`}
             type="text"
             placeholder="Nombre"
             id="name"
@@ -45,7 +47,9 @@ export const RegisterPage = () => {
             Correo electrónico
           </label>
           <input
-            className="rounded w-full p-2 text-black"
+            className={`rounded w-full  p-2 text-black border-spacing-1 ${
+              formState.errors.email && " outline-[#F73B3B]"
+            }`}
             type="email"
             placeholder="Correo Electrónico"
             id="email"
@@ -66,7 +70,9 @@ export const RegisterPage = () => {
             Contraseña
           </label>
           <input
-            className="rounded w-full p-2 text-black"
+            className={`rounded w-full  p-2 text-black border-spacing-1 ${
+              formState.errors.password && " outline-[#F73B3B]"
+            }`}
             type="password"
             placeholder="Contraseña"
             id="password"
@@ -78,6 +84,9 @@ export const RegisterPage = () => {
               },
             })}
           />
+          {formState.errors.password && (
+            <ErrorMessage>{formState.errors.password.message}</ErrorMessage>
+          )}
         </div>
         <div className="flex flex-col items-center gap-y-4 w-full">
           <div className="flex justify-between w-full">
