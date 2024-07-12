@@ -2,15 +2,15 @@ export type Classes = {
   id: number;
   title: string;
   description: string;
-  date: string;
+  date: string | null ;
   image: string;
   instructor: Instructor;
   level: ClassesLevel;
   type: ClassesType;
   status: ClassesStatus;
-  length: string;
+  length: string | null;
   calories: number;
-  hour: string;
+  hour: string | null ;
   kcal: number;
 };
 
@@ -53,6 +53,8 @@ export interface ClassStatus {
 }
 
 export interface Teacher {
+    TeacherId : number;
+    UserId : number ;
     ProfessionalTitle: string;
     Bio:               string;
     YearsExperience:   number;
