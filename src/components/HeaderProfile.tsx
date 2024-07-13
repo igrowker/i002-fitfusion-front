@@ -6,13 +6,14 @@ import {
   ConfigurationToolSVG,
   LeftArrowSVG,
 } from "../icons";
-import { User } from "../types";
+import { User } from "../types/userTypes";
 
 type HeaderProfilePropsTypes = {
   closeButton: boolean;
   text: string;
   showConfig: boolean;
   handleClick: () => void;
+  user : User
 };
 
 export const HeaderProfile = ({
@@ -20,6 +21,7 @@ export const HeaderProfile = ({
   text = "Mi perfil",
   showConfig,
   handleClick,
+  user
 }: HeaderProfilePropsTypes) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,23 +29,23 @@ export const HeaderProfile = ({
     setIsOpen(!isOpen);
   };
 
-  const user : User = {
-    id: 1,
-    name: "Jordi Garcia Ferre",
-    residence: "Argentina",
-    email: "jordi@gmail.com",
-    password: "JordiGarcia1",
-    age: 20,
-    weight: 80,
-    height: 180,
-    activity: "Activo",
-    image:
-      "https://s3-alpha-sig.figma.com/img/f34f/65b4/b3c50915a47f15a0bd202d640e90bc46?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n43l8YUanl7MjsXWhEaBoBoCEXfsKd~K-xXlXiv3tGlgzemO-CVLaGxSEESZ0c3PtUWjru02lfnLmrcvKZCx7DIYAd4zSXBw~kTU5lUSixLk8qefvqzaORveTdkeOLAlhaOnWYiC7XrXvcL2dKBMuUMp0Vka~yGdXDgN0VqMtogsEfz3h48qvc4j2DFPHOTEsQI~ksITL9GL-PFd8Z-sXxogmYu5rz~gacjgZS~yAcZaR2VIt0aIWJcWHm8n3mBdA7Avs4whXiF8HyeDlxFjN13lf4~NmNh7ruKqOgnAc8gDyuIA-8DMigZq0uanMaOCf1xN6I5AgrOHKFuyL8EPdw__",
-    kcal: 0,
-    new_password: "",
-    current_password: "",
-    auth: false,
-  };
+  // const user : User = {
+  //   id: 1,
+  //   name: "Jordi Garcia Ferre",
+  //   residence: "Argentina",
+  //   email: "jordi@gmail.com",
+  //   password: "JordiGarcia1",
+  //   age: 20,
+  //   weight: 80,
+  //   height: 180,
+  //   activity: "Activo",
+  //   image:
+  //     "https://s3-alpha-sig.figma.com/img/f34f/65b4/b3c50915a47f15a0bd202d640e90bc46?Expires=1721606400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=n43l8YUanl7MjsXWhEaBoBoCEXfsKd~K-xXlXiv3tGlgzemO-CVLaGxSEESZ0c3PtUWjru02lfnLmrcvKZCx7DIYAd4zSXBw~kTU5lUSixLk8qefvqzaORveTdkeOLAlhaOnWYiC7XrXvcL2dKBMuUMp0Vka~yGdXDgN0VqMtogsEfz3h48qvc4j2DFPHOTEsQI~ksITL9GL-PFd8Z-sXxogmYu5rz~gacjgZS~yAcZaR2VIt0aIWJcWHm8n3mBdA7Avs4whXiF8HyeDlxFjN13lf4~NmNh7ruKqOgnAc8gDyuIA-8DMigZq0uanMaOCf1xN6I5AgrOHKFuyL8EPdw__",
+  //   kcal: 0,
+  //   new_password: "",
+  //   current_password: "",
+  //   auth: false,
+  // };
 
   /*
 
@@ -82,7 +84,7 @@ export const HeaderProfile = ({
           !isOpen ? "h-0" : "h-[100%]"
         } fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-50 overflow-x-hidden origin-top duration-500 w-[100vw] `}
       >
-        <Configuration user={user} toggleMenu={toggleMenu} />
+        <Configuration user={user || undefined} toggleMenu={toggleMenu} />
       </nav>
     </header>
   );

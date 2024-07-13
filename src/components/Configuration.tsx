@@ -7,7 +7,7 @@ import {
   FollowersSVG,
   RightArrowSVG,
 } from "../icons";
-import { User } from "../types";
+import { User } from "../types/userTypes";
 import GreenButton from "./GreenButton";
 import ConfigurationFormProfile from "./ConfigurationFormProfile";
 import { Link, useNavigate } from "react-router-dom";

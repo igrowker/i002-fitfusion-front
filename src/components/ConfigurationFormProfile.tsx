@@ -1,6 +1,6 @@
 import { CloseButtonProfileSVG } from "../icons";
 import { PencilSVG } from "../icons/PencilSVG";
-import { User } from "../types";
+import { User } from "../types/userTypes";
 import ErrorMessage from "./ErrorMessage";
 import RedButton from "./RedButton";
 

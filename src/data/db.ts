@@ -1,4 +1,4 @@
-import { Nutritionist, User } from "../types";
+import { Nutritionist, User } from "../types/userTypes";
 import { Classes } from "../types/classesTypes";
 
 export const user: User[] = [
