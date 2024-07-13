@@ -8,6 +8,10 @@ import { DBclasses } from "../../data/db";
 import { Classes } from "../../types/classesTypes";
 import { useNavigate } from "react-router-dom";
 import PayPage from "../../components/PayPage";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe("pk_test_51Pc5b0RxyXHtmyBjqqsLa8piRs7leNoso0DM22BAK9v1bbp6roVYcNkvAO5xsG8EjzzEjYQ7DF1NGdxK3C6E5x3500MlfeMrtq");
 
 export const CalendarComponent = () => {
   type ValuePiece = Date | null;
@@ -55,9 +59,12 @@ export const CalendarComponent = () => {
             </p>
             <ul className="flex flex-col items-center gap-3 cursor-pointer">
               {classList.map((singleClass) => (
-                <li onClick={() => filterItem(singleClass.id)} key={singleClass.id} id={singleClass.title}>
+                <li
+                  onClick={() => filterItem(singleClass.id)}
+                  key={singleClass.id}
+                  id={singleClass.title}
+                >
                   <ClassTeacherCard
-                    
                     img={singleClass.image}
                     name={singleClass.title}
                     descOrLength={singleClass.length}
@@ -71,12 +78,14 @@ export const CalendarComponent = () => {
         </div>
       </div>
       <nav
-            className={`${
-              item.length === 0 ? "w-0" : "w-[100vw]"
-            }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
-          >
-            <PayPage item={item} setItem={setItem} />
-          </nav>
+        className={`${
+          item.length === 0 ? "w-0" : "w-[100vw]"
+        }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+      >
+        <Elements stripe={stripePromise}>
+          <PayPage item={item} setItem={setItem} />
+        </Elements>
+      </nav>
     </div>
   );
 };
