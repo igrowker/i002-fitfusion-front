@@ -1,16 +1,16 @@
 import HeaderProfile from "./HeaderProfile";
-import { Classes } from "../types/classesTypes";
 import GreenButton from "./GreenButton";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RegisterForm } from "../types/formTypes";
 import ErrorMessage from "./ErrorMessage";
+import { ScheduledClasses } from "../types/scheduledClassesTypes";
 
 
 type PayPageProps = {
-  item: Classes[];
-  setItem: React.Dispatch<React.SetStateAction<Classes[]>>;
+  item: ScheduledClasses[];
+  setItem: React.Dispatch<React.SetStateAction<ScheduledClasses[] | undefined >>;
 };
 
 export const PayPage = ({ item, setItem }: PayPageProps) => {
@@ -21,18 +21,18 @@ export const PayPage = ({ item, setItem }: PayPageProps) => {
 
   const { register, handleSubmit, formState } = useForm<RegisterForm>();
   const onSubmit = (data: RegisterForm) => {
-    console.log(data);
+    // console.log(data);
   };
 
-  const [classConfirmed, setclassConfirmed] = useState<Classes[]>([]);
+  const [classConfirmed, setclassConfirmed] = useState<ScheduledClasses[]>([]);
 
   const handleConfirm = () => {
     setclassConfirmed(item);
     navigate("/profile");
   };
 
-  console.log(item);
-  console.log(classConfirmed);
+  // console.log(item);
+  // console.log(classConfirmed);
 
 
 
@@ -53,7 +53,8 @@ export const PayPage = ({ item, setItem }: PayPageProps) => {
             <div className="flex flex-col justify-center items-center text-center w-full text-black bg-lima-100 py-6 mt-8">
               <p className=" font-bold text-heading font-lato min-[566px]:max-w-xl text-center px-6 ">
                 Estas a punto de reservar la clase "{clase.title}" con el
-                profesor {clase.instructor.name}
+                profesor 
+                {/* {clase.instructor.name} */}
               </p>
             </div>
 

@@ -3,8 +3,8 @@ import { FireSVG } from "../icons";
 type CardPropTypes = {
   img: string;
   name: string;
-  descOrLength: string;
-  calories: string;
+  descOrLength: number;
+  calories: number;
   hour?: string;
 };
 
@@ -24,12 +24,12 @@ export const ClassTeacherCard = ({
         <div className="flex flex-col justify-center items-start gap-1 p-1">
           <p className="font-DMsans font-normal text-heading-sm">{name}</p>
           <p className="font-DMsans font-medium text-heading-sm text-gray-500">
-            {descOrLength}
+            {descOrLength} min
           </p>
         </div>
         <div className="flex flex-col justify-center items-end gap-1 p-1">
           {hour ? (
-            <p className={"font-DMsans font-medium text-heading-sm"}>{hour}</p>
+            <p className={"font-DMsans font-medium text-heading-sm"}>{hour.slice(0,5)}</p>
           ) : null}
           <p className={"flex gap-1 font-DMsans font-medium text-heading-sm"}>
             {" "}
