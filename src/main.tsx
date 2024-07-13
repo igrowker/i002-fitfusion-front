@@ -23,6 +23,9 @@ import AboutUsPage from "./views/AboutUsPage/AboutUsPage";
 import PrincipalLayout from "./layouts/PrincipalLayout/PrincipalLayout";
 import Physio from "./views/Physiotherapist/Physio";
 import Privacy from "./views/Privacy/Privacy";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
 
 const router = createBrowserRouter([
   {
@@ -101,6 +104,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   </React.StrictMode>
 );
