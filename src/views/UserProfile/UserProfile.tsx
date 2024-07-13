@@ -1,31 +1,58 @@
 import { useNavigate } from "react-router-dom";
 import { Footer, Header, HeaderProfile, ProfileData, Switch } from "../../components";
+import { useEffect, useState } from "react";
+import { apiCall } from "../../services/apiCall";
+import { adaptUserFormat } from "../../services/adaptUserFormat";
+import { User } from "../../types/userTypes";
 
 export const UserProfile = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("");
   };
+
+  const [user, setUser] = useState<User>()
+
+  useEffect(() => {
+    apiCall({ url: `/users/me`, method: "GET" })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+
+        const adaptedUser = adaptUserFormat(data);
+
+        setUser(adaptedUser);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  
   return (
     <>
-      <div className=" hidden min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
-        <Header />
-      </div>
-      <main className=" bg-white flex flex-col items-center">
-        <HeaderProfile
-          handleClick={handleClick}
-          closeButton={false}
-          text={"Mi perfil"}
-          showConfig={false}
-        />
+      {user !== undefined ? (
+        <>
+          <div className=" hidden min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
+            <Header />
+          </div>
+          <main className=" bg-white flex flex-col items-center">
+            <HeaderProfile
+              handleClick={handleClick}
+              closeButton={false}
+              text={"Mi perfil"}
+              showConfig={false}
+              user={user}
+            />
 
-        <ProfileData />
+            <ProfileData />
 
-        <Switch />
-      </main>
-      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
-        <Footer />
-      </div>
+            <Switch />
+          </main>
+          <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
+            <Footer />
+          </div>
+        </>
+
+      ) : null}
     </>
   );
 };

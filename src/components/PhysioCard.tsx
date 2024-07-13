@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { CornerCirclesSVG } from "../icons";
 import { UserSVG } from "../icons/UserSVG";
-import { Nutritionist } from "../types";
+import { Nutritionist } from "../types/userTypes";
 import HeaderProfile from "./HeaderProfile";
 import { UbicationSVG } from "../icons/UbicationSVG";
 import { PhoneSVG } from "../icons/PhoneSVG";
