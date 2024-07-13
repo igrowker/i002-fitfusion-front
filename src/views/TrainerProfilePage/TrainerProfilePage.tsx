@@ -4,13 +4,33 @@ import {
   HeartSVG,
   LightingSVG,
 } from "../../icons";
-import coachImage from "../../assets/coach-img.jpg";
 import { UserSVG } from "../../icons/UserSVG";
 import { HeaderProfile } from "../../components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { apiCall } from "../../services/apiCall";
+import { Instructor } from "../../types/classesTypes";
+import { adaptInstructorFormat } from "../../services/adaptInstructorFormat";
 
 export const TrainerProfilePage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const [instructor, setInstructor] = useState<Instructor>()
+
+  useEffect(() => {
+    apiCall({ url: `/teacher/${id}`, method: "GET" })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      const adaptedInstructor = adaptInstructorFormat(data)
+      setInstructor(adaptedInstructor)
+
+    })
+    .catch((error) => console.log(error));
+  }, [])
+  
   const handleClick = () => {
     navigate("/calendar");
   };
@@ -24,7 +44,7 @@ export const TrainerProfilePage = () => {
       <HeaderProfile
         handleClick={handleBack}
         closeButton={false}
-        text={"Martín Torres Lugo"}
+        text={instructor?.name || 'Profesor'}
         showConfig={false}
       />
       <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
@@ -32,7 +52,7 @@ export const TrainerProfilePage = () => {
         <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
           <img
             className="w-full h-full object-cover"
-            src={coachImage}
+            src={instructor?.image || ''}
             alt="Imagen del profesor"
           />
         </div>
@@ -44,19 +64,19 @@ export const TrainerProfilePage = () => {
             <div className="w-full flex justify-evenly">
               <div className="flex flex-col items-center justify-center">
                 <HeartSVG className="w-6 h-6" />
-                <p className="text-heading-sm font-bold font-DMsans">
-                  Funcional
+                <p className="max-w-4 min-h-10 flex flex-col justify-center items-center text-center text-heading-sm font-bold font-DMsans">
+                  {instructor?.class_type}
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center">
                 <DumbbellSVG />
-                <p className="text-heading-sm font-bold font-DMsans">
-                  Entrenador
+                <p className="max-w-4 min-h-10 flex flex-col justify-center items-center text-center text-heading-sm font-bold font-DMsans">
+                  {instructor?.professional_title}
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center">
                 <LightingSVG />
-                <p className="text-heading-sm font-bold font-DMsans">Strong</p>
+                <p className="max-w-4 min-h-10 flex flex-col justify-center items-center text-center text-heading-sm font-bold font-DMsans">{`${instructor?.years_experience} años de experiencia`}</p>
               </div>
             </div>
           </div>
@@ -71,12 +91,9 @@ export const TrainerProfilePage = () => {
               {" "}
               Información{" "}
             </h3>
-            <p className="font-DMsans font-normal text-heading-sm text-gray-500 mt-3">
-              Shift stubborn body fat and build muscle with this total-body
-              workout. If you're an experienced gym-goer hitting the weights
-              room for long sessions several times a week, the chances are you
-              have a structured training plan that targets different areas of
-              the body with each workout.
+            <p className="font-DMsans font-normal text-heading-sm text-gray-500 mt-3 min-w-80">
+                {instructor?.bio}
+
             </p>
           </div>
         </div>
