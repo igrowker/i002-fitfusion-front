@@ -12,50 +12,53 @@ import { ScheduledClasses } from "../../types/scheduledClassesTypes";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe("pk_test_51Pc5b0RxyXHtmyBjqqsLa8piRs7leNoso0DM22BAK9v1bbp6roVYcNkvAO5xsG8EjzzEjYQ7DF1NGdxK3C6E5x3500MlfeMrtq");
+const stripePromise = loadStripe(
+  "pk_test_51Pc5b0RxyXHtmyBjqqsLa8piRs7leNoso0DM22BAK9v1bbp6roVYcNkvAO5xsG8EjzzEjYQ7DF1NGdxK3C6E5x3500MlfeMrtq"
+);
 
 export const CalendarComponent = () => {
   type ValuePiece = Date | null;
   type Value = ValuePiece | [ValuePiece, ValuePiece];
 
   const [value, onChange] = useState<Value>(new Date());
-  const [classList, setClassList] = useState<ScheduledClasses[] | undefined >();
-  const [item, setItem] = useState<ScheduledClasses[] | undefined >([]);
+  const [classList, setClassList] = useState<ScheduledClasses[] | undefined>();
+  const [item, setItem] = useState<ScheduledClasses[] | undefined>([]);
 
   const navigate = useNavigate();
 
- const handleClick = () => {
+  const handleClick = () => {
     // cuando value cambie deberiamos llamar a una api que nos traiga
     // las clases que hay en esa fecha
     const fecha = new Date(value as any);
 
-    const body = {weekdayId : fecha.getDay()}
+    const body = { weekdayId: fecha.getDay() };
 
     apiCall({ url: `/classes/getClassesByDate`, method: "POST", body })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const adaptedClasses = adaptScheludedClasses(data);
 
-      const adaptedClasses = adaptScheludedClasses(data);
-
-      setClassList(adaptedClasses)
-
-    })
-    .catch((error) => console.log(error));
-    
+        setClassList(adaptedClasses);
+      })
+      .catch((error) => console.log(error));
   };
-
-
 
   const filterItem = (id: number) => {
     const newItem = classList?.filter((newVal) => newVal.id === id);
     newItem !== undefined && setItem(newItem);
   };
 
-  console.log('item' , item )
+  console.log("item", item);
   return (
-    <div className="bg-lima-100/60 bg-cover bg-center h-lvh flex flex-col items-center">
+    <div
+      className={`bg-lima-100/60 ${
+        classList === undefined
+          ? "md:h-[100vh] h-screen"
+          : classList.length !== 0 && "h-screen md:h-[100%]"
+      } bg-cover bg-center flex flex-col items-center`}
+    >
       <HeaderProfile
         closeButton={false}
         text={"Calendario de clases"}
@@ -64,7 +67,7 @@ export const CalendarComponent = () => {
       />
       <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
       <div className="flex flex-col items-center flex-1 ">
-        <div className="flex flex-col items-center calendarContainer my-11">
+        <div className="calendarContainer my-11 flex flex-col items-center">
           <Calendar
             onChange={onChange}
             value={value}
@@ -85,30 +88,28 @@ export const CalendarComponent = () => {
               {" "}
               Clases disponibles{" "}
             </p>
-            {classList === undefined 
-              ? null 
-              : classList.length === 0 
-                ? <h2>No hay clases en la fecha seleccionada</h2>
-                : (
-                  <ul className="flex flex-col items-center gap-3 cursor-pointer">
-                    {classList.map((singleClass) => (
-                      <li
-                        onClick={() => filterItem(singleClass.id)}
-                        key={singleClass.id}
-                        id={singleClass.title}
-                      >
-                        <ClassTeacherCard
-                          img={singleClass.image}
-                          name={singleClass.title}
-                          descOrLength={singleClass.length}
-                          calories={singleClass.calories}
-                          hour={singleClass.hour}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-              )
-            }
+
+            {classList === undefined ? null : classList.length === 0 ? (
+              <h2>No hay clases en la fecha seleccionada</h2>
+            ) : (
+              <ul className="flex flex-col items-center gap-3 cursor-pointer">
+                {classList.map((singleClass) => (
+                  <li
+                    onClick={() => filterItem(singleClass.id)}
+                    key={singleClass.id}
+                    id={singleClass.title}
+                  >
+                    <ClassTeacherCard
+                      img={singleClass.image}
+                      name={singleClass.title}
+                      descOrLength={singleClass.length}
+                      calories={singleClass.calories}
+                      hour={singleClass.hour}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>
@@ -117,15 +118,12 @@ export const CalendarComponent = () => {
           item?.length === 0 ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-      {
-        item !== undefined ? (
+        {item !== undefined ? (
           <Elements stripe={stripePromise}>
             <PayPage item={item} setItem={setItem} />
           </Elements>
-        ) : null 
-      }
+        ) : null}
       </nav>
-
     </div>
   );
 };
