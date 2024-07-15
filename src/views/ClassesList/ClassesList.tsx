@@ -9,7 +9,6 @@ import ErrorMessage from "../../components/ErrorMessage";
 
 export const ClassesList = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token") || "";
 
   const [filters, setfilters] = useState({
     type: "Tipo",
@@ -21,7 +20,7 @@ export const ClassesList = () => {
   const originalClasses = useRef<Classes[] | []>([]);
 
   useEffect(() => {
-    apiCall({ url: "/classes/getAllClasses", method: "GET", token })
+    apiCall({ url: "/classes/getAllClasses", method: "GET" })
       .then((res) => {
         return res.json();
       })

@@ -12,11 +12,12 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import GreenButton from "./GreenButton";
+import { ScheduledClasses } from "../types/scheduledClassesTypes";
 
 
 type PayPageProps = {
-  item: Classes[];
-  setItem: React.Dispatch<React.SetStateAction<Classes[]>>;
+  item: ScheduledClasses[];
+  setItem: React.Dispatch<React.SetStateAction<ScheduledClasses[] | undefined >>;
 };
 
 export const PayPage = ({ item, setItem }: PayPageProps) => {
@@ -25,15 +26,15 @@ export const PayPage = ({ item, setItem }: PayPageProps) => {
     setItem([]);
   };
 
-  const [classConfirmed, setclassConfirmed] = useState<Classes[]>([]);
+  const [classConfirmed, setclassConfirmed] = useState<ScheduledClasses[]>([]);
 
   const handleConfirm = () => {
     setclassConfirmed(item);
     // navigate("/profile");
   };
 
-  console.log(item);
-  console.log(classConfirmed);
+  // console.log(item);
+  // console.log(classConfirmed);
 
   const stripe = useStripe();
   const element = useElements();
@@ -70,7 +71,8 @@ export const PayPage = ({ item, setItem }: PayPageProps) => {
             >
               <p className=" font-bold text-heading font-lato min-[566px]:max-w-xl text-center px-6 ">
                 Estas a punto de reservar la clase "{clase.title}" con el
-                profesor {clase.instructor.name}
+                profesor 
+                {/* {clase.instructor.name} */}
               </p>
             </div>
           </>

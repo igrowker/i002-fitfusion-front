@@ -13,7 +13,7 @@ export const RegisterPage = () => {
 
     const body = { name : data.name, email : data.email , password : data.password, rolId : 2 }
 
-    apiCall({ url : '/auth/register' , method :  'POST', token : '', body } )
+    apiCall({ url : '/auth/register' , method :  'POST', body } )
     .then((res) => {
       // dejo el log para que haga el build
       console.log(res)
