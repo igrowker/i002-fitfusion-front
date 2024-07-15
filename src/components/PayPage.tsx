@@ -26,7 +26,7 @@ export const PayPage = ({ item, setItem }: PayPageProps) => {
     setItem([]);
   };
 
-  const [classConfirmed, setclassConfirmed] = useState<Classes[]>([]);
+  const [classConfirmed, setclassConfirmed] = useState<ScheduledClasses[]>([]);
 
   const handleConfirm = () => {
     setclassConfirmed(item);

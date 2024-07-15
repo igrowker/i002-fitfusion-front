@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ClassTeacherCard, HeaderProfile } from "../../components";
 import { CornerCirclesSVG } from "../../icons";
 
@@ -28,7 +28,6 @@ export const CalendarComponent = () => {
     // cuando value cambie deberiamos llamar a una api que nos traiga
     // las clases que hay en esa fecha
     const fecha = new Date(value as any);
-    console.log(value , fecha.getDay());
 
     const body = {weekdayId : fecha.getDay()}
 
@@ -40,8 +39,6 @@ export const CalendarComponent = () => {
 
       const adaptedClasses = adaptScheludedClasses(data);
 
-      console.log('adaptedClass' , adaptedClasses);
-      
       setClassList(adaptedClasses)
 
     })
@@ -88,35 +85,47 @@ export const CalendarComponent = () => {
               {" "}
               Clases disponibles{" "}
             </p>
-            <ul className="flex flex-col items-center gap-3 cursor-pointer">
-              {classList.map((singleClass) => (
-                <li
-                  onClick={() => filterItem(singleClass.id)}
-                  key={singleClass.id}
-                  id={singleClass.title}
-                >
-                  <ClassTeacherCard
-                    img={singleClass.image}
-                    name={singleClass.title}
-                    descOrLength={singleClass.length}
-                    calories={singleClass.calories}
-                    hour={singleClass.hour}
-                  />
-                </li>
-              ))}
-            </ul>
+            {classList === undefined 
+              ? null 
+              : classList.length === 0 
+                ? <h2>No hay clases en la fecha seleccionada</h2>
+                : (
+                  <ul className="flex flex-col items-center gap-3 cursor-pointer">
+                    {classList.map((singleClass) => (
+                      <li
+                        onClick={() => filterItem(singleClass.id)}
+                        key={singleClass.id}
+                        id={singleClass.title}
+                      >
+                        <ClassTeacherCard
+                          img={singleClass.image}
+                          name={singleClass.title}
+                          descOrLength={singleClass.length}
+                          calories={singleClass.calories}
+                          hour={singleClass.hour}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+              )
+            }
           </div>
         </div>
       </div>
       <nav
         className={`${
-          item.length === 0 ? "w-0" : "w-[100vw]"
+          item?.length === 0 ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        <Elements stripe={stripePromise}>
-          <PayPage item={item} setItem={setItem} />
-        </Elements>
+      {
+        item !== undefined ? (
+          <Elements stripe={stripePromise}>
+            <PayPage item={item} setItem={setItem} />
+          </Elements>
+        ) : null 
+      }
       </nav>
+
     </div>
   );
 };
