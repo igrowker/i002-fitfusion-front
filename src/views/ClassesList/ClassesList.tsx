@@ -5,10 +5,11 @@ import { ClassesFilter, Footer, Header, HeaderProfile } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
 import { adaptClassesformat } from "../../services/adaptClassesFormat";
+import ErrorMessage from "../../components/ErrorMessage";
 
 export const ClassesList = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token') || ''
+  const token = localStorage.getItem("token") || "";
 
   const [filters, setfilters] = useState({
     type: "Tipo",
@@ -21,23 +22,21 @@ export const ClassesList = () => {
 
   useEffect(() => {
     apiCall({ url: "/classes/getAllClasses", method: "GET", token })
-    .then((res) => { return res.json(); })
-    .then((data) => {
-      // guardar datos del clases en redux?
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // guardar datos del clases en redux?
 
-      // console.log('data' , data );
+        // console.log('data' , data );
 
-      const adaptedClasses = adaptClassesformat(data)
+        const adaptedClasses = adaptClassesformat(data);
 
-      setclasses(adaptedClasses)
-      originalClasses.current = adaptedClasses
-      
-    })
-    .catch((error) => console.log(error));
-  }, [])
-  
-
-
+        setclasses(adaptedClasses);
+        originalClasses.current = adaptedClasses;
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const className = e.target.name as keyof Classes;
@@ -92,7 +91,11 @@ export const ClassesList = () => {
         />
 
         {classes.length === 0 ? (
-          <h2>No existen clases para la combinacion de filtros seleccionada</h2>
+          <div className="px-6 text-center">
+            <ErrorMessage>
+              No existen clases para la combinacion de filtros seleccionada
+            </ErrorMessage>
+          </div>
         ) : (
           <ul className=" cursor-pointer flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3 ">
             {classes.map((fitClass: Classes) => {
