@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useUser } from "../hooks/useUser";
 import { FireSVG } from "../icons/FireSVG";
 import ClassCard from "./ClassCard";
+import { Classes } from "../types/classesTypes";
+import { apiCall } from "../services/apiCall";
+import { adaptClassesformat } from "../services/adaptClassesFormat";
 
 
 export const TeacherBanner = () => {
@@ -14,9 +17,31 @@ export const TeacherBanner = () => {
     setItem(newItem);
   };
 
+  const [classes, setclasses] = useState<Classes[] | []>([]);
+
+  const originalClasses = useRef<Classes[] | []>([]);
+
+  useEffect(() => {
+    apiCall({ url: "/classes/getAllClasses", method: "GET" })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // guardar datos del clases en redux?
+
+        // console.log('data' , data );
+
+        const adaptedClasses = adaptClassesformat(data);
+
+        setclasses(adaptedClasses);
+        originalClasses.current = adaptedClasses;
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <>
-      {dataClass?.map((user) => (
+      {classes.map((user) => (
         <article
           onClick={() => filterItem(user.id)}
           key={user.id}

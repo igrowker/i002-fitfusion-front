@@ -90,6 +90,8 @@ export const PayPage = ({ item, setItem }: PayPageProps) => {
 
             <CardElement className="bg-white rounded w-full p-4 text-black" />
 
+      
+
           
 
             <GreenButton text="Confirmar clase" handleClick={handleConfirm} />
