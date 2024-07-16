@@ -14,7 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 type ConfigurationProps = {
   toggleMenu: () => void;
-  user: User
+  user: User | undefined
 
 };
 

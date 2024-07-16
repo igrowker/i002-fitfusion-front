@@ -1,6 +1,31 @@
+import { useEffect, useState } from "react";
 import CaloriesCalculator from "./CaloriesCalculator";
+import { PayedClasses } from "../types/classesTypes";
+import { getLocalSUserInfo } from "../services/handleLocalStorage";
+import { apiCall } from "../services/apiCall";
+import { ClasesLayout } from ".";
 
 export const CaloriesProfile = () => {
+  const [payedClasses, setPayedClasses] = useState<PayedClasses[]>()
+
+  useEffect(() => {
+
+    const {userId} = getLocalSUserInfo()
+    
+    apiCall({ url: `/payments/${2 ||userId}`, method: "GET" })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      // guardar datos del clases en redux?
+      const notCompletedClasses = data.filter((singleClass: PayedClasses) => {return singleClass.ClassCompleted !== false})
+      setPayedClasses(notCompletedClasses)
+    })
+    .catch((error) => console.log(error));
+    return () => {
+      
+    }
+  }, [])
   return (
     <article className=" flex flex-col items-center mx-6 my-8">
       <div className=" flex flex-col items-center">
@@ -38,6 +63,10 @@ export const CaloriesProfile = () => {
       </div>
 
       <CaloriesCalculator />
+
+      <ClasesLayout
+        payedClasses = {payedClasses}
+       />
     </article>
   );
 };
