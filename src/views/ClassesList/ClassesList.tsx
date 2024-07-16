@@ -90,7 +90,7 @@ export const ClassesList = () => {
         />
 
         {classes.length === 0 ? (
-          <div className="px-6 text-center">
+          <div className="px-6 pt-6 text-center">
             <ErrorMessage>
               No existen clases para la combinacion de filtros seleccionada
             </ErrorMessage>
@@ -101,15 +101,15 @@ export const ClassesList = () => {
               return (
                 <li
                   key={fitClass.id}
-                  className=" flex justify-around w-80"
+                  className=" flex justify-between items-center  px-6 gap-4"
                   onClick={() => handleClick(fitClass.id)}
                 >
                   <img
                     src={fitClass.image}
                     className="w-36 h-36 rounded-large object-cover"
                   />
-                  <div className="flex flex-col items-start justify-center gap-1 hover:cursor-pointer ">
-                    <div className=" w-full flex justify-center text-center">
+                  <div className="flex flex-col items-start justify-start gap-1 hover:cursor-pointer ">
+                    <div className=" flex ">
                       <h3 className="font-DMsans font-bold text-heading max-w-28">
                         {" "}
                         {fitClass.title}{" "}
