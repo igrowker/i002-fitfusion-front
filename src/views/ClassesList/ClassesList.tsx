@@ -71,11 +71,11 @@ export const ClassesList = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col items-center h-screen">
-      <div className=" hidden min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
+    <div className="bg-white flex flex-col items-center relative">
+      <div className=" hidden  min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
         <Header />
       </div>
-      <div className="bg-white flex flex-col items-center pb-6">
+      <div className="bg-white flex flex-col items-center pb-6 min-[566px]:h-screen">
         <HeaderProfile
           handleClick={handle}
           closeButton={false}
@@ -96,7 +96,7 @@ export const ClassesList = () => {
             </ErrorMessage>
           </div>
         ) : (
-          <ul className=" cursor-pointer flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3 ">
+          <ul className=" min-[566px]:mb-6 cursor-pointer flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
             {classes.map((fitClass: Classes) => {
               return (
                 <li
@@ -148,8 +148,9 @@ export const ClassesList = () => {
             })}
           </ul>
         )}
+      
       </div>
-      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
+      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0 min-[566px]:absolute">
         <Footer />
       </div>
     </div>
