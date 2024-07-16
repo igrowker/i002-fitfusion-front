@@ -28,7 +28,7 @@ export const Nutritionist = () => {
       <main className=" bg-white flex flex-col items-center h-screen">
         <HeaderProfile
           handleClick={handleClick}
-          closeButton={false}
+          closeButton={true}
           text={"Nutricionistas"}
           showConfig={false}
         />

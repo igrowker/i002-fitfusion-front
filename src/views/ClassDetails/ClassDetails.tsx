@@ -46,7 +46,7 @@ export const ClassDetails = () => {
   return (
     <>
       {classInfo !== undefined ? (
-        <div className="bg-lima-100/60  bg-cover bg-center flex flex-col items-center ">
+        <div className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center ">
           <HeaderProfile
             handleClick={handleBack}
             closeButton={false}

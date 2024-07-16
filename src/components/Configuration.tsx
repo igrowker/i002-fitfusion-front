@@ -32,7 +32,7 @@ export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
   };
 
   return (
-    <div className="flex flex-col min-[566px]:max-w-xl m-auto justify-between">
+    <div className="flex flex-col min-[566px]:max-w-xl m-auto justify-between min-[566px]:pt-[50px]">
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
         <p className=" font-bold text-base text-black font-lato"></p>
         <button
