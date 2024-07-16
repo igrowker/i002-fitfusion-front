@@ -37,7 +37,7 @@ export const UserProfile = () => {
           <main className=" bg-white flex flex-col items-center">
             <HeaderProfile
               handleClick={handleClick}
-              closeButton={false}
+              closeButton={true}
               text={"Mi perfil"}
               showConfig={false}
               user={user}

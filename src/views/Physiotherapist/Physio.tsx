@@ -28,7 +28,7 @@ export const Physio = () => {
       <main className=" bg-white h-screen flex flex-col items-center">
         <HeaderProfile
           handleClick={handleClick}
-          closeButton={false}
+          closeButton={true}
           text={"Fisioterapeutas"}
           showConfig={false}
         />

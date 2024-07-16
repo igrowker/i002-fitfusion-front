@@ -40,7 +40,7 @@ export const TrainerProfilePage = () => {
   };
 
   return (
-    <div className="bg-lima-100/60 h-screen bg-cover bg-center flex flex-col items-center">
+    <div className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center h-screen">
       <HeaderProfile
         handleClick={handleBack}
         closeButton={false}

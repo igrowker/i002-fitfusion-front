@@ -71,14 +71,14 @@ export const ClassesList = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col items-center relative">
+    <div className="min-[566px]:relative">
       <div className=" hidden  min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
         <Header />
       </div>
       <div className="bg-white flex flex-col items-center pb-6 min-[566px]:h-screen">
         <HeaderProfile
           handleClick={handle}
-          closeButton={false}
+          closeButton={true}
           text="Clases"
           showConfig={false}
         />
