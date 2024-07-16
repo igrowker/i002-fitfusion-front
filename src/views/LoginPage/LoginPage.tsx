@@ -10,7 +10,9 @@ export const LoginPage = () => {
 
   const onSubmit = (data: LoginForm) => {
     apiCall({ url: "/auth/login", method: "POST", body: data })
-      .then((res) => { return res.json(); })
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         // guardar datos del usuario en redux?
 
@@ -67,9 +69,10 @@ export const LoginPage = () => {
             placeholder="Contraseña"
             {...register("password", {
               required: "La contraseña es requerida",
-              minLength: {
-                value: 8,
-                message: "La contraseña debe tener al menos 8 caracteres",
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[a-z]).{8,}$/,
+                message:
+                  "El Password debe contener al menos 8 caracteres, numeros y letras",
               },
             })}
           />
