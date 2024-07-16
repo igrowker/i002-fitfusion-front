@@ -95,9 +95,10 @@ export const RegisterPage = () => {
             id="password"
             {...register("password", {
               required: "La contraseña es requerida",
-              minLength: {
-                value: 8,
-                message: "La contraseña debe tener al menos 8 caracteres",
+              pattern: {
+                value: /^(?=.*[0-9])(?=.*[a-z]).{8,}$/,
+                message:
+                  "El Password debe contener al menos 8 caracteres, numeros y letras",
               },
             })}
           />
