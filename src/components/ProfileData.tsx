@@ -1,4 +1,3 @@
-import { FollowersSVG, LightingSVG } from "../icons";
 
 export const ProfileData = () => {
   return (
@@ -9,7 +8,7 @@ export const ProfileData = () => {
         Jordi Garcia Ferre
       </p>
 
-      <div className=" flex flex-row w-full justify-center items-center pt-8 px-6">
+      {/* <div className=" flex flex-row w-full justify-center items-center pt-8 px-6">
         <div className=" flex flex-col gap-2 items-center justify-center px-4">
           <LightingSVG />
 
@@ -29,7 +28,7 @@ export const ProfileData = () => {
             Seguidores
           </p>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

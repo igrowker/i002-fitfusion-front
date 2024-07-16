@@ -9,7 +9,7 @@ import { useState } from "react";
 
 type ConfigurationFormProfileProps = {
   editing: () => void;
-  user: User;
+  user: User | undefined;
 };
 
 export const ConfigurationFormProfile = ({

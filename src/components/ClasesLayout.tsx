@@ -1,53 +1,12 @@
-import { useEffect, useState } from "react";
-import { BicicleSVG } from "../icons";
-import { apiCall } from "../services/apiCall";
-import { getLocalSUserInfo } from "../services/handleLocalStorage";
 import { PayedClasses } from "../types/classesTypes";
 
-export const ClasesLayout = () => {
-  const [payedClasses, setPayedClasses] = useState<PayedClasses[]>()
-  const [getClasses, setGetClasses] = useState<Boolean>(false)
 
-  useEffect(() => {
+type ClassesLayoutProps = {
+  payedClasses : PayedClasses[] | undefined
+  handleCompletedClick? : (id : number , completed : boolean) => void
+}
 
-    const {userId} = getLocalSUserInfo()
-    
-    apiCall({ url: `/payments/${2 ||userId}`, method: "GET" })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      // guardar datos del clases en redux?
-      data.sort((a : PayedClasses,b : PayedClasses) => (a.ClassDate).localeCompare(b.ClassDate) )
-      setPayedClasses(data)
-      setGetClasses(false)
-    })
-    .catch((error) => console.log(error));
-    return () => {
-      
-    }
-  }, [getClasses])
-  
-  console.log(payedClasses);
-
-  const handleCompletedClick = (id : number , completed : boolean) => {
-
-      if(!completed){
-        const body = {paimentId : id}
-
-        apiCall({ url: `/classes/complete`, method: "PATCH" , body })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log({data})
-          setGetClasses(true)
-        })
-        .catch((error) => console.log(error));
-
-      }
-  }
-  
+export const ClasesLayout = ({payedClasses , handleCompletedClick} : ClassesLayoutProps) => {
 
   return (
     <>
@@ -82,7 +41,7 @@ export const ClasesLayout = () => {
                 <button
                   disabled={payedClass.ClassCompleted}
                   className="bg-lima-500/80 text-black font-lato text-heading font-bold rounded-xl w-72 py-2 max-w-4xl mt-5 disabled:bg-gray-500/20"
-                  onClick={() => handleCompletedClick(payedClass.Id , payedClass.ClassCompleted)}
+                  onClick={ () => handleCompletedClick && handleCompletedClick(payedClass.Id , payedClass.ClassCompleted)}
                 >
                   {payedClass.ClassCompleted ? 'Completada' : 'Marcar completa'}
                 </button>

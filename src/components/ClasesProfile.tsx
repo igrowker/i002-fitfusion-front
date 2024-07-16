@@ -1,10 +1,60 @@
+import { useEffect, useState } from "react";
 import { ColonSVG } from "../icons";
 import { ClasesLayout, TeacherBanner } from "./";
+import { apiCall } from "../services/apiCall";
+import { getLocalSUserInfo } from "../services/handleLocalStorage";
+import { PayedClasses } from "../types/classesTypes";
 
 export const ClasesProfile = () => {
+  const [payedClasses, setPayedClasses] = useState<PayedClasses[]>()
+  const [getClasses, setGetClasses] = useState<Boolean>(false)
+
+  useEffect(() => {
+
+    const {userId} = getLocalSUserInfo()
+    
+    apiCall({ url: `/payments/${2 ||userId}`, method: "GET" })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      // guardar datos del clases en redux?
+      const notCompletedClasses = data.filter((singleClass: PayedClasses) => {return singleClass.ClassCompleted === false})
+      notCompletedClasses.sort((a : PayedClasses,b : PayedClasses) => (a.ClassDate).localeCompare(b.ClassDate) )
+      setPayedClasses(notCompletedClasses)
+      setGetClasses(false)
+    })
+    .catch((error) => console.log(error));
+    return () => {
+      
+    }
+  }, [getClasses])
+  
+  console.log(payedClasses);
+
+  const handleCompletedClick = (id : number , completed : boolean) => {
+
+      if(!completed){
+        const body = {paimentId : id}
+
+        apiCall({ url: `/classes/complete`, method: "PATCH" , body })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log({data})
+          setGetClasses(true)
+        })
+        .catch((error) => console.log(error));
+
+      }
+  }
   return (
     <article className=" flex flex-col items-center mx-6 mb-8">
-      <ClasesLayout />
+      <ClasesLayout
+        payedClasses = {payedClasses}
+        handleCompletedClick ={handleCompletedClick}
+       />
       <div className=" flex flex-row w-full justify-between items-center pt-2 px-6 ">
         <p className=" font-bold text-heading font-lato">
           Comienza a entrenar hoy
