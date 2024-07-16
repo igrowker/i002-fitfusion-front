@@ -15,6 +15,7 @@ export const LoginPage = () => {
         // guardar datos del usuario en redux?
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userData", JSON.stringify(data));
 
         navigate("/classes");
       })
