@@ -67,3 +67,34 @@ export interface User {
     Name: string;
     Image? : string
 }
+
+
+export interface PayedClasses {
+    Id:              number;
+    ClassId:         number;
+    UserId:          number;
+    ClassTimeId:     number;
+    ClassDate:       string;
+    ClassCompleted:  boolean;
+    Amount:          string;
+    Status:          string;
+    PaymentIntentId: null;
+    Class:           Class;
+    ClassTime: {
+        Time: string
+    }
+}
+
+export interface Class {
+    ClassId:      number;
+    Title:        string;
+    Description:  string;
+    TeacherId:    number;
+    LevelClassId: number;
+    TypeClassId:  number;
+    Calories:     number;
+    Duration:     number;
+    StatusId:     number;
+    Price:        string;
+    Image:        string;
+}
