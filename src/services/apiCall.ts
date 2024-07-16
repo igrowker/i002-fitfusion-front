@@ -23,9 +23,9 @@ export const  apiCall = async ({ url , method , body , headers } : apiCallProps 
       },
       body: body ? JSON.stringify(body) : undefined,
     }).then( async (res) => {
-      if (!res.ok) {
-        throw new Error( 'Ocurrio un error al hacer fetch');
-      }
+      // if (!res.ok) {
+      //   throw new Error( 'Ocurrio un error al hacer fetch');
+      // }
 
       return res
 

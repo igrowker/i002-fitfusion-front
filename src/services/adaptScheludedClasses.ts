@@ -11,8 +11,10 @@ export const adaptScheludedClasses = (scheduledClasses : APIScheduledClases[]) :
             length: singleClass.Class.Duration,
             calories: singleClass.Class.Calories ,
             hour: singleClass.ClassTime.Time ,
-
-        }
+            classId : singleClass.ClassId,
+            classTimeId : singleClass.ClassTimeId,
+            classPrice : Number(singleClass.Class.Price), //cambiar a number cuando se mande al back
+        }   
     })
 
 }

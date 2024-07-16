@@ -16,13 +16,14 @@ const stripePromise = loadStripe(
   "pk_test_51Pc5b0RxyXHtmyBjqqsLa8piRs7leNoso0DM22BAK9v1bbp6roVYcNkvAO5xsG8EjzzEjYQ7DF1NGdxK3C6E5x3500MlfeMrtq"
 );
 
+export type ValuePiece = Date | null;
+export type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 export const CalendarComponent = () => {
-  type ValuePiece = Date | null;
-  type Value = ValuePiece | [ValuePiece, ValuePiece];
 
   const [value, onChange] = useState<Value>(new Date());
   const [classList, setClassList] = useState<ScheduledClasses[] | undefined>();
-  const [item, setItem] = useState<ScheduledClasses[] | undefined>([]);
+  const [item, setItem] = useState<ScheduledClasses | undefined>();
 
   const navigate = useNavigate();
 
@@ -46,7 +47,8 @@ export const CalendarComponent = () => {
   };
 
   const filterItem = (id: number) => {
-    const newItem = classList?.filter((newVal) => newVal.id === id);
+    const newItem = classList?.find((newVal) => newVal.id === id);
+    console.log({newItem})
     newItem !== undefined && setItem(newItem);
   };
 
@@ -115,12 +117,16 @@ export const CalendarComponent = () => {
       </div>
       <nav
         className={`${
-          item?.length === 0 ? "w-0" : "w-[100vw]"
+          item === undefined ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        {item !== undefined ? (
+        { item !== undefined ? (
           <Elements stripe={stripePromise}>
-            <PayPage item={item} setItem={setItem} />
+            <PayPage 
+              item={item} 
+              setItem={setItem} 
+              selectedDate = {value}
+            />
           </Elements>
         ) : null}
       </nav>

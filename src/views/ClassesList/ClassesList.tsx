@@ -101,7 +101,7 @@ export const ClassesList = () => {
               return (
                 <li
                   key={fitClass.id}
-                  className="w-5/6 flex justify-around max-w-80"
+                  className=" flex justify-around w-80"
                   onClick={() => handleClick(fitClass.id)}
                 >
                   <img

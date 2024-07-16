@@ -5,6 +5,10 @@ export interface ScheduledClasses {
   length: number;
   calories: number;
   hour: string;
+  classId : number;
+  classTimeId : number
+  classPrice : number //cambiar a number cuando se mande al back
+  classDate? : string
 }
 
 export interface APIScheduledClases {
