@@ -19,7 +19,12 @@ export const LoginPage = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userData", JSON.stringify(data));
 
-        navigate("/classes");
+        if (data.message === "Usuario no encontrado.") {
+          alert("Usuario no encontrado");
+          navigate("/auth/register");
+        } else {
+          navigate("/classes");
+        }
       })
       .catch((error) => console.log(error));
   };
