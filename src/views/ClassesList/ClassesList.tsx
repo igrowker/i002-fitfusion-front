@@ -96,7 +96,7 @@ export const ClassesList = () => {
             </ErrorMessage>
           </div>
         ) : (
-          <ul className=" min-[566px]:mb-6 cursor-pointer flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
+          <ul className=" min-[566px]:mb-6 cursor-pointer flex flex-col justify-around items-center gap-4 max-h-full mt-7 md:flex-row flex-wrap min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-6">
             {classes.map((fitClass: Classes) => {
               return (
                 <li
@@ -148,7 +148,6 @@ export const ClassesList = () => {
             })}
           </ul>
         )}
-      
       </div>
       <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0 min-[566px]:absolute">
         <Footer />
