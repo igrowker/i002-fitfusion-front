@@ -6,30 +6,40 @@ import { apiCall } from "../services/apiCall";
 import { ClasesLayout } from ".";
 
 export const CaloriesProfile = () => {
-  const [payedClasses, setPayedClasses] = useState<PayedClasses[]>()
+  const [payedClasses, setPayedClasses] = useState<PayedClasses[]>();
+
+  const [totalCalories, settotalCalories] = useState(0);
 
   useEffect(() => {
+    const { userId } = getLocalSUserInfo();
 
-    const {userId} = getLocalSUserInfo()
-    
     apiCall({ url: `/payments/${userId}`, method: "GET" })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      // guardar datos del clases en redux?
-      const notCompletedClasses = data.filter((singleClass: PayedClasses) => {return singleClass.ClassCompleted !== false})
-      setPayedClasses(notCompletedClasses)
-    })
-    .catch((error) => console.log(error));
-    return () => {
-      
-    }
-  }, [])
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // guardar datos del clases en redux?
+        const notCompletedClasses = data.filter((singleClass: PayedClasses) => {
+          return singleClass.ClassCompleted !== false;
+        });
+        setPayedClasses(notCompletedClasses);
+
+        const orderSubTotal = () =>
+          notCompletedClasses?.reduce(
+            (total: number, item) => total + item.Class.Calories,
+            0
+          );
+
+        settotalCalories(orderSubTotal);
+      })
+      .catch((error) => console.log(error));
+    return () => {};
+  }, []);
+
   return (
     <article className=" flex flex-col items-center mx-6 my-8">
       <div className=" flex flex-col items-center">
-        <p className=" font-lato font-bold text-heading-xl text-black">1200</p>
+        <p className=" font-lato font-bold text-heading-xl text-black">{totalCalories}</p>
         <p className=" font-lato font-bold text-heading-sm text-gray-500">
           Kcal
         </p>
@@ -62,11 +72,9 @@ export const CaloriesProfile = () => {
         </div>
       </div>
 
-      <CaloriesCalculator />
+      <CaloriesCalculator totalCalories={totalCalories}/>
 
-      <ClasesLayout
-        payedClasses = {payedClasses}
-       />
+      <ClasesLayout payedClasses={payedClasses} />
     </article>
   );
 };

@@ -5,7 +5,7 @@ import ClassCard from "./ClassCard";
 import { Classes } from "../types/classesTypes";
 import { apiCall } from "../services/apiCall";
 import { adaptClassesformat } from "../services/adaptClassesFormat";
-
+import { useNavigate } from "react-router-dom";
 
 export const TeacherBanner = () => {
   const { dataClass } = useUser();
@@ -39,9 +39,16 @@ export const TeacherBanner = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  const classesSlice = classes.slice(0, 3);
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/classes");
+  };
+
   return (
     <>
-      {classes.map((user) => (
+      {classesSlice.map((user) => (
         <article
           onClick={() => filterItem(user.id)}
           key={user.id}
@@ -79,6 +86,13 @@ export const TeacherBanner = () => {
       >
         <ClassCard item={item} setItem={setItem} />
       </nav>
+
+      <button
+        className="w-full font-lato font-bold text-heading bg-lima-100 min-[566px]:bg-gray-100 min-w-40 rounded-md p-2 min-[566px]:w-48 hover:bg-lima-100 duration-300 hover:scale-110"
+        onClick={handleClick}
+      >
+        Ver todas las clases
+      </button>
     </>
   );
 };
