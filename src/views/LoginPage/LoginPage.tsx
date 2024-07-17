@@ -3,29 +3,46 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { LoginForm } from "../../types/formTypes";
 import { Link, useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
+import { ToastContainer, toast } from 'react-toastify';
+import { useState } from "react";
+import { Spinner } from "../../components";
+import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
+
+
 
 export const LoginPage = () => {
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
   const navigate = useNavigate();
-  const { register, handleSubmit, formState } = useForm<LoginForm>();
+  const { register, handleSubmit, formState, reset } = useForm<LoginForm>();
 
   const onSubmit = (data: LoginForm) => {
+    setAppStatus(APP_STATUS.LOADING)
     apiCall({ url: "/auth/login", method: "POST", body: data })
       .then((res) => {
+        console.log('res' , res)
         return res.json();
       })
       .then((data) => {
         // guardar datos del usuario en redux?
+        setAppStatus(APP_STATUS.READY_USAGE)
+        if(data.message === 'Credenciales inválidas.') {
+          const notify = () => toast.error("Ocurrio un error en el proceso de login.",{position: "bottom-center",});
+          notify()
+          
+        }else {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userData", JSON.stringify(data));
+          navigate("/classes");
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userData", JSON.stringify(data));
-
-        navigate("/classes");
+        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(()=> {reset()});
   };
 
   return (
     <div className="w-full flex flex-col items-center justify-center gap-y-12 max-w-lg h-full">
+      {appStatus=== APP_STATUS.LOADING && <Spinner /> }
       <p className="text-center">
         Ingresa tus credenciales para iniciar sesión
       </p>
@@ -110,6 +127,7 @@ export const LoginPage = () => {
             </Link>
           </p>
         </div>
+        <ToastContainer />
       </form>
     </div>
   );

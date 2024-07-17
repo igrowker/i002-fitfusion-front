@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Footer, Header, HeaderProfile } from "../../components";
-import { useUser } from "../../hooks/useUser";
 import { ColonSVG, RightArrowSVG } from "../../icons";
 import { PhoneSVG } from "../../icons/PhoneSVG";
 import NutritionCard from "../../components/NutritionCard";
