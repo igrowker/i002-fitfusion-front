@@ -33,7 +33,7 @@ export const ClasesLayout = ({payedClasses , handleCompletedClick} : ClassesLayo
               </div>
               <div className=" flex pt-2 flex-col items-center  ">
                 <p className=" text-heading-sm font-lato font-black text-gray-300">
-                  Fecha: {payedClass.ClassDate.split('-').reverse().join('-')}
+                  Fecha: {payedClass.ClassDate.slice(0,10).split('-').reverse().join('-')}
                 </p>
                 <p className=" text-heading-sm font-lato font-black text-gray-300">
                   Hora: {payedClass.ClassTime.Time}
