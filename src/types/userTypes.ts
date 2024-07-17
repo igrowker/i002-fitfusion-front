@@ -18,11 +18,10 @@ export type User = {
         classType : string
         isActive : boolean
     }
-    // esto me parece que no tiene que ir aca 
-    // new_password: string,
-    // current_password: string,  
-    // auth: boolean 
-    // password: string,
+    new_password?: string,
+    current_password?: string,  
+    auth?: boolean 
+    password?: string,
 }
 
 export type Nutritionist = {

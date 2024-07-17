@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import {
   CloseButtonProfileSVG,
   DinnerSVG,
@@ -7,18 +7,20 @@ import {
   FollowersSVG,
   RightArrowSVG,
 } from "../icons";
-import { User } from "../types/userTypes";
 import GreenButton from "./GreenButton";
-import ConfigurationFormProfile from "./ConfigurationFormProfile";
 import { Link, useNavigate } from "react-router-dom";
+import { getLocalSUserInfo, localStorageUserData } from "../services/handleLocalStorage";
+
+// importamos de forma dinámica el componente 
+const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
+
 
 type ConfigurationProps = {
   toggleMenu: () => void;
-  user: User | undefined
 
 };
 
-export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
+export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const editing = () => {
@@ -30,6 +32,8 @@ export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
   const handleClick = () => {
     navigate("/auth");
   };
+
+  const userData : localStorageUserData = getLocalSUserInfo()
 
   return (
     <div className="flex flex-col min-[566px]:max-w-xl m-auto justify-between min-[566px]:pt-[50px]">
@@ -126,7 +130,7 @@ export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
             <img className=" rounded-full bg-cover w-14 h-14 bg-[url('/profile.jfif')] bg-center" />
             <div>
               <p className=" font-lato font-bold text-heading">
-                Jordi Garcia Ferre
+                {userData.name}
               </p>
               <p className=" font-lato font-bold text-heading-sm">
                 Editar perfil
@@ -145,7 +149,10 @@ export const Configuration = ({ toggleMenu, user }: ConfigurationProps) => {
           !isEditing ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        <ConfigurationFormProfile user={user} editing={editing} />
+      <Suspense fallback={<div></div>}>
+        {isEditing && <ConfigurationFormProfile editing={editing} />}
+      </Suspense>
+        
       </nav>
     </div>
   );

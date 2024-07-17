@@ -6,14 +6,12 @@ import {
   ConfigurationToolSVG,
   LeftArrowSVG,
 } from "../icons";
-import { User } from "../types/userTypes";
 
 type HeaderProfilePropsTypes = {
   closeButton: boolean;
   text: string;
   showConfig: boolean;
   handleClick: () => void;
-  user? : User
 };
 
 export const HeaderProfile = ({
@@ -21,7 +19,6 @@ export const HeaderProfile = ({
   text = "Mi perfil",
   showConfig,
   handleClick,
-  user
 }: HeaderProfilePropsTypes) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -68,7 +65,7 @@ export const HeaderProfile = ({
           !isOpen ? "h-0" : "h-[100%]"
         } fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-50 overflow-x-hidden origin-top duration-500 w-[100vw] `}
       >
-        <Configuration user={user || undefined} toggleMenu={toggleMenu} />
+        <Configuration toggleMenu={toggleMenu} />
       </nav>
     </header>
   );

@@ -12,7 +12,7 @@ export const CaloriesProfile = () => {
 
     const {userId} = getLocalSUserInfo()
     
-    apiCall({ url: `/payments/${2 ||userId}`, method: "GET" })
+    apiCall({ url: `/payments/${userId}`, method: "GET" })
     .then((res) => {
       return res.json();
     })

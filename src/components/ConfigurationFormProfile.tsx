@@ -5,36 +5,70 @@ import ErrorMessage from "./ErrorMessage";
 import RedButton from "./RedButton";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { apiCall } from "../services/apiCall";
+import { adaptUserFormat } from "../services/adaptUserFormat";
 
 type ConfigurationFormProfileProps = {
   editing: () => void;
-  user: User | undefined;
 };
 
-export const ConfigurationFormProfile = ({
+const ConfigurationFormProfile = ({
   editing,
-  user,
 }: ConfigurationFormProfileProps) => {
-  const [userEdit, setuserEdit] = useState(user);
+  const [user, setuserEdit] = useState<User | undefined>();
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    reset
   } = useForm<User>({ defaultValues: user });
 
+  useEffect(() => {
+    apiCall({ url: `/users/me`, method: "GET" })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+
+      const adaptedUsers = adaptUserFormat(data)
+      setuserEdit(adaptedUsers)
+      reset(adaptedUsers)
+    })
+    .catch((error) => console.log(error));
+  }, [])
+
   const onSubmit = (data: User) => {
-    setuserEdit(data);
+    
+    const body = {
+      Name : data.name,
+      Email : data.email,
+      Age : data.age,
+      Residence : data.residence,
+      Weight : data.weight,
+      Height : data.height,
+      Password : data.current_password?.trim(),
+      NewPassword : data.new_password?.trim(), 
+      teacherInfo : { }
+    }
+    apiCall({ url: `/users/me`, method: "PUT" , body})
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+        console.log('update response ' , data)
+    })
+    .catch((error) => console.log(error));
   };
+  
+    const password = watch("new_password");
+    const current_password = watch("current_password");
+    const new_password = watch("new_password");
 
-  // console.log(userEdit);
 
-  const password = watch("new_password");
-  const current_password = watch("current_password");
-  const new_password = watch("new_password");
-
+  
   return (
     <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
@@ -50,7 +84,11 @@ export const ConfigurationFormProfile = ({
       </div>
       <div className=" flex flex-col items-center mb-10">
         <div className=" relative cursor-pointer ">
-          <img className=" rounded-full bg-cover w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />
+          <img 
+            src={user?.image || '/profile.jfif'}
+            alt="Imagen de perfil de usuario"
+            className=" rounded-full bg-cover w-32 h-32  mt-5 bg-center" 
+          />
 
           <div className=" rounded-full bg-lima-100 border-2 h-9 w-9 absolute right-0 bottom-0 flex items-center justify-center">
             <PencilSVG />
@@ -58,7 +96,7 @@ export const ConfigurationFormProfile = ({
         </div>
 
         <p className=" font-bold text-[24px] text-black mt-4 font-lato">
-          Jordi Garcia Ferre
+          {user?.name}
         </p>
       </div>
 
@@ -157,7 +195,7 @@ export const ConfigurationFormProfile = ({
             }`}
             {...register("weight", {
               pattern: {
-                value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
+                value: /^(0?[1-9]|[1-9][0-9]|1[1-9][1-9]|200)(\.\d{1,2})?$/,
                 message: "No es un peso permitido",
               },
             })}
@@ -172,7 +210,7 @@ export const ConfigurationFormProfile = ({
             className="font-lato font-black text-heading-sm text-gray-500"
             htmlFor="height"
           >
-            Altura (cm)
+            Altura (m)
           </label>
           <input
             id="height"
@@ -183,7 +221,7 @@ export const ConfigurationFormProfile = ({
             }`}
             {...register("height", {
               pattern: {
-                value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
+                value: /^(0?[1-9]|[1-9][0-9]|1[1-9][1-9]|200)(\.\d{1,2})?$/,
                 message: "No es una altura permitida",
               },
             })}
