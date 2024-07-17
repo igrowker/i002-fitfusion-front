@@ -70,6 +70,7 @@ export const PayPage = ({ item, setItem , selectedDate }: PayPageProps) => {
       })
       .catch((error) => console.error('payments' , error));
     console.log('SE EJECUTA EL SUBMIT');
+    navigate('/profile')
     
     // const { error, paymentMethod } = await stripe?.createPaymentMethod({
     //   type: "card",
@@ -116,9 +117,7 @@ export const PayPage = ({ item, setItem , selectedDate }: PayPageProps) => {
 
             <CardElement className="bg-white rounded w-full p-4 text-black" />
 
-      
-
-          
+                
 
             <GreenButton text="Confirmar clase" handleClick={handleConfirm} />
           </form>
