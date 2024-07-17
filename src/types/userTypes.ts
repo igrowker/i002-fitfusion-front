@@ -24,7 +24,7 @@ export type User = {
     password?: string,
 }
 
-export type Nutritionist = {
+export type NutriAndPhysioType = {
     id: number,
     name: string,
     residence: string,
