@@ -55,11 +55,11 @@ export const CalendarComponent = () => {
   console.log("item", item);
   return (
     <div
-      className={`bg-lima-100/60 ${
+      className={`bg-lima-100/60 bg-pattern bg-no-repeat ${
         classList === undefined
           ? "md:h-[100vh] h-screen"
           : classList.length !== 0 && "h-screen md:h-[100%]"
-      } bg-cover bg-center flex flex-col items-center`}
+      } bg-cover flex flex-col items-center`}
     >
       <HeaderProfile
         closeButton={false}
