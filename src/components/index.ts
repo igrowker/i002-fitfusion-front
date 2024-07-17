@@ -12,3 +12,4 @@ export { CaloriesCalculator } from "./CaloriesCalculator";
 export { ClassesFilter } from "./ClassesFilter";
 export { Form } from "./ContactForm/Form";
 export { ClassTeacherCard } from "./ClassTeacherCard";
+export { Spinner } from './Spinner'

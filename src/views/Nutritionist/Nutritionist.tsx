@@ -1,19 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Footer, Header, HeaderProfile } from "../../components";
-import { useUser } from "../../hooks/useUser";
 import { ColonSVG, RightArrowSVG } from "../../icons";
 import { PhoneSVG } from "../../icons/PhoneSVG";
 import NutritionCard from "../../components/NutritionCard";
 import { useNavigate } from "react-router-dom";
+import { apiCall } from "../../services/apiCall";
+import { NutriAndPhysioType } from "../../types/userTypes";
 
 export const Nutritionist = () => {
-  const { dataNut } = useUser();
+  // const { dataNut } = useUser();
+  const [dataNut , setDataNut] = useState<NutriAndPhysioType[] | undefined>()
+  const [item, setItem] = useState<NutriAndPhysioType[] | undefined>();
 
-  const [item, setItem] = useState(dataNut);
+  useEffect(() => {
+
+    
+    apiCall({ url: `/nutricionist/getAllNutricionist`, method: "GET" })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      // guardar datos del clases en redux?
+      setDataNut(data)
+    })
+    .catch((error) => console.log(error));
+    return () => {
+
+    }
+  }, [])
 
   const filterItem = (id: number) => {
-    const newItem = dataNut.filter((newVal) => newVal.id === id);
-    setItem(newItem);
+    const newItem = dataNut !== undefined && dataNut.filter((newVal) => newVal.id === id);
+    newItem && setItem(newItem);
   };
   const navigate = useNavigate();
   const handleClick = () => {
@@ -50,10 +68,10 @@ export const Nutritionist = () => {
               } `}
             >
               <div className=" flex flex-row gap-4 items-center">
-                <img
+                {/* <img
                   className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url(${user.image})]`}
-                />
-                <div className=" flex flex-col justify-start">
+                /> */}
+                <div className=" flex flex-col justify-start px-4">
                   <p className=" text-heading-sm text-white font-medium">
                     {user.name}
                   </p>
@@ -80,14 +98,18 @@ export const Nutritionist = () => {
               </div>
             </article>
           ))}
+          {
+            item !== undefined && (
+              <nav
+                className={`${
+                  item.length === 0 ? "w-0" : "w-[100vw]"
+                }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+              >
+                <NutritionCard item={item} setItem={setItem} />
+              </nav>
 
-          <nav
-            className={`${
-              item.length === 0 ? "w-0" : "w-[100vw]"
-            }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
-          >
-            <NutritionCard item={item} setItem={setItem} />
-          </nav>
+            )
+          }
         </div>
       </main>
 

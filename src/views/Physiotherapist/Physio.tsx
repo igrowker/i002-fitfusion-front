@@ -1,19 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Footer, Header, HeaderProfile } from "../../components";
-import { useUser } from "../../hooks/useUser";
+// import { useUser } from "../../hooks/useUser";
 import { ColonSVG, RightArrowSVG } from "../../icons";
 import { PhoneSVG } from "../../icons/PhoneSVG";
 import { useNavigate } from "react-router-dom";
 import PhysioCard from "../../components/PhysioCard";
+import { apiCall } from "../../services/apiCall";
+import { NutriAndPhysioType } from "../../types/userTypes";
 
 export const Physio = () => {
-  const { dataNut } = useUser();
+  // const { dataPhysio } = useUser();
+  const [dataPhysio , setDataPhysio] = useState<NutriAndPhysioType[] | undefined>()
+  const [item, setItem] = useState(dataPhysio);
 
-  const [item, setItem] = useState(dataNut);
+  useEffect(() => {
+
+    
+    apiCall({ url: `/nutricionist/getAllNutricionist`, method: "GET" })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      // guardar datos del clases en redux?
+      setDataPhysio(data)
+    })
+    .catch((error) => console.log(error));
+    return () => {
+
+    }
+  }, [])
 
   const filterItem = (id: number) => {
-    const newItem = dataNut.filter((newVal) => newVal.id === id);
-    setItem(newItem);
+    if (dataPhysio) {
+      const newItem = dataPhysio.filter((newVal) => newVal.id === id);
+      setItem(newItem);
+    }
   };
   const navigate = useNavigate();
   const handleClick = () => {
@@ -41,7 +62,7 @@ export const Physio = () => {
         </div>
 
         <div className="pb-6 mt-8 gap-6 flex justify-center items-center flex-col min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
-          {dataNut?.map((user) => (
+          {dataPhysio?.map((user) => (
             <article
               onClick={() => filterItem(user.id)}
               key={user.id}
@@ -50,10 +71,10 @@ export const Physio = () => {
               }`}
             >
               <div className=" flex flex-row gap-4 items-center">
-                <img
+                {/* <img
                   className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url(${user.image})]`}
-                />
-                <div className=" flex flex-col justify-start">
+                /> */}
+                <div className=" flex flex-col justify-start px-4">
                   <p className=" text-heading-sm text-white font-medium">
                     {user.name}
                   </p>
@@ -80,14 +101,17 @@ export const Physio = () => {
               </div>
             </article>
           ))}
-
-          <nav
-            className={`${
-              item.length === 0 ? "w-0" : "w-[100vw]"
-            }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
-          >
-            <PhysioCard item={item} setItem={setItem} />
-          </nav>
+          {
+            item !== undefined && (
+              <nav
+                className={`${
+                  item.length === 0 ? "w-0" : "w-[100vw]"
+                }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+              >
+                <PhysioCard item={item} setItem={setItem} />
+              </nav>
+            )
+          }
         </div>
       </main>
 

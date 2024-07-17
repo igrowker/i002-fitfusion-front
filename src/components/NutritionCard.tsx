@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { CornerCirclesSVG } from "../icons";
 import { UserSVG } from "../icons/UserSVG";
-import { Nutritionist } from "../types/userTypes";
+import { NutriAndPhysioType } from "../types/userTypes";
 import HeaderProfile from "./HeaderProfile";
 import { UbicationSVG } from "../icons/UbicationSVG";
 import { PhoneSVG } from "../icons/PhoneSVG";
 import { EmailSVG } from "../icons/EmailSVG";
 
 type NutritionCardProps = {
-  item: Nutritionist[];
-  setItem: React.Dispatch<React.SetStateAction<Nutritionist[]>>;
+  item: NutriAndPhysioType[];
+  setItem: React.Dispatch<React.SetStateAction<NutriAndPhysioType[] | undefined>>;
 };
 
 export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
@@ -33,14 +33,14 @@ export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
           />
           <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
           <div className="flex flex-col items-center flex-1">
-            <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
+            {/* <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
               <img
                 className="w-full h-full object-cover"
                 src={nut.image}
                 alt={nut.name}
               />
-            </div>
-            <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl  pb-6 md:rounded-3xl md:flex-0 md:mb-6">
+            </div> */}
+            <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl mt-20  pb-6 md:rounded-3xl md:flex-0 md:mb-6">
               <div className="absolute -top-8 flex justify-center items-center w-16 h-16 rounded-full bg-lima-100  shadow-custom">
                 <UserSVG fill="white" />
               </div>
