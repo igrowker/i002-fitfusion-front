@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { WeightLiftingSVG, HeartSVG, LocationSVG } from "../../icons";
 import { Classes } from "../../types/classesTypes";
-import { ClassesFilter, Footer, Header, HeaderProfile } from "../../components";
+import { ClassesFilter, Header, HeaderProfile } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
 import { adaptClassesformat } from "../../services/adaptClassesFormat";
@@ -148,9 +148,9 @@ export const ClassesList = () => {
           </ul>
         )}
       </div>
-      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0 min-[566px]:absolute">
+      {/* <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0 min-[566px]:absolute">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };
