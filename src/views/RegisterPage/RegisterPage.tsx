@@ -3,25 +3,49 @@ import { RegisterForm } from "../../types/formTypes";
 import ErrorMessage from "../../components/ErrorMessage";
 import { Link, useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
+import { createErrorToast, createSuccessToast } from "../../services/toastCreation";
+import { ToastContainer } from "react-toastify";
+import { useState } from "react";
+import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
+import { Spinner } from "../../components";
 
 export const RegisterPage = () => {
-
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
   const navigate = useNavigate()
-  const { register, handleSubmit, formState } = useForm<RegisterForm>();
+  const { register, handleSubmit, formState , watch } = useForm<RegisterForm>();
+
+  const password = watch('password');
 
   const onSubmit = (data: RegisterForm) => {
-
+    setAppStatus(APP_STATUS.LOADING)
     const body = { name : data.name, email : data.email , password : data.password, rolId : 2 }
 
     apiCall({ url : '/auth/register' , method :  'POST', body } )
     .then((res) => {
       // dejo el log para que haga el build
-      console.log(res)
-      navigate('/auth/login')
-  
-    }).catch(error => console.log(error))
-
-  };
+      if (res.ok) {
+        const notify = createSuccessToast({ 
+          message : 'El usuario se creo con exito, ya puedes hacer el login.',
+          onClose : () => navigate('/auth/login')
+        })
+          
+        notify()
+      } else {
+        return res.json()
+      }
+    })
+    .then(data => {
+      console.log('data' , data , data.message === 'El correo electrónico ya está registrado.')
+      if(data.message === 'El correo electrónico ya está registrado.') {
+        const notify = createErrorToast({ 
+          message : data.message,
+        })
+        notify()
+      }
+    })
+    .catch(error => console.log(error))
+    .finally(() => setAppStatus(APP_STATUS.READY_USAGE))
+  };  
 
   const handlePrivacyClick = () => {
     navigate('/privacy-policy')
@@ -29,6 +53,7 @@ export const RegisterPage = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center gap-y-12 max-w-lg h-full">
+      {appStatus=== APP_STATUS.LOADING && <Spinner /> }
       <p className="text-center">Registrate y comienza a cambiar tu rutina</p>
 
       <form
@@ -106,6 +131,27 @@ export const RegisterPage = () => {
             <ErrorMessage>{formState.errors.password.message}</ErrorMessage>
           )}
         </div>
+        <div className="w-full">
+          <label className="text-gray-500" htmlFor="repeatedPassword">
+            Contraseña
+          </label>
+          <input
+            className={`rounded w-full  p-2 text-black border-spacing-1 ${
+              formState.errors.repeatedPassword && " outline-[#F73B3B]"
+            }`}
+            type="password"
+            placeholder="Repetir Contraseña"
+            id="repeatedPassword"
+            {...register("repeatedPassword", {
+              required: "La contraseña es requerida",
+              validate: value =>
+              value === password || "Las contraseñas no coinciden"
+            })}
+          />
+          {formState.errors.repeatedPassword && (
+            <ErrorMessage>{formState.errors.repeatedPassword.message}</ErrorMessage>
+          )}
+        </div>
         <div className="flex flex-col items-center gap-y-4 w-full">
           <div className="flex justify-between w-full">
             <div className="flex items-center gap-x-1">
@@ -140,6 +186,7 @@ export const RegisterPage = () => {
           </p>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };
