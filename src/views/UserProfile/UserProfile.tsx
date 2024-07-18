@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Footer, Header, HeaderProfile, ProfileData, Switch } from "../../components";
+import {  Header, HeaderProfile, ProfileData, Switch } from "../../components";
 import { useEffect, useState } from "react";
 import { apiCall } from "../../services/apiCall";
 import { adaptUserFormat } from "../../services/adaptUserFormat";
@@ -46,9 +46,9 @@ export const UserProfile = () => {
 
             <Switch />
           </main>
-          <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
+          {/* <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
             <Footer />
-          </div>
+          </div> */}
         </>
 
       ) : null}
