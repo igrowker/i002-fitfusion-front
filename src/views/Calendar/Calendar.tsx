@@ -48,11 +48,11 @@ export const CalendarComponent = () => {
 
   const filterItem = (id: number) => {
     const newItem = classList?.find((newVal) => newVal.id === id);
-    console.log({newItem})
+    //console.log({newItem})
     newItem !== undefined && setItem(newItem);
   };
 
-  console.log("item", item);
+  //console.log("item", item);
   return (
     <div
       className={`bg-lima-100/60 bg-pattern bg-no-repeat ${
