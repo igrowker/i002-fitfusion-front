@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { apiCall } from "../services/apiCall";
 import { adaptUserFormat } from "../services/adaptUserFormat";
+import { useNavigate } from "react-router-dom";
 
 type ConfigurationFormProfileProps = {
   editing: () => void;
@@ -16,6 +17,7 @@ type ConfigurationFormProfileProps = {
 const ConfigurationFormProfile = ({
   editing,
 }: ConfigurationFormProfileProps) => {
+  const navigate = useNavigate()
   const [user, setuserEdit] = useState<User | undefined>();
 
   const {
@@ -343,7 +345,7 @@ const ConfigurationFormProfile = ({
         />
       </form>
 
-      <RedButton text={"Eliminar cuenta"} />
+      <RedButton onClick={() => navigate('/deleteAccount')} text={"Eliminar cuenta"} />
     </div>
   );
 };

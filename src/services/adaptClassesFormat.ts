@@ -26,7 +26,6 @@ export const adaptClassesformat = (classesList: APIClasses[] ) => {
       kcal: oneClass.Calories,
     };
   });
-  console.log("mappedclasse ", mappedClasses);
   return mappedClasses;
 };
 

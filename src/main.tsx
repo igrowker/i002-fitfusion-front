@@ -13,6 +13,7 @@ import {
   UserProfile,
   ClassDetails,
   CalendarComponent,
+  DeleteAccount,
 } from "./views";
 import { AuthLayout } from "./layouts";
 import TrainerProfilePage from "./views/TrainerProfilePage/TrainerProfilePage";
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
   {
     path: "physiotherapist",
     element: <Physio />,
+  },
+  {
+    path: "deleteAccount",
+    element: <DeleteAccount />,
   },
   {
     path: "*",
