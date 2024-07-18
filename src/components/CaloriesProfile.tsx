@@ -80,8 +80,12 @@ export const CaloriesProfile = () => {
         setPayedClasses={setPayedClasses}
         settotalCalories={settotalCalories}
       />
-
+      <div className="pt-2 mt-4 border-t-2 border-gray-100">
       <ClasesLayout payedClasses={payedClasses} />
+
+      </div>
+
+     
     </article>
   );
 };
