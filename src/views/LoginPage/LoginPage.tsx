@@ -19,16 +19,15 @@ export const LoginPage = () => {
     setAppStatus(APP_STATUS.LOADING)
     apiCall({ url: "/auth/login", method: "POST", body: data })
       .then((res) => {
-        console.log('res' , res)
         return res.json();
       })
       .then((data) => {
         // guardar datos del usuario en redux?
         setAppStatus(APP_STATUS.READY_USAGE)
-        if(data.message === 'Credenciales inválidas.') {
+        if(data.message === 'Credenciales inválidas.' || data.message === 'Usuario no encontrado.') {
           const notify = () => toast.error("Ocurrio un error en el proceso de login.",{position: "bottom-center",});
           notify()
-          
+          setAppStatus(APP_STATUS.ERROR)
         }else {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userData", JSON.stringify(data));
@@ -36,8 +35,13 @@ export const LoginPage = () => {
 
         }
       })
-      .catch((error) => console.log(error))
-      .finally(()=> {reset()});
+      .catch((error) => {
+        setAppStatus(APP_STATUS.ERROR)
+        console.log(error)
+      })
+      .finally(()=> {
+        reset()
+      });
   };
 
   return (

@@ -64,7 +64,6 @@ export const ClassesList = () => {
     navigate(`/class-detail/${classId}`);
   };
 
-  console.log("filters", filters);
 
   const handle = () => {
     navigate("");
