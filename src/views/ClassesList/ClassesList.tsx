@@ -1,13 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { WeightLiftingSVG, HeartSVG, LocationSVG } from "../../icons";
 import { Classes } from "../../types/classesTypes";
-import { ClassesFilter, Header, HeaderProfile } from "../../components";
+import {
+  ClassesFilter,
+  Header,
+  HeaderProfile,
+  Spinner,
+} from "../../components";
 import { useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
 import { adaptClassesformat } from "../../services/adaptClassesFormat";
 import ErrorMessage from "../../components/ErrorMessage";
 
 export const ClassesList = () => {
+  const [spiner, setspiner] = useState<Classes[] | []>([]);
+
   const navigate = useNavigate();
 
   const [filters, setfilters] = useState({
@@ -32,6 +39,7 @@ export const ClassesList = () => {
         const adaptedClasses = adaptClassesformat(data);
 
         setclasses(adaptedClasses);
+        setspiner(adaptedClasses);
         originalClasses.current = adaptedClasses;
       })
       .catch((error) => console.log(error));
@@ -64,13 +72,13 @@ export const ClassesList = () => {
     navigate(`/class-detail/${classId}`);
   };
 
-
   const handle = () => {
     navigate("");
   };
 
   return (
     <div className="min-[566px]:relative">
+      {spiner.length === 0 && <Spinner />}
       <div className=" hidden  min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
         <Header />
       </div>
