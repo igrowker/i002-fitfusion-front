@@ -4,6 +4,7 @@ import { PayedClasses } from "../types/classesTypes";
 import { getLocalSUserInfo } from "../services/handleLocalStorage";
 import { apiCall } from "../services/apiCall";
 import { ClasesLayout } from ".";
+import Chart from "./Chart";
 
 export const CaloriesProfile = () => {
   const [payedClasses, setPayedClasses] = useState<PayedClasses[]>();
@@ -46,32 +47,17 @@ export const CaloriesProfile = () => {
           Kcal Totales
         </p>
       </div>
-
-      <div className=" gap-6 flex flex-col px-6">
-        <img src="/Line.png" alt="Linea logros" className=" mt-6" />
-        <div className=" flex flex-row justify-between">
-          <p className=" font-lato text-heading-sm text-gray-300 font-bold">
-            Lun
-          </p>
-          <p className=" font-lato text-heading-sm text-gray-300 font-bold">
-            Mar
-          </p>
-          <p className=" font-lato text-heading-sm text-gray-300 font-bold">
-            Mier
-          </p>
-          <p className=" font-lato text-heading-sm text-gray-500 font-bold">
-            Jue
-          </p>
-          <p className=" font-lato text-heading-sm text-gray-300 font-bold">
-            Vie
-          </p>
-          <p className=" font-lato text-heading-sm text-gray-300 font-bold">
-            Sab
-          </p>
-          <p className=" font-lato text-heading-sm text-gray-300 font-bold">
-            Dom
-          </p>
+      {/* <img src="/Line.png" alt="Linea logros" className=" mt-6" /> */}
+      <div className="  flex flex-col  items-center">
+      <div className="flex items-center justify-center max-w-[85vw]">
+        <Chart payedClasses={payedClasses} />
         </div>
+      
+          <p className=" -mt-6 font-lato text-heading text-gray-300 font-bold px-6">
+            Progreso de las ultimas 5 clases
+          </p>
+         
+      
       </div>
 
       <CaloriesCalculator
@@ -81,11 +67,8 @@ export const CaloriesProfile = () => {
         settotalCalories={settotalCalories}
       />
       <div className="pt-2 mt-4 border-t-2 border-gray-100">
-      <ClasesLayout payedClasses={payedClasses} />
-
+        <ClasesLayout payedClasses={payedClasses} />
       </div>
-
-     
     </article>
   );
 };
