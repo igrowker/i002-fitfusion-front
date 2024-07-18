@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { HeaderProfile } from "../../components";
+import { HeaderProfile, Spinner } from "../../components";
 import { Classes } from "../../types/classesTypes";
 import {
   CornerCirclesSVG,
@@ -13,8 +13,12 @@ import { UserSVG } from "../../icons/UserSVG";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
 import { adaptClassformat } from "../../services/adaptClassesFormat";
+import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
+import ErrorMessage from "../../components/ErrorMessage";
+import RedButton from "../../components/RedButton";
 
 export const ClassDetails = () => {
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -31,8 +35,13 @@ export const ClassDetails = () => {
         const adaptedClass = adaptClassformat(data);
 
         setClassInfo(adaptedClass);
+        setAppStatus(APP_STATUS.READY_USAGE)
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error)
+        setAppStatus(APP_STATUS.ERROR)
+
+      });
   }, []);
 
   const handleClick = (to: string) => {
@@ -45,8 +54,24 @@ export const ClassDetails = () => {
 
   return (
     <>
+      <div className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col justify-center items-center h-screen">
+      {appStatus === APP_STATUS.LOADING && <Spinner />}
+      { appStatus === APP_STATUS.ERROR && (
+        <div className="px-6 pt-6 text-center ">
+          <ErrorMessage>
+            Ocurrio un error al querer obtener el detalle de la clase 
+            <RedButton
+              onClick={handleBack}
+              text="Volver"
+              size="medium"
+            />
+          </ErrorMessage>
+        </div>
+
+      )}
+
       {classInfo !== undefined ? (
-        <div className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center ">
+        <>
           <HeaderProfile
             handleClick={handleBack}
             closeButton={false}
@@ -122,8 +147,9 @@ export const ClassDetails = () => {
               </div>
             </div>
           </div>
-        </div>
+        </>
       ) : null}
+      </div>
     </>
   );
 };
