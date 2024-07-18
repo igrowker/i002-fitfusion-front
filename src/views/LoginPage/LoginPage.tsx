@@ -3,10 +3,11 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { LoginForm } from "../../types/formTypes";
 import { Link, useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { useState } from "react";
 import { Spinner } from "../../components";
 import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
+import { createErrorToast } from "../../services/toastCreation";
 
 
 
@@ -25,11 +26,20 @@ export const LoginPage = () => {
         // guardar datos del usuario en redux?
         setAppStatus(APP_STATUS.READY_USAGE)
         if(data.message === 'Credenciales inválidas.') {
-          const notify = () => toast.error("Ocurrio un error en el proceso de login.",{position: "bottom-center",});
+          const notify = createErrorToast({ message : 'Ocurrio un error en el proceso de login.' })
+
           notify()
           setAppStatus(APP_STATUS.ERROR)
         } else if (data.message === 'Usuario no encontrado.') {
-          const notify = () => toast.error("El usuario no esta registrado.",{position: "bottom-center",});
+          // const notify = () => toast.error("El usuario no existe, por favor registrate.",
+          // {position: "bottom-center",
+          // onClose: () => navigate('/auth/register')
+          // });
+          const notify = createErrorToast({
+            message : '"El usuario no existe, por favor registrate.',
+            onClose : () => navigate('/auth/register')
+          })
+
           notify()
           setAppStatus(APP_STATUS.ERROR)
         } else {
