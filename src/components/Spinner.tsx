@@ -6,7 +6,7 @@ dotSpinner.register();
 
 export const Spinner = () => {
   return (
-    <div className="h-screen w-screen flex justify-center items-center ">
+    <div className=" absolute top-0 h-screen w-screen flex justify-center items-center bg-gray-500/20">
       <l-dot-spinner size="60" speed="0.9" color="#C1FF72"></l-dot-spinner>
     </div>
   );
