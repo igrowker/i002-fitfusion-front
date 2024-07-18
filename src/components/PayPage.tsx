@@ -42,48 +42,55 @@ export const PayPage = ({ item, setItem, selectedDate }: PayPageProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { error, paymentMethod } = await stripe?.createPaymentMethod({
+    const cardElement = element?.getElement(CardElement);
+    if (!cardElement) {
+        // Handle invalid element case (e.g., display an error message)
+        return;
+    }
+    const response =  await stripe?.createPaymentMethod({
       type: "card",
-      card: element?.getElement(CardElement),
+      card: cardElement,
     });
 
-    if (error) {
-      const notify = () =>
-        toast.error(error.message, { position: "bottom-center" });
-      notify();
-      return console.log(error);
-    } else {
-      const notify = () =>
-        toast.success("Pago realizado correctamente", {
-          position: "bottom-center",
-        });
-      notify();
-      console.log(paymentMethod);
+    if (response !== undefined) {
+      const { error , paymentMethod } = response
+      if (error) {
+        const notify = () =>
+          toast.error(error.message, { position: "bottom-center" });
+        notify();
+        return console.log(error);
+      } else {
+        const notify = () =>
+          toast.success("Pago realizado correctamente", {
+            position: "bottom-center",
+          });
+        notify();
+        console.log(paymentMethod);
+      }
+      const { userId } = getLocalSUserInfo();
+  
+      const body = {
+        ClassId: item.classId,
+        UserId: userId,
+        Amount: item.classPrice,
+        Status: "Payed",
+        ClassTimeId: item.classTimeId,
+        ClassDate: selectedDate,
+      };
+  
+      apiCall({ url: `/payments`, method: "POST", body })
+        .then((res) => {
+          // console.log('res' , res );
+          if (!res.ok) navigate("/classes");
+          return res.json();
+        })
+        .then((data) => {
+          console.log("data", data);
+        })
+        .catch((error) => console.error("payments", error));
+      navigate("/profile");
     }
 
-    const { userId } = getLocalSUserInfo();
-
-    const body = {
-      ClassId: item.classId,
-      UserId: userId,
-      Amount: item.classPrice,
-      Status: "Payed",
-      ClassTimeId: item.classTimeId,
-      ClassDate: selectedDate,
-    };
-
-    apiCall({ url: `/payments`, method: "POST", body })
-      .then((res) => {
-        // console.log('res' , res );
-        if (!res.ok) navigate("/classes");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("data", data);
-      })
-      .catch((error) => console.error("payments", error));
-    console.log("SE EJECUTA EL SUBMIT");
-    navigate("/profile");
   };
 
   return (

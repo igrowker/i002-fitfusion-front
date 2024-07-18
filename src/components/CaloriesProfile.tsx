@@ -26,7 +26,7 @@ export const CaloriesProfile = () => {
 
         const orderSubTotal = () =>
           notCompletedClasses?.reduce(
-            (total: number, item) => total + item.Class.Calories,
+            (total: number, item : PayedClasses ) => total + item.Class.Calories,
             0
           );
 
