@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ClassTeacherCard, HeaderProfile } from "../../components";
+import { ClassTeacherCard, HeaderProfile, Spinner } from "../../components";
 import { CornerCirclesSVG } from "../../icons";
 
 import Calendar from "react-calendar";
@@ -11,6 +11,8 @@ import { adaptScheludedClasses } from "../../services/adaptScheludedClasses";
 import { ScheduledClasses } from "../../types/scheduledClassesTypes";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const stripePromise = loadStripe(
   "pk_test_51Pc5b0RxyXHtmyBjqqsLa8piRs7leNoso0DM22BAK9v1bbp6roVYcNkvAO5xsG8EjzzEjYQ7DF1NGdxK3C6E5x3500MlfeMrtq"
@@ -20,7 +22,7 @@ export type ValuePiece = Date | null;
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export const CalendarComponent = () => {
-
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
   const [value, onChange] = useState<Value>(new Date());
   const [classList, setClassList] = useState<ScheduledClasses[] | undefined>();
   const [item, setItem] = useState<ScheduledClasses | undefined>();
@@ -30,6 +32,7 @@ export const CalendarComponent = () => {
   const handleClick = () => {
     // cuando value cambie deberiamos llamar a una api que nos traiga
     // las clases que hay en esa fecha
+    setAppStatus(APP_STATUS.LOADING)
     const fecha = new Date(value as any);
 
     const body = { weekdayId: fecha.getDay() };
@@ -42,10 +45,15 @@ export const CalendarComponent = () => {
         const adaptedClasses = adaptScheludedClasses(data);
 
         setClassList(adaptedClasses);
+        setAppStatus(APP_STATUS.READY_USAGE)
       })
-      .catch((error) => console.log(error));
+      .catch((error) =>{
+         console.log(error)
+         setClassList(undefined)
+         setAppStatus(APP_STATUS.ERROR)
+      });
   };
-
+  
   const filterItem = (id: number) => {
     const newItem = classList?.find((newVal) => newVal.id === id);
     //console.log({newItem})
@@ -56,7 +64,7 @@ export const CalendarComponent = () => {
   return (
     <div
       className={`bg-lima-100/60 bg-pattern bg-no-repeat ${
-        classList === undefined
+        classList === undefined || classList.length === 0 
           ? "md:h-[100vh] h-screen"
           : classList.length !== 0 && "h-screen md:h-[100%]"
       } bg-cover flex flex-col items-center`}
@@ -68,6 +76,7 @@ export const CalendarComponent = () => {
         handleClick={() => navigate(-1)}
       />
       <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
+      {appStatus === APP_STATUS.LOADING && <Spinner />}
       <div className="flex flex-col items-center flex-1 ">
         <div className="calendarContainer my-11 flex flex-col items-center">
           <Calendar
@@ -77,8 +86,9 @@ export const CalendarComponent = () => {
             minDate={new Date()}
           />
           <button
-            className="bg-lima-500/80 text-black font-lato text-heading font-bold rounded-xl w-72 py-2 max-w-4xl mt-5"
+            className="bg-lima-500/80 text-black font-lato text-heading font-bold rounded-xl w-72 py-2 max-w-4xl mt-5 disabled:bg-lima-500/40"
             onClick={handleClick}
+            disabled={appStatus === APP_STATUS.LOADING}
           >
             {" "}
             Buscar clases en esta fecha
@@ -90,10 +100,20 @@ export const CalendarComponent = () => {
               {" "}
               Clases disponibles{" "}
             </p>
-
-            {classList === undefined ? null : classList.length === 0 ? (
-              <h2>No hay clases en la fecha seleccionada</h2>
-            ) : (
+            {classList === undefined 
+              ?
+                appStatus === APP_STATUS.ERROR 
+                  ? (
+                    <ErrorMessage>
+                      Ocurrio un error al traer las clases
+                    </ErrorMessage>
+                  )
+                  : null : classList.length === 0 ? (
+                <ErrorMessage>
+                  No hay clases en la fecha seleccionada
+                </ErrorMessage>
+                 ) 
+              : (
               <ul className="flex flex-col items-center gap-3 cursor-pointer">
                 {classList.map((singleClass) => (
                   <li

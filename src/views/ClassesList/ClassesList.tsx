@@ -11,9 +11,10 @@ import { useNavigate } from "react-router-dom";
 import { apiCall } from "../../services/apiCall";
 import { adaptClassesformat } from "../../services/adaptClassesFormat";
 import ErrorMessage from "../../components/ErrorMessage";
+import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
 
 export const ClassesList = () => {
-  const [spiner, setspiner] = useState<Classes[] | []>([]);
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)
 
   const navigate = useNavigate();
 
@@ -32,17 +33,18 @@ export const ClassesList = () => {
         return res.json();
       })
       .then((data) => {
-        // guardar datos del clases en redux?
-
-        // console.log('data' , data );
 
         const adaptedClasses = adaptClassesformat(data);
 
         setclasses(adaptedClasses);
-        setspiner(adaptedClasses);
         originalClasses.current = adaptedClasses;
+        setAppStatus(APP_STATUS.READY_USAGE)
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        
+        setAppStatus(APP_STATUS.ERROR)
+      });
   }, []);
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -78,11 +80,12 @@ export const ClassesList = () => {
 
   return (
     <div className="min-[566px]:relative">
-      {spiner.length === 0 && <Spinner />}
+      
       <div className=" hidden  min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
         <Header />
       </div>
       <div className="bg-white flex flex-col items-center pb-6 min-[566px]:h-screen">
+        {appStatus === APP_STATUS.LOADING && <Spinner />}
         <HeaderProfile
           handleClick={handle}
           closeButton={true}
@@ -96,10 +99,10 @@ export const ClassesList = () => {
           resetClasses={resetClasses}
         />
 
-        {classes.length === 0 ? (
+        { appStatus !== APP_STATUS.LOADING && classes.length === 0 ? (
           <div className="px-6 pt-6 text-center">
             <ErrorMessage>
-              No existen clases para la combinacion de filtros seleccionada
+              { appStatus === APP_STATUS.ERROR ? 'Ocurrio un error al querer obtener las clases' : 'No existen clases para la combinacion de filtros seleccionada'}
             </ErrorMessage>
           </div>
         ) : (
