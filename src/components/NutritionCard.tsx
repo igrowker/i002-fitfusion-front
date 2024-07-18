@@ -9,7 +9,9 @@ import { EmailSVG } from "../icons/EmailSVG";
 
 type NutritionCardProps = {
   item: NutriAndPhysioType[];
-  setItem: React.Dispatch<React.SetStateAction<NutriAndPhysioType[] | undefined>>;
+  setItem: React.Dispatch<
+    React.SetStateAction<NutriAndPhysioType[] | undefined>
+  >;
 };
 
 export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
@@ -23,7 +25,7 @@ export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
       {item.map((nut) => (
         <div
           key={nut.id}
-          className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center "
+          className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col items-center h-screen"
         >
           <HeaderProfile
             handleClick={handleClick}
@@ -32,20 +34,14 @@ export const NutritionCard = ({ item, setItem }: NutritionCardProps) => {
             showConfig={false}
           />
           <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
-          <div className="flex flex-col items-center flex-1">
-            {/* <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
-              <img
-                className="w-full h-full object-cover"
-                src={nut.image}
-                alt={nut.name}
-              />
-            </div> */}
+          <div className="flex flex-col items-center flex-1 ">
+
             <div className="w-full bg-white rounded-t-3xl flex flex-col items-center flex-1 px-7 relative max-w-xl mt-20  pb-6 md:rounded-3xl md:flex-0 md:mb-6">
-              <div className="absolute -top-8 flex justify-center items-center w-16 h-16 rounded-full bg-lima-100  shadow-custom">
+              <div className="absolute -top-8 flex justify-center items-center w-16 h-16 rounded-full bg-lima-100  shadow-custom ">
                 <UserSVG fill="white" />
               </div>
-              <div className="w-full flex justify-evenly pt-16">
-                <div className="w-full flex justify-evenly">
+              <div className="w-full flex justify-evenly pt-16 ">
+                <div className="w-full flex justify-center flex-wrap gap-6">
                   <div className="flex flex-col items-center justify-center">
                     <EmailSVG />
                     <p className="text-heading-sm font-bold font-DMsans">
