@@ -48,6 +48,12 @@ export const TeacherBanner = () => {
 
   return (
     <>
+      <button
+        className="w-full font-lato font-bold text-heading bg-lima-100 min-[566px]:bg-gray-100 min-w-40 rounded-md p-2 min-[566px]:w-48 hover:bg-lima-100 duration-300 hover:scale-110"
+        onClick={handleClick}
+      >
+        Ver todas las clases
+      </button>
       {classesSlice.map((user) => (
         <article
           onClick={() => filterItem(user.id)}
@@ -86,13 +92,6 @@ export const TeacherBanner = () => {
       >
         <ClassCard item={item} setItem={setItem} />
       </nav>
-
-      <button
-        className="w-full font-lato font-bold text-heading bg-lima-100 min-[566px]:bg-gray-100 min-w-40 rounded-md p-2 min-[566px]:w-48 hover:bg-lima-100 duration-300 hover:scale-110"
-        onClick={handleClick}
-      >
-        Ver todas las clases
-      </button>
     </>
   );
 };
