@@ -9,7 +9,9 @@ import { EmailSVG } from "../icons/EmailSVG";
 
 type PhysioCardProps = {
   item: NutriAndPhysioType[];
-  setItem: React.Dispatch<React.SetStateAction<NutriAndPhysioType[] | undefined>>;
+  setItem: React.Dispatch<
+    React.SetStateAction<NutriAndPhysioType[] | undefined>
+  >;
 };
 
 export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
@@ -23,7 +25,7 @@ export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
       {item.map((nut) => (
         <div
           key={nut.id}
-          className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center"
+          className="bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center h-screen"
         >
           <HeaderProfile
             handleClick={handleClick}
@@ -45,7 +47,7 @@ export const PhysioCard = ({ item, setItem }: PhysioCardProps) => {
                 <UserSVG fill="white" />
               </div>
               <div className="w-full flex justify-evenly pt-16">
-                <div className="w-full flex justify-evenly">
+                <div className="w-full flex justify-center flex-wrap gap-6">
                   <div className="flex flex-col items-center justify-center">
                     <EmailSVG />
                     <p className="text-heading-sm font-bold font-DMsans">

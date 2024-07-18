@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Footer, Header, HeaderProfile } from "../../components";
+import { Header, HeaderProfile } from "../../components";
 import { ColonSVG, RightArrowSVG } from "../../icons";
 import { PhoneSVG } from "../../icons/PhoneSVG";
 import NutritionCard from "../../components/NutritionCard";
@@ -9,28 +9,25 @@ import { NutriAndPhysioType } from "../../types/userTypes";
 
 export const Nutritionist = () => {
   // const { dataNut } = useUser();
-  const [dataNut , setDataNut] = useState<NutriAndPhysioType[] | undefined>()
+  const [dataNut, setDataNut] = useState<NutriAndPhysioType[] | undefined>();
   const [item, setItem] = useState<NutriAndPhysioType[] | undefined>();
 
   useEffect(() => {
-
-    
     apiCall({ url: `/nutricionist/getAllNutricionist`, method: "GET" })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      // guardar datos del clases en redux?
-      setDataNut(data)
-    })
-    .catch((error) => console.log(error));
-    return () => {
-
-    }
-  }, [])
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        // guardar datos del clases en redux?
+        setDataNut(data);
+      })
+      .catch((error) => console.log(error));
+    return () => {};
+  }, []);
 
   const filterItem = (id: number) => {
-    const newItem = dataNut !== undefined && dataNut.filter((newVal) => newVal.id === id);
+    const newItem =
+      dataNut !== undefined && dataNut.filter((newVal) => newVal.id === id);
     newItem && setItem(newItem);
   };
   const navigate = useNavigate();
@@ -58,64 +55,59 @@ export const Nutritionist = () => {
           <ColonSVG className="text-gray-500" />
         </div>
 
-        <div className=" pb-6 mt-8 gap-6 flex justify-center items-center flex-col min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
+        <div className="min-[566px]:max-w-2xl pb-6 mt-8 gap-6 flex justify-center items-center flex-col min-[566px]:px-6 min-[566px]:flex-row min-[566px]:justify-center min-[566px]:flex-wrap min-[566px]:gap-3">
           {dataNut?.map((user) => (
             <article
               onClick={() => filterItem(user.id)}
               key={user.id}
-              className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80  ${
-                user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
-              } `}
+              className="min-w-[80vw] min-[566px]:min-w-0 cursor-pointer p-6 shadow-lg flex flex-col items-center justify-center gap-4 hover:scale-105 duration-300 hover:bg-lima-100/30"
             >
-              <div className=" flex flex-row gap-4 items-center">
+              <div className=" flex flex-col gap-4 items-center justify-center">
                 {/* <img
                   className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url(${user.image})]`}
                 /> */}
-                <div className=" flex flex-col justify-start px-4">
-                  <p className=" text-heading-sm text-white font-medium">
+                <div className=" flex flex-col justify-center items-center px-4">
+                  <p className=" text-heading text-black-bg font-medium">
                     {user.name}
                   </p>
-                  <p className=" text-heading-sm text-gray-100">
+                  <p className=" text-heading-sm text-gray-400">
                     {user.residence}
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col">
-                <div className=" flex flex-row gap-2 mr-4 items-center">
-                  <PhoneSVG className=" font-bold h-5" />
+              <div className="flex flex-col items-end gap-2">
+                <div className=" flex flex-row gap-2 items-center">
+                  <PhoneSVG className=" font-bold h-5 fill-black-bg" />
 
-                  <p className=" font-medium text-white text-heading-sm ">
+                  <p className=" font-medium text-black-bg text-heading-sm ">
                     {user.phone}
                   </p>
                 </div>
-                <div className=" flex flex-row gap-2 mr-4">
-                  <p className=" font-medium text-white text-heading-sm ">
+                <div className=" flex flex-row gap-2">
+                  <p className=" font-medium text-gray-400 text-heading-sm ">
                     Mas info...
                   </p>
-                  <RightArrowSVG className="text-white" />
+                  <RightArrowSVG className="text-lima-400" />
                 </div>
               </div>
             </article>
           ))}
-          {
-            item !== undefined && (
-              <nav
-                className={`${
-                  item.length === 0 ? "w-0" : "w-[100vw]"
-                }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
-              >
-                <NutritionCard item={item} setItem={setItem} />
-              </nav>
-
-            )
-          }
+          {item !== undefined && (
+            <nav
+              className={`${
+                item.length === 0 ? "w-0" : "w-[100vw]"
+              }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
+            >
+              <NutritionCard item={item} setItem={setItem} />
+            </nav>
+          )}
         </div>
       </main>
 
-      <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
+      {/* <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };
