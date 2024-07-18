@@ -26,7 +26,7 @@ export const CaloriesProfile = () => {
 
         const orderSubTotal = () =>
           notCompletedClasses?.reduce(
-            (total: number, item : PayedClasses ) => total + item.Class.Calories,
+            (total: number, item: PayedClasses) => total + item.Class.Calories,
             0
           );
 
@@ -39,7 +39,9 @@ export const CaloriesProfile = () => {
   return (
     <article className=" flex flex-col items-center mx-6 my-8">
       <div className=" flex flex-col items-center">
-        <p className=" font-lato font-bold text-heading-xl text-black">{totalCalories}</p>
+        <p className=" font-lato font-bold text-heading-xl text-black">
+          {totalCalories}
+        </p>
         <p className=" font-lato font-bold text-heading-sm text-gray-500">
           Kcal Totales
         </p>
@@ -72,7 +74,12 @@ export const CaloriesProfile = () => {
         </div>
       </div>
 
-      <CaloriesCalculator totalCalories={totalCalories} payedClasses={payedClasses}/>
+      <CaloriesCalculator
+        totalCalories={totalCalories}
+        payedClasses={payedClasses}
+        setPayedClasses={setPayedClasses}
+        settotalCalories={settotalCalories}
+      />
 
       <ClasesLayout payedClasses={payedClasses} />
     </article>
