@@ -41,7 +41,7 @@ export const CaloriesProfile = () => {
       <div className=" flex flex-col items-center">
         <p className=" font-lato font-bold text-heading-xl text-black">{totalCalories}</p>
         <p className=" font-lato font-bold text-heading-sm text-gray-500">
-          Kcal
+          Kcal Totales
         </p>
       </div>
 
@@ -72,7 +72,7 @@ export const CaloriesProfile = () => {
         </div>
       </div>
 
-      <CaloriesCalculator totalCalories={totalCalories}/>
+      <CaloriesCalculator totalCalories={totalCalories} payedClasses={payedClasses}/>
 
       <ClasesLayout payedClasses={payedClasses} />
     </article>
