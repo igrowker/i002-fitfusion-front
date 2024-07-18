@@ -24,11 +24,15 @@ export const LoginPage = () => {
       .then((data) => {
         // guardar datos del usuario en redux?
         setAppStatus(APP_STATUS.READY_USAGE)
-        if(data.message === 'Credenciales inválidas.' || data.message === 'Usuario no encontrado.') {
+        if(data.message === 'Credenciales inválidas.') {
           const notify = () => toast.error("Ocurrio un error en el proceso de login.",{position: "bottom-center",});
           notify()
           setAppStatus(APP_STATUS.ERROR)
-        }else {
+        } else if (data.message === 'Usuario no encontrado.') {
+          const notify = () => toast.error("El usuario no esta registrado.",{position: "bottom-center",});
+          notify()
+          setAppStatus(APP_STATUS.ERROR)
+        } else {
           localStorage.setItem("token", data.token);
           localStorage.setItem("userData", JSON.stringify(data));
           navigate("/classes");

@@ -1,15 +1,15 @@
 import HeaderProfile from "./HeaderProfile";
-import { Classes } from "../types/classesTypes";
+// import { Classes } from "../types/classesTypes";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
   CardElement,
 
-  PaymentElement,
-  useElements,
-  useStripe,
+  // PaymentElement,
+  // useElements,
+  // useStripe,
 } from "@stripe/react-stripe-js";
 import GreenButton from "./GreenButton";
 import { ScheduledClasses } from "../types/scheduledClassesTypes";

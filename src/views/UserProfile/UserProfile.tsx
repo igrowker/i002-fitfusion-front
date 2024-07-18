@@ -40,7 +40,6 @@ export const UserProfile = () => {
               closeButton={true}
               text={"Mi perfil"}
               showConfig={false}
-              user={user}
             />
 
             <ProfileData />

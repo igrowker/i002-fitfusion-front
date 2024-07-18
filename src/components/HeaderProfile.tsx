@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Configuration } from "./";
 import {
-  CloseButtonProfileSVG,
   ColonSVG,
   ConfigurationToolSVG,
   LeftArrowSVG,

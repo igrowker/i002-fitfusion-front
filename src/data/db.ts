@@ -1,4 +1,4 @@
-import { Nutritionist, User } from "../types/userTypes";
+import { NutriAndPhysioType, User } from "../types/userTypes";
 import { Classes } from "../types/classesTypes";
 
 export const user: User[] = [
@@ -262,7 +262,7 @@ export const DBclasses: Classes[] = [
   },
 ];
 
-export const nutritionist: Nutritionist[] = [
+export const nutritionist: NutriAndPhysioType[] = [
   {
     id: 1,
     name: "Juana Col",
