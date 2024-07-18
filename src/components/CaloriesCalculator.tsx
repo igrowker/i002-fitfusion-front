@@ -6,10 +6,17 @@ import { PayedClasses } from "../types/classesTypes";
 type CaloriesCalculatorProps = {
   totalCalories: number;
   payedClasses: PayedClasses[] | undefined;
+  setPayedClasses: React.Dispatch<
+    React.SetStateAction<PayedClasses[] | undefined>
+  >;
+  settotalCalories: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const CaloriesCalculator = ({
   payedClasses,
+  totalCalories,
+  setPayedClasses,
+  settotalCalories,
 }: CaloriesCalculatorProps) => {
   const [last, setlast] = useState<number | undefined>(0);
   const [lastthree, setlastthree] = useState<number | undefined>(0);
@@ -17,6 +24,7 @@ export const CaloriesCalculator = ({
 
   useEffect(() => {
     const getLast = payedClasses?.slice(payedClasses.length - 1);
+
     const getLastClass = () =>
       getLast?.reduce(
         (total: number, item: PayedClasses) => total + item.Class.Calories,
@@ -25,21 +33,38 @@ export const CaloriesCalculator = ({
     setlast(getLastClass);
 
     const getLast3 = payedClasses?.slice(payedClasses.length - 3);
-    const getLast3Class = () =>
-      getLast3?.reduce(
-        (total: number, item: PayedClasses) => total + item.Class.Calories,
-        0
-      );
-    setlastthree(getLast3Class);
+
+    if (payedClasses !== undefined && payedClasses.length < 3) {
+      setlastthree(totalCalories);
+    } else {
+      const getLast3Class = () =>
+        getLast3?.reduce(
+          (total: number, item: PayedClasses) => total + item.Class.Calories,
+          0
+        );
+      setlastthree(getLast3Class);
+    }
 
     const getLast5 = payedClasses?.slice(payedClasses.length - 5);
-    const getLast5Class = () =>
-      getLast5?.reduce(
-        (total: number, item: PayedClasses) => total + item.Class.Calories,
-        0
-      );
-    setlastFive(getLast5Class);
+
+    if (payedClasses !== undefined && payedClasses.length < 5) {
+      setlastFive(totalCalories);
+    } else {
+      const getLast5Class = () =>
+        getLast5?.reduce(
+          (total: number, item: PayedClasses) => total + item.Class.Calories,
+          0
+        );
+      setlastFive(getLast5Class);
+    }
   }, [payedClasses]);
+
+  console.log(payedClasses?.length);
+
+  const handleReset = () => {
+    setPayedClasses([]);
+    settotalCalories(0);
+  };
 
   return (
     <>
@@ -75,6 +100,12 @@ export const CaloriesCalculator = ({
           </p>
         </div>
       </div>
+      <button
+        className="mt-4 w-full font-lato font-bold text-heading bg-lima-100 min-[566px]:bg-gray-100 min-w-40 rounded-md p-2 min-[566px]:w-48 hover:bg-lima-100 duration-300 hover:scale-110"
+        onClick={handleReset}
+      >
+        Resetear el contador
+      </button>
     </>
   );
 };
