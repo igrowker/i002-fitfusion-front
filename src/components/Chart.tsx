@@ -1,17 +1,26 @@
 import { AreaChart, Area, XAxis } from "recharts";
 import { PayedClasses } from "../types/classesTypes";
+import { useEffect, useState } from "react";
 
 type ChartProps = {
   payedClasses: PayedClasses[] | undefined;
 };
 
 export const Chart = ({ payedClasses }: ChartProps) => {
-  const getLast7 = payedClasses?.slice(payedClasses.length - 5);
+  const [lastFive, setlastFive] = useState<PayedClasses[] | undefined>([]);
 
-  console.log(getLast7);
+  useEffect(() => {
+    const getLast5 = payedClasses?.slice(payedClasses.length - 5);
+
+    if (payedClasses !== undefined && payedClasses.length < 5) {
+      setlastFive(payedClasses);
+    } else {
+      setlastFive(getLast5);
+    }
+  }, [payedClasses]);
 
   return (
-    <AreaChart width={400} height={200} data={getLast7}>
+    <AreaChart width={400} height={200} data={lastFive}>
       <XAxis dataKey="none" />
 
       <Area
