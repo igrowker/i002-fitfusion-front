@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 // import { useUser } from "../hooks/useUser";
 import { FireSVG } from "../icons/FireSVG";
 // import ClassCard from "./ClassCard";
@@ -8,18 +8,16 @@ import { adaptClassesformat } from "../services/adaptClassesFormat";
 import { useNavigate } from "react-router-dom";
 import { APP_STATUS, AppStatusType } from "../types/generalTypes";
 import ErrorMessage from "./ErrorMessage";
+// import ClassCard from "./ClassCard";
 
 export const TeacherBanner = () => {
   // const { dataClass } = useUser();
   const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)
 
-  const [item] = useState([]);
-
-
+  // const [item, setItem] = useState([]);
 
   const [classes, setclasses] = useState<Classes[] | []>([]);
 
-  const originalClasses = useRef<Classes[] | []>([]);
 
   useEffect(() => {
     apiCall({ url: "/classes/getAllClasses", method: "GET" })
@@ -28,14 +26,13 @@ export const TeacherBanner = () => {
       })
       .then((data) => {
 
-        if (data.message = "GetClass Not Found") {
+        if (data.message === "GetClass Not Found") {
           setAppStatus(APP_STATUS.ERROR)
         } else {
           
           const adaptedClasses = adaptClassesformat(data);
           
           setclasses(adaptedClasses);
-          originalClasses.current = adaptedClasses;
           setAppStatus(APP_STATUS.READY_USAGE)
         }
 
@@ -45,14 +42,13 @@ export const TeacherBanner = () => {
         console.log(error)});
   }, []);
 
-  const filterItem = (id: number) => {
-    console.log(id)
-    // const newItem = classes.filter((newVal) => newVal.id === id);
-    // newItem !== undefined && setItem(newItem);
-  };
+  // const filterItem = (id: number) => {
+  //   console.log(id)
+  //   const newItem = classes.filter((newVal) => newVal.id === id);
+  //   newItem !== undefined && setItem(newItem);
+  // };
   const classesSlice = classes.slice(0, 3);
-  console.log('classes ' , classes)
-  console.log('classesslice ' , classesSlice)
+  
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/classes");
@@ -75,7 +71,8 @@ export const TeacherBanner = () => {
 
           classesSlice.map((user) => (
             <article
-              onClick={() => filterItem(user.id)}
+              // onClick={() => filterItem(user.id)}
+              onClick={() => navigate(`/trainer-profile/${user.instructor.id}`)}
               key={user.id}
               className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
                 user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
@@ -107,13 +104,13 @@ export const TeacherBanner = () => {
         
       ))}
 
-      <nav
+      {/* <nav
         className={`${
           item.length === 0 ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        {/* <ClassCard item={item} setItem={setItem} /> */}
-      </nav>
+        <ClassCard item={item} setItem={setItem} />
+      </nav> */}
     </>
   );
 };

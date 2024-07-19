@@ -7,7 +7,7 @@ import { ClasesLayout, Spinner } from ".";
 import Chart from "./Chart";
 import { APP_STATUS, AppStatusType } from "../types/generalTypes";
 
-export const CaloriesProfile = () => {
+const CaloriesProfile = () => {
   const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
   const [payedClasses, setPayedClasses] = useState<PayedClasses[]>();
 
