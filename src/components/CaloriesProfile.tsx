@@ -38,7 +38,7 @@ export const CaloriesProfile = () => {
   }, []);
 
   return (
-    <article className=" flex flex-col items-center mx-6 my-8">
+    <article className="max-w-full flex flex-col items-center mx-6 my-8">
       <div className=" flex flex-col items-center">
         <p className=" font-lato font-bold text-heading-xl text-black">
           {totalCalories}

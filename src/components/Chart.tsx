@@ -1,4 +1,4 @@
-import { AreaChart, Area, XAxis, Tooltip } from "recharts";
+import { AreaChart, Area, XAxis } from "recharts";
 import { PayedClasses } from "../types/classesTypes";
 
 type ChartProps = {
@@ -13,7 +13,6 @@ export const Chart = ({ payedClasses }: ChartProps) => {
   return (
     <AreaChart width={400} height={200} data={getLast7}>
       <XAxis dataKey="none" />
-      <Tooltip />
 
       <Area
         type="monotone"
