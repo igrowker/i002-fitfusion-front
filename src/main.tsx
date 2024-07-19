@@ -27,6 +27,7 @@ import Physio from "./views/Physiotherapist/Physio";
 import Privacy from "./views/Privacy/Privacy";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import Error404 from "./components/Error404";
 
 
 const router = createBrowserRouter([
@@ -104,7 +105,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Navigate to="/" replace />, // Acá debemos poner una pagina 404
+    element: <Error404/>, 
   },
 ]);
 

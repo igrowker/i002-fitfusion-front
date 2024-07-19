@@ -41,7 +41,7 @@ export const CaloriesProfile = () => {
   }, []);
 
   return (
-    <article className=" flex flex-col items-center mx-6 my-8">
+    <article className="max-w-full flex flex-col items-center mx-6 my-8">
       {appStatus === APP_STATUS.LOADING && <Spinner />}
       {payedClasses === undefined ? null : (
         <>
