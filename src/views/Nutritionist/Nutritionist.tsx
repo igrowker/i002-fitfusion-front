@@ -85,17 +85,17 @@ export const Nutritionist = () => {
                 <article
                   onClick={() => filterItem(user.id)}
                   key={user.id}
-                  className="min-w-[80vw] min-[566px]:min-w-0 cursor-pointer p-6 shadow-lg flex flex-col items-center justify-center gap-4 hover:scale-105 duration-300 hover:bg-lima-100/30"
+                  className="min-w-[80vw] min-[566px]:min-w-0 cursor-pointer p-6 shadow-lg flex flex-col items-center justify-center gap-4 hover:scale-105 duration-300 "
                 >
                   <div className=" flex flex-col gap-4 items-center justify-center">
                     {/* <img
                       className={`rounded-full bg-cover w-14 h-14 bg-center bg-[url(${user.image})]`}
                     /> */}
                     <div className=" flex flex-col justify-center items-center px-4">
-                      <p className=" text-heading text-black-bg font-medium">
+                      <p className=" bg-lima-100 px-4 py-2 rounded-lg text-heading text-black-bg font-medium">
                         {user.name}
                       </p>
-                      <p className=" text-heading-sm text-gray-400">
+                      <p className=" mt-2 text-heading-sm text-gray-400">
                         {user.residence}
                       </p>
                     </div>
