@@ -3,10 +3,12 @@ import CaloriesCalculator from "./CaloriesCalculator";
 import { PayedClasses } from "../types/classesTypes";
 import { getLocalSUserInfo } from "../services/handleLocalStorage";
 import { apiCall } from "../services/apiCall";
-import { ClasesLayout } from ".";
+import { ClasesLayout, Spinner } from ".";
 import Chart from "./Chart";
+import { APP_STATUS, AppStatusType } from "../types/generalTypes";
 
 export const CaloriesProfile = () => {
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
   const [payedClasses, setPayedClasses] = useState<PayedClasses[]>();
 
   const [totalCalories, settotalCalories] = useState(0);
@@ -32,6 +34,7 @@ export const CaloriesProfile = () => {
           );
 
         settotalCalories(orderSubTotal);
+        setAppStatus(APP_STATUS.READY_USAGE);
       })
       .catch((error) => console.log(error));
     return () => {};
@@ -39,36 +42,39 @@ export const CaloriesProfile = () => {
 
   return (
     <article className=" flex flex-col items-center mx-6 my-8">
-      <div className=" flex flex-col items-center">
-        <p className=" font-lato font-bold text-heading-xl text-black">
-          {totalCalories}
-        </p>
-        <p className=" font-lato font-bold text-heading-sm text-gray-500">
-          Kcal Totales
-        </p>
-      </div>
-      {/* <img src="/Line.png" alt="Linea logros" className=" mt-6" /> */}
-      <div className="  flex flex-col  items-center">
-      <div className="flex items-center justify-center max-w-[85vw]">
-        <Chart payedClasses={payedClasses} />
-        </div>
-      
-          <p className=" -mt-6 font-lato text-heading text-gray-300 font-bold px-6">
-            Progreso de las ultimas 5 clases
-          </p>
-         
-      
-      </div>
+      {appStatus === APP_STATUS.LOADING && <Spinner />}
+      {payedClasses === undefined ? null : (
+        <>
+          <div className=" flex flex-col items-center">
+            <p className=" font-lato font-bold text-heading-xl text-black">
+              {totalCalories}
+            </p>
+            <p className=" font-lato font-bold text-heading-sm text-gray-500">
+              Kcal Totales
+            </p>
+          </div>
+          {/* <img src="/Line.png" alt="Linea logros" className=" mt-6" /> */}
+          <div className="  flex flex-col  items-center">
+            <div className="flex items-center justify-center max-w-[85vw]">
+              <Chart payedClasses={payedClasses} />
+            </div>
 
-      <CaloriesCalculator
-        totalCalories={totalCalories}
-        payedClasses={payedClasses}
-        setPayedClasses={setPayedClasses}
-        settotalCalories={settotalCalories}
-      />
-      <div className="pt-2 mt-4 border-t-2 border-gray-100">
-        <ClasesLayout payedClasses={payedClasses} />
-      </div>
+            <p className=" -mt-6 font-lato text-heading text-gray-300 font-bold px-6">
+              Progreso de las ultimas 5 clases
+            </p>
+          </div>
+
+          <CaloriesCalculator
+            totalCalories={totalCalories}
+            payedClasses={payedClasses}
+            setPayedClasses={setPayedClasses}
+            settotalCalories={settotalCalories}
+          />
+          <div className="pt-2 mt-4 border-t-2 border-gray-100">
+            <ClasesLayout payedClasses={payedClasses} />
+          </div>
+        </>
+      )}
     </article>
   );
 };

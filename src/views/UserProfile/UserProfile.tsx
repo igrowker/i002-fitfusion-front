@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {  Header, HeaderProfile, ProfileData, Switch } from "../../components";
+import {  Header, HeaderProfile, ProfileData, Spinner, Switch } from "../../components";
 import { useEffect, useState } from "react";
 import { apiCall } from "../../services/apiCall";
 import { adaptUserFormat } from "../../services/adaptUserFormat";
@@ -42,7 +42,7 @@ export const UserProfile = () => {
               showConfig={false}
             />
 
-            <ProfileData />
+            <ProfileData user={user} />
 
             <Switch />
           </main>
@@ -51,7 +51,7 @@ export const UserProfile = () => {
           </div> */}
         </>
 
-      ) : null}
+      ) : <Spinner/>}
     </>
   );
 };

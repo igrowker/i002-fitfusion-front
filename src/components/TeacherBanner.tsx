@@ -1,21 +1,21 @@
 import { useEffect, useRef, useState } from "react";
-import { useUser } from "../hooks/useUser";
+// import { useUser } from "../hooks/useUser";
 import { FireSVG } from "../icons/FireSVG";
-import ClassCard from "./ClassCard";
+// import ClassCard from "./ClassCard";
 import { Classes } from "../types/classesTypes";
 import { apiCall } from "../services/apiCall";
 import { adaptClassesformat } from "../services/adaptClassesFormat";
 import { useNavigate } from "react-router-dom";
+import { APP_STATUS, AppStatusType } from "../types/generalTypes";
+import ErrorMessage from "./ErrorMessage";
 
 export const TeacherBanner = () => {
-  const { dataClass } = useUser();
+  // const { dataClass } = useUser();
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)
 
-  const [item, setItem] = useState(dataClass);
+  const [item] = useState([]);
 
-  const filterItem = (id: number) => {
-    const newItem = dataClass.filter((newVal) => newVal.id === id);
-    setItem(newItem);
-  };
+
 
   const [classes, setclasses] = useState<Classes[] | []>([]);
 
@@ -27,20 +27,32 @@ export const TeacherBanner = () => {
         return res.json();
       })
       .then((data) => {
-        // guardar datos del clases en redux?
 
-        // console.log('data' , data );
+        if (data.message = "GetClass Not Found") {
+          setAppStatus(APP_STATUS.ERROR)
+        } else {
+          
+          const adaptedClasses = adaptClassesformat(data);
+          
+          setclasses(adaptedClasses);
+          originalClasses.current = adaptedClasses;
+          setAppStatus(APP_STATUS.READY_USAGE)
+        }
 
-        const adaptedClasses = adaptClassesformat(data);
-
-        setclasses(adaptedClasses);
-        originalClasses.current = adaptedClasses;
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setAppStatus(APP_STATUS.ERROR)
+        console.log(error)});
   }, []);
 
+  const filterItem = (id: number) => {
+    console.log(id)
+    // const newItem = classes.filter((newVal) => newVal.id === id);
+    // newItem !== undefined && setItem(newItem);
+  };
   const classesSlice = classes.slice(0, 3);
-
+  console.log('classes ' , classes)
+  console.log('classesslice ' , classesSlice)
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/classes");
@@ -54,35 +66,45 @@ export const TeacherBanner = () => {
       >
         Ver todas las clases
       </button>
-      {classesSlice.map((user) => (
-        <article
-          onClick={() => filterItem(user.id)}
-          key={user.id}
-          className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
-            user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
-          }`}
-        >
-          <div className=" flex flex-row gap-4 items-center">
-            <img
-              src={`${user.image}`}
-              className={`rounded-full bg-cover w-14 h-14 bg-center ]`}
-            />
-            <div className=" flex flex-col justify-start">
-              <p className=" text-heading-sm text-white font-medium">
-                {user.instructor.name}
-              </p>
-              <p className=" text-heading-sm text-gray-100">{user.title}</p>
-            </div>
-          </div>
+      {
+        appStatus === APP_STATUS.ERROR ? (
+          <ErrorMessage>
+              Ocurrio un error al traer las clases 
+          </ErrorMessage>
+        ) : (  
 
-          <div className=" flex flex-row gap-2 mr-4">
-            <FireSVG className="text-white" />
+          classesSlice.map((user) => (
+            <article
+              onClick={() => filterItem(user.id)}
+              key={user.id}
+              className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
+                user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
+              }`}
+            >
+              <div className=" flex flex-row gap-4 items-center">
+                <img
+                  src={`${user.image}`}
+                  className={`rounded-full bg-cover w-14 h-14 bg-center ]`}
+                />
+                <div className=" flex flex-col justify-start">
+                  <p className=" text-heading-sm text-white font-medium">
+                    {user.instructor.name}
+                  </p>
+                  <p className=" text-heading-sm text-gray-100">{user.title}</p>
+                </div>
+              </div>
 
-            <p className=" font-medium text-white text-heading-sm ">
-              {user.kcal} Kcal
-            </p>
-          </div>
-        </article>
+              <div className=" flex flex-row gap-2 mr-4">
+                <FireSVG className="text-white" />
+
+                <p className=" font-medium text-white text-heading-sm ">
+                  {user.kcal} Kcal
+                </p>
+              </div>
+            </article>
+
+        )
+        
       ))}
 
       <nav
@@ -90,7 +112,7 @@ export const TeacherBanner = () => {
           item.length === 0 ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        <ClassCard item={item} setItem={setItem} />
+        {/* <ClassCard item={item} setItem={setItem} /> */}
       </nav>
     </>
   );
