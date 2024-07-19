@@ -46,7 +46,7 @@ export const PayPage = ({ item, setItem, selectedDate }: PayPageProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setAppStatus(APP_STATUS.LOADING)
+    
     const cardElement = element?.getElement(CardElement);
     if (!cardElement) {
         // Handle invalid element case (e.g., display an error message)
@@ -58,56 +58,59 @@ export const PayPage = ({ item, setItem, selectedDate }: PayPageProps) => {
     });
 
     if (response !== undefined) {
-      // const { error , paymentMethod } = response
-      // if (error) {
-      //   const notify = () =>
-      //     toast.error(error.message, { position: "bottom-center" });
-      //   notify();
-      //   return console.log(error);
-      // } else {
-      //   const notify = () =>
-      //     toast.success("Pago realizado correctamente", {
-      //       position: "bottom-center",
-      //     });
-      //   notify();
-      //   console.log(paymentMethod);
-      // }
-      const { userId } = getLocalSUserInfo();
+      const { error  } = response
+      if (error) {
+        const notify = createErrorToast({message : error?.message || 'Completa todos los datos por favor'});
+        notify();
+        setAppStatus(APP_STATUS.READY_USAGE)
+        return console.log(error);
+      } else {
+        setAppStatus(APP_STATUS.LOADING)
+        const { userId } = getLocalSUserInfo();
+    
+        const body = {
+          ClassId: item.classId,
+          UserId: userId,
+          Amount: item.classPrice,
+          Status: "Payed",
+          ClassTimeId: item.classTimeId,
+          ClassDate: selectedDate,
+        };
+    
+        apiCall({ url: `/payments`, method: "POST", body })
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log("data", data);
+            if(data.message = 'Clase ya reservada por le usuario') {
+              const notify = createErrorToast({
+                message : 'Ya tienes esta clase reservada',
+              })
+              notify()
+              setAppStatus(APP_STATUS.READY_USAGE)
+            }
+            if (data.Status === "Payed") {
+              const notify = createSuccessToast({
+                message : 'El pago se realizo con éxito.',
+                onClose : () => navigate('/profile')
+              })
+    
+              notify()
   
-      const body = {
-        ClassId: item.classId,
-        UserId: userId,
-        Amount: item.classPrice,
-        Status: "Payed",
-        ClassTimeId: item.classTimeId,
-        ClassDate: selectedDate,
-      };
-  
-      apiCall({ url: `/payments`, method: "POST", body })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log("data", data);
-          if (data.Status === "Payed") {
-            const notify = createSuccessToast({
-              message : 'El pago se realizo con éxito.',
-              onClose : () => navigate('/profile')
+            }
+          })
+          .catch((error) => {
+            const notify = createErrorToast({
+              message : 'Ocurrio un error al realizar el pago',
             })
   
             notify()
+            setAppStatus(APP_STATUS.ERROR)
+            console.error("payments", error)
+          });
 
-          }
-        })
-        .catch((error) => {
-          const notify = createErrorToast({
-            message : 'Ocurrio un error al realizar el pago',
-          })
-
-          notify()
-          setAppStatus(APP_STATUS.ERROR)
-          console.error("payments", error)
-        });
+      }
     }
 
   };
