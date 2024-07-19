@@ -1,15 +1,18 @@
-import { getLocalSUserInfo } from '../services/handleLocalStorage';
+import { User } from "../types/userTypes";
 
-export const ProfileData = () => {
+type ProfileData ={
+  user : User
+}
 
-  const {name} = getLocalSUserInfo()
+export const ProfileData = ({user} : ProfileData ) => {
+
 
   return (
     <>
       <img className=" rounded-full bg-cover  w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />
 
       <p className=" font-bold text-heading-lg text-black mt-4 font-lato">
-        {name}
+        {user.name}
       </p>
 
       {/* <div className=" flex flex-row w-full justify-center items-center pt-8 px-6">

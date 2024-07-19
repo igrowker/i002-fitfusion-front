@@ -1,8 +1,8 @@
-import { APIUsers } from "../types/userTypes"
+import { APIUsers, User } from "../types/userTypes"
 
 
 
-export const adaptUserFormat = (user : APIUsers) => {
+export const adaptUserFormat = (user : APIUsers) : User => {
 
     if(user.Teacher) {
         return {
