@@ -28,6 +28,7 @@ import Privacy from "./views/Privacy/Privacy";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Error404 from "./components/Error404";
+import Layout from "./components/Layout";
 
 
 const router = createBrowserRouter([
@@ -72,37 +73,75 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "profile",
-    element: <UserProfile />,
+    path: "",
+    element: <Layout />,
+    children: [
+      {
+        path: "profile",
+        element: <UserProfile />,
+      },
+      {
+        path: "trainer-profile/:id",
+        element: <TrainerProfilePage />,
+      },
+      {
+        path: "classes",
+        element: <ClassesList />,
+      },
+      {
+        path: "class-detail/:id",
+        element: <ClassDetails />,
+      },
+      {
+        path: "/calendar",
+        element: <CalendarComponent />,
+      },
+      {
+        path: "nutrition",
+        element: <Nutritionist />,
+      },
+      {
+        path: "physiotherapist",
+        element: <Physio />,
+      },
+      {
+        path: "deleteAccount",
+        element: <DeleteAccount />,
+      },
+    ],
   },
-  {
-    path: "trainer-profile/:id",
-    element: <TrainerProfilePage />,
-  },
-  {
-    path: "classes",
-    element: <ClassesList />,
-  },
-  {
-    path: "class-detail/:id",
-    element: <ClassDetails />,
-  },
-  {
-    path: "/calendar",
-    element: <CalendarComponent />,
-  },
-  {
-    path: "nutrition",
-    element: <Nutritionist />,
-  },
-  {
-    path: "physiotherapist",
-    element: <Physio />,
-  },
-  {
-    path: "deleteAccount",
-    element: <DeleteAccount />,
-  },
+  // {
+  //   path: "profile",
+  //   element: <UserProfile />,
+  // },
+  // {
+  //   path: "trainer-profile/:id",
+  //   element: <TrainerProfilePage />,
+  // },
+  // {
+  //   path: "classes",
+  //   element: <ClassesList />,
+  // },
+  // {
+  //   path: "class-detail/:id",
+  //   element: <ClassDetails />,
+  // },
+  // {
+  //   path: "/calendar",
+  //   element: <CalendarComponent />,
+  // },
+  // {
+  //   path: "nutrition",
+  //   element: <Nutritionist />,
+  // },
+  // {
+  //   path: "physiotherapist",
+  //   element: <Physio />,
+  // },
+  // {
+  //   path: "deleteAccount",
+  //   element: <DeleteAccount />,
+  // },
   {
     path: "*",
     element: <Error404/>, 
