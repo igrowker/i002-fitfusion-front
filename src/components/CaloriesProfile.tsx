@@ -53,16 +53,21 @@ const CaloriesProfile = () => {
               Kcal Totales
             </p>
           </div>
-          {/* <img src="/Line.png" alt="Linea logros" className=" mt-6" /> */}
-          <div className="  flex flex-col  items-center">
-            <div className="flex items-center justify-center max-w-[85vw]">
-              <Chart payedClasses={payedClasses} />
-            </div>
 
-            <p className=" -mt-6 font-lato text-heading text-gray-300 font-bold px-6">
-              Progreso de las ultimas 5 clases
+          {payedClasses.length > 0 ? (
+            <div className="  flex flex-col  items-center">
+              <div className="flex items-center justify-center max-w-[85vw]">
+                <Chart payedClasses={payedClasses} />
+              </div>
+              <p className=" -mt-6 font-lato text-heading text-gray-300 font-bold px-6">
+                Progreso de las últimas clases
+              </p>
+            </div>
+          ) : (
+            <p className=" text-center mt-6 font-lato text-heading text-gray-300 font-bold ">
+              Completa al menos dos clases y verás aquí tu progreso
             </p>
-          </div>
+          )}
 
           <CaloriesCalculator
             totalCalories={totalCalories}
