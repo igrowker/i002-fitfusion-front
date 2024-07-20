@@ -22,7 +22,7 @@ export type ValuePiece = Date | null;
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export const CalendarComponent = () => {
-  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
   const [value, onChange] = useState<Value>(new Date());
   const [classList, setClassList] = useState<ScheduledClasses[] | undefined>();
   const [item, setItem] = useState<ScheduledClasses | undefined>();
@@ -32,7 +32,7 @@ export const CalendarComponent = () => {
   const handleClick = () => {
     // cuando value cambie deberiamos llamar a una api que nos traiga
     // las clases que hay en esa fecha
-    setAppStatus(APP_STATUS.LOADING)
+    setAppStatus(APP_STATUS.LOADING);
     const fecha = new Date(value as any);
 
     const body = { weekdayId: fecha.getDay() };
@@ -45,26 +45,25 @@ export const CalendarComponent = () => {
         const adaptedClasses = adaptScheludedClasses(data);
 
         setClassList(adaptedClasses);
-        setAppStatus(APP_STATUS.READY_USAGE)
+        setAppStatus(APP_STATUS.READY_USAGE);
       })
-      .catch((error) =>{
-         console.log(error)
-         setClassList(undefined)
-         setAppStatus(APP_STATUS.ERROR)
+      .catch((error) => {
+        console.log(error);
+        setClassList(undefined);
+        setAppStatus(APP_STATUS.ERROR);
       });
   };
-  
+
   const filterItem = (id: number) => {
     const newItem = classList?.find((newVal) => newVal.id === id);
-    //console.log({newItem})
+
     newItem !== undefined && setItem(newItem);
   };
 
-  //console.log("item", item);
   return (
     <div
       className={`bg-lima-100/60 bg-pattern bg-no-repeat ${
-        classList === undefined || classList.length === 0 
+        classList === undefined || classList.length === 0
           ? "md:h-[100vh] h-screen"
           : classList.length !== 0 && "h-screen md:h-[100%]"
       } bg-cover flex flex-col items-center`}
@@ -100,20 +99,17 @@ export const CalendarComponent = () => {
               {" "}
               Clases disponibles{" "}
             </p>
-            {classList === undefined 
-              ?
-                appStatus === APP_STATUS.ERROR 
-                  ? (
-                    <ErrorMessage>
-                      Ocurrio un error al traer las clases
-                    </ErrorMessage>
-                  )
-                  : null : classList.length === 0 ? (
+            {classList === undefined ? (
+              appStatus === APP_STATUS.ERROR ? (
                 <ErrorMessage>
-                  No hay clases en la fecha seleccionada
+                  Ocurrió un error al traer las clases
                 </ErrorMessage>
-                 ) 
-              : (
+              ) : null
+            ) : classList.length === 0 ? (
+              <ErrorMessage>
+                No hay clases en la fecha seleccionada
+              </ErrorMessage>
+            ) : (
               <ul className="flex flex-col items-center gap-3 cursor-pointer">
                 {classList.map((singleClass) => (
                   <li
@@ -140,13 +136,9 @@ export const CalendarComponent = () => {
           item === undefined ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
       >
-        { item !== undefined ? (
+        {item !== undefined ? (
           <Elements stripe={stripePromise}>
-            <PayPage 
-              item={item} 
-              setItem={setItem} 
-              selectedDate = {value}
-            />
+            <PayPage item={item} setItem={setItem} selectedDate={value} />
           </Elements>
         ) : null}
       </nav>

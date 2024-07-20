@@ -59,7 +59,6 @@ export const CaloriesCalculator = ({
     }
   }, [payedClasses]);
 
-
   const handleReset = () => {
     setPayedClasses([]);
     settotalCalories(0);
@@ -69,7 +68,7 @@ export const CaloriesCalculator = ({
     <>
       <div className=" flex flex-row w-full justify-between items-center mt-14 min-[566px]:max-w-sm">
         <p className=" font-bold text-heading font-lato">
-          Ver calorias consumidas
+          Ver calorías consumidas
         </p>
         <div className=" flex flex-row text-center">
           <ColonSVG className="text-gray-500" />
@@ -81,21 +80,21 @@ export const CaloriesCalculator = ({
           <HeartBigSVG />
           <p className=" font-bold text-heading font-lato">{lastFive} Kcal</p>
           <p className=" font-bold text-heading-sm font-lato text-gray-300">
-            Ultimas 5 clases
+            Últimas 5 clases
           </p>
         </div>
         <div className=" flex flex-col items-center gap-2">
           <FireSVG />
           <p className=" font-bold text-heading font-lato">{lastthree} Kcal</p>
           <p className=" font-bold text-heading-sm font-lato text-gray-300">
-            Ultimas 3 clases
+            Últimas 3 clases
           </p>
         </div>
         <div className=" flex flex-col items-center gap-2">
           <LightingSVG />
           <p className=" font-bold text-heading font-lato">{last} Kcal</p>
           <p className=" font-bold text-heading-sm font-lato text-gray-300">
-            Ultima clase
+            Última clase
           </p>
         </div>
       </div>

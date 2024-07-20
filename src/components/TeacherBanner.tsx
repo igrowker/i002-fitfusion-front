@@ -12,12 +12,11 @@ import ErrorMessage from "./ErrorMessage";
 
 export const TeacherBanner = () => {
   // const { dataClass } = useUser();
-  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
 
   // const [item, setItem] = useState([]);
 
   const [classes, setclasses] = useState<Classes[] | []>([]);
-
 
   useEffect(() => {
     apiCall({ url: "/classes/getAllClasses", method: "GET" })
@@ -25,21 +24,19 @@ export const TeacherBanner = () => {
         return res.json();
       })
       .then((data) => {
-
         if (data.message === "GetClass Not Found") {
-          setAppStatus(APP_STATUS.ERROR)
+          setAppStatus(APP_STATUS.ERROR);
         } else {
-          
           const adaptedClasses = adaptClassesformat(data);
-          
-          setclasses(adaptedClasses);
-          setAppStatus(APP_STATUS.READY_USAGE)
-        }
 
+          setclasses(adaptedClasses);
+          setAppStatus(APP_STATUS.READY_USAGE);
+        }
       })
       .catch((error) => {
-        setAppStatus(APP_STATUS.ERROR)
-        console.log(error)});
+        setAppStatus(APP_STATUS.ERROR);
+        console.log(error);
+      });
   }, []);
 
   // const filterItem = (id: number) => {
@@ -48,7 +45,7 @@ export const TeacherBanner = () => {
   //   newItem !== undefined && setItem(newItem);
   // };
   const classesSlice = classes.slice(0, 3);
-  
+
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/classes");
@@ -62,47 +59,41 @@ export const TeacherBanner = () => {
       >
         Ver todas las clases
       </button>
-      {
-        appStatus === APP_STATUS.ERROR ? (
-          <ErrorMessage>
-              Ocurrio un error al traer las clases 
-          </ErrorMessage>
-        ) : (  
-
-          classesSlice.map((user) => (
-            <article
-              // onClick={() => filterItem(user.id)}
-              onClick={() => navigate(`/trainer-profile/${user.instructor.id}`)}
-              key={user.id}
-              className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
-                user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
-              }`}
-            >
-              <div className=" flex flex-row gap-4 items-center">
-                <img
-                  src={`${user.image}`}
-                  className={`rounded-full bg-cover w-14 h-14 bg-center ]`}
-                />
-                <div className=" flex flex-col justify-start">
-                  <p className=" text-heading-sm text-white font-medium">
-                    {user.instructor.name}
-                  </p>
-                  <p className=" text-heading-sm text-gray-100">{user.title}</p>
-                </div>
-              </div>
-
-              <div className=" flex flex-row gap-2 mr-4">
-                <FireSVG className="text-white" />
-
-                <p className=" font-medium text-white text-heading-sm ">
-                  {user.kcal} Kcal
+      {appStatus === APP_STATUS.ERROR ? (
+        <ErrorMessage>Ocurrió un error al traer las clases</ErrorMessage>
+      ) : (
+        classesSlice.map((user) => (
+          <article
+            // onClick={() => filterItem(user.id)}
+            onClick={() => navigate(`/trainer-profile/${user.instructor.id}`)}
+            key={user.id}
+            className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
+              user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
+            }`}
+          >
+            <div className=" flex flex-row gap-4 items-center">
+              <img
+                src={`${user.image}`}
+                className={`rounded-full bg-cover w-14 h-14 bg-center ]`}
+              />
+              <div className=" flex flex-col justify-start">
+                <p className=" text-heading-sm text-white font-medium">
+                  {user.instructor.name}
                 </p>
+                <p className=" text-heading-sm text-gray-100">{user.title}</p>
               </div>
-            </article>
+            </div>
 
-        )
-        
-      ))}
+            <div className=" flex flex-row gap-2 mr-4">
+              <FireSVG className="text-white" />
+
+              <p className=" font-medium text-white text-heading-sm ">
+                {user.kcal} Kcal
+              </p>
+            </div>
+          </article>
+        ))
+      )}
 
       {/* <nav
         className={`${

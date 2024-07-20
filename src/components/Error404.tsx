@@ -17,17 +17,17 @@ export const Error404 = () => {
                 404
               </h1>
               <h4 className=" font-lato font-black text-[38px] opacity-80 mb-2">
-                Pagina no encontrada...
+                Página no encontrada...
               </h4>
               <p className="font-lato text-lg opacity-80 mb-6">
-                Ha ocurrido algun error, esta pagina no existe...
+                Ha ocurrido algún error, esta página no existe...
               </p>
               <div className="flex">
                 <button
                   onClick={handleClick}
                   className="font-lato font-bold bg-lima-100 text-black-bg hover:bg-opacity-90 py-3 px-4 rounded"
                 >
-                  Iniciar sesion
+                  Iniciar sesión
                 </button>
               </div>
             </div>

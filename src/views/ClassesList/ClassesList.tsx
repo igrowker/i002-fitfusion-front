@@ -14,7 +14,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
 
 export const ClassesList = () => {
-  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
 
   const navigate = useNavigate();
 
@@ -33,17 +33,16 @@ export const ClassesList = () => {
         return res.json();
       })
       .then((data) => {
-
         const adaptedClasses = adaptClassesformat(data);
 
         setclasses(adaptedClasses);
         originalClasses.current = adaptedClasses;
-        setAppStatus(APP_STATUS.READY_USAGE)
+        setAppStatus(APP_STATUS.READY_USAGE);
       })
       .catch((error) => {
         console.log(error);
-        
-        setAppStatus(APP_STATUS.ERROR)
+
+        setAppStatus(APP_STATUS.ERROR);
       });
   }, []);
 
@@ -80,7 +79,6 @@ export const ClassesList = () => {
 
   return (
     <div className="min-[566px]:relative">
-      
       <div className=" hidden  min-[566px]:flex min-[566px]:z-30 min-[566px]:w-full min-[566px]:bg-black-bg min-[566px]:sticky min-[566px]:bottom-0  ">
         <Header />
       </div>
@@ -99,10 +97,12 @@ export const ClassesList = () => {
           resetClasses={resetClasses}
         />
 
-        { appStatus !== APP_STATUS.LOADING && classes.length === 0 ? (
+        {appStatus !== APP_STATUS.LOADING && classes.length === 0 ? (
           <div className="px-6 pt-6 text-center">
             <ErrorMessage>
-              { appStatus === APP_STATUS.ERROR ? 'Ocurrio un error al querer obtener las clases' : 'No existen clases para la combinacion de filtros seleccionada'}
+              {appStatus === APP_STATUS.ERROR
+                ? "Ocurrio un error al querer obtener las clases"
+                : "No existen clases para la combinacion de filtros seleccionada"}
             </ErrorMessage>
           </div>
         ) : (
@@ -159,9 +159,6 @@ export const ClassesList = () => {
           </ul>
         )}
       </div>
-      {/* <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0 min-[566px]:absolute">
-        <Footer />
-      </div> */}
     </div>
   );
 };
