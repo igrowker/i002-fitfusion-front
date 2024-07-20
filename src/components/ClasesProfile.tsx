@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ColonSVG } from "../icons";
-import { ClasesLayout, Spinner } from "./";
+import { ClasesLayout, Spinner, TeacherBanner } from "./";
 import { apiCall } from "../services/apiCall";
 import { getLocalSUserInfo } from "../services/handleLocalStorage";
 import { PayedClasses } from "../types/classesTypes";
@@ -8,7 +8,7 @@ import { APP_STATUS, AppStatusType } from "../types/generalTypes";
 import { createErrorToast, createSuccessToast } from "../services/toastCreation";
 import { ToastContainer } from "react-toastify";
 
-export const ClasesProfile = () => {
+ const ClasesProfile = () => {
   const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING)  
   const [payedClasses, setPayedClasses] = useState<PayedClasses[]>();
   const [getClasses, setGetClasses] = useState<Boolean>(false);
@@ -80,7 +80,7 @@ export const ClasesProfile = () => {
         <ColonSVG className="text-gray-500" />
       </div>
       <div className=" flex flex-col items-center px-6 mt-8 gap-4">
-        {/* <TeacherBanner /> */}
+        <TeacherBanner />
       </div>
     </article>
   );
