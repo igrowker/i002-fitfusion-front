@@ -1,4 +1,5 @@
-import { Form } from "../../components";
+// import { Form } from "../../components";
+import { FormUseForm } from "../../components/ContactForm/FormUseForm";
 
 export const ContactForm = () => {
   return (
@@ -13,7 +14,8 @@ export const ContactForm = () => {
         </p>
       </div>
       <div className="box-border min-w-80 mt-9 overflow-auto">
-        <Form />
+        {/* <Form /> */}
+        <FormUseForm />
       </div>
     </section>
   );
