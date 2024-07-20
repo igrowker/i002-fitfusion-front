@@ -10,6 +10,7 @@ import { CornerCirclesSVG } from '../../icons'
 import { HeaderProfile, Spinner } from '../../components'
 import { APP_STATUS, AppStatusType } from '../../types/generalTypes'
 import { ToastContainer, toast } from 'react-toastify'
+import Cookies from 'js-cookie';
 
 export const DeleteAccount = () => {
     const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
@@ -22,6 +23,7 @@ export const DeleteAccount = () => {
         .then((res) => {
 
           if(res.ok) {
+            Cookies.remove('authToken');
             localStorage.clear()
             navigate('/auth/register')
           } else {
