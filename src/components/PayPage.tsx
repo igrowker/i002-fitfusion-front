@@ -82,7 +82,7 @@ export const PayPage = ({ item, setItem, selectedDate }: PayPageProps) => {
             return res.json();
           })
           .then((data) => {
-            if(data.message = 'Clase ya reservada por le usuario') {
+            if(data.message === 'Clase ya reservada por le usuario') {
               const notify = createErrorToast({
                 message : 'Ya tienes esta clase reservada',
               })
