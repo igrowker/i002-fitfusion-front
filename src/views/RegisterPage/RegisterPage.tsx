@@ -35,7 +35,6 @@ export const RegisterPage = () => {
       }
     })
     .then(data => {
-      console.log('data' , data , data.message === 'El correo electrónico ya está registrado.')
       if(data.message === 'El correo electrónico ya está registrado.') {
         const notify = createErrorToast({ 
           message : data.message,

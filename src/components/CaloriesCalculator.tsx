@@ -59,7 +59,6 @@ export const CaloriesCalculator = ({
     }
   }, [payedClasses]);
 
-  console.log(payedClasses?.length);
 
   const handleReset = () => {
     setPayedClasses([]);

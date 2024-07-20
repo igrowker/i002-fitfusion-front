@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getLocalSUserInfo, localStorageUserData } from "../services/handleLocalStorage";
 import { APP_STATUS, AppStatusType } from "../types/generalTypes.ts";
 import { Spinner } from "./Spinner.tsx";
+import Cookies from 'js-cookie';
 
 // importamos de forma dinámica el componente 
 const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
@@ -33,7 +34,9 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    console.log('SE EJECUTA ESTO?')
     setAppStatus(APP_STATUS.LOADING)
+    Cookies.remove('authToken');
     localStorage.clear()
     navigate("/auth");
   };

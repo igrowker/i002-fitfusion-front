@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Spinner } from "../../components";
 import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
 import { createErrorToast } from "../../services/toastCreation";
-
+import Cookies from 'js-cookie';
 
 
 export const LoginPage = () => {
@@ -43,7 +43,7 @@ export const LoginPage = () => {
           notify()
           setAppStatus(APP_STATUS.ERROR)
         } else {
-          localStorage.setItem("token", data.token);
+          Cookies.set('authToken', data.token, { expires: 1, sameSite: 'Strict' });
           localStorage.setItem("userData", JSON.stringify(data));
           navigate("/classes");
 
