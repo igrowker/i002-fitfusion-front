@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import { Spinner } from "..";
 import { useForm } from "react-hook-form";
 import { ContactForm } from "../../types/contactTypes";
-import { useNavigate } from "react-router-dom";
+
 import ErrorMessage from "../ErrorMessage";
 
 export const FormUseForm = () => {
@@ -33,8 +33,6 @@ export const FormUseForm = () => {
   //   });
   // };
 
-  const navigate = useNavigate();
-
   const onSubmit = (data: ContactForm) => {
     console.log(data);
     setAppStatus(APP_STATUS.LOADING);
@@ -45,7 +43,7 @@ export const FormUseForm = () => {
         return res.json();
       })
       .then((data) => {
-        if (data.includes("Email sent:")) {
+        if (data) {
           const notify = createSuccessToast({
             message: "El formulario se envió correctamente",
           });
@@ -65,9 +63,6 @@ export const FormUseForm = () => {
           message: "Ocurrió un error al enviar el formulario",
         });
         notify();
-      })
-      .finally(() => {
-        navigate("/");
       });
   };
 
@@ -109,7 +104,6 @@ export const FormUseForm = () => {
     <>
       {appStatus === APP_STATUS.LOADING && <Spinner className="-left-0" />}
       <form className="" onSubmit={handleSubmit(onSubmit)}>
-        <ToastContainer />
         <div className="mb-4">
           <label htmlFor="subject" className="text-gray-500 mb-4">
             Nombre
@@ -183,6 +177,7 @@ export const FormUseForm = () => {
             Enviar
           </button>
         </div>
+        <ToastContainer />
       </form>
     </>
   );
