@@ -1,81 +1,71 @@
-
-
-import { useState } from 'react'
-import RedButton from '../../components/RedButton'
-import { getLocalSUserInfo } from '../../services/handleLocalStorage'
-import { apiCall } from '../../services/apiCall'
-import GreenButton from '../../components/GreenButton'
-import { useNavigate } from 'react-router-dom'
-import { CornerCirclesSVG } from '../../icons'
-import { HeaderProfile, Spinner } from '../../components'
-import { APP_STATUS, AppStatusType } from '../../types/generalTypes'
-import { ToastContainer, toast } from 'react-toastify'
-import Cookies from 'js-cookie';
+import { useState } from "react";
+import { getLocalSUserInfo } from "../../services/handleLocalStorage";
+import { apiCall } from "../../services/apiCall";
+import { useNavigate } from "react-router-dom";
+import { CornerCirclesSVG } from "../../icons";
+import { Spinner } from "../../components";
+import { APP_STATUS, AppStatusType } from "../../types/generalTypes";
+import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 export const DeleteAccount = () => {
-    const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
-    const navigate = useNavigate()
-    const handleDeleteUser = () => {
-        setAppStatus(APP_STATUS.LOADING)
-        const {userId} = getLocalSUserInfo()
-        const body = {userId}
-        apiCall({ url: `/users/me/delete`, method: "PUT" , body})
-        .then((res) => {
-
-          if(res.ok) {
-            Cookies.remove('authToken');
-            localStorage.clear()
-            navigate('/auth/register')
-          } else {
-            const notify = () => toast.error("Ocurrio un error en el proceso de login.",{position: "bottom-center",});
-            notify()
-            setAppStatus(APP_STATUS.ERROR)
-          }
-        })
-        .catch((error) => {console.log(error)});
-      }
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
+  const navigate = useNavigate();
+  const handleDeleteUser = () => {
+    setAppStatus(APP_STATUS.LOADING);
+    const { userId } = getLocalSUserInfo();
+    const body = { userId };
+    apiCall({ url: `/users/me/delete`, method: "PUT", body })
+      .then((res) => {
+        if (res.ok) {
+          Cookies.remove("authToken");
+          localStorage.clear();
+          navigate("/auth/register");
+        } else {
+          const notify = () =>
+            toast.error("Ocurrio un error en el proceso de login.", {
+              position: "bottom-center",
+            });
+          notify();
+          setAppStatus(APP_STATUS.ERROR);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
-    <div
-        className=' h-screen bg-pattern bg-no-repeat bg-lima-100/60 bg-cover flex flex-col  items-center'
-    >
-      {appStatus=== APP_STATUS.LOADING && <Spinner /> }
-      <HeaderProfile
-        handleClick={() => navigate(-1)}
-        closeButton={false}
-        text={'Eliminacion de cuenta'}
-        showConfig={false}
-      />
+    <>
       <CornerCirclesSVG className="text-white absolute top-0 right-0 opacity-60" />
 
-      <div className='h-2/3 flex flex-col justify-center items-center'>
+      <div className=" h-screen bg-pattern bg-no-repeat bg-black-bg bg-cover flex flex-col  items-center justify-center px-6">
+        {appStatus === APP_STATUS.LOADING && <Spinner />}
 
-        <div className='bg-white flex flex-col justify-between h-60 max-w-96 rounded-2xl p-4'>
-          <p
-            className='font-bold font-lato text-heading-md text-center'
-          >
-            Estas seguro de que quieres eliminar tu cuenta?
-          </p>
-          
-          <div 
-              className='flex justify-around'
-          >
-          <GreenButton 
-            handleClick={() => navigate(-1)} 
-            text = {'Volver'} 
-            size='medium'
-          />
-          <RedButton 
-            onClick={handleDeleteUser} 
-            text={"Eliminar"} 
-            size='medium'
-          />
+        <div className=" flex flex-col  justify-center items-center z-50">
+          <div className="bg-white flex flex-col justify-center items-center rounded-2xl p-11 gap-6 shadow-xl">
+            <p className="font-bold font-lato text-heading-md text-center">
+              ¿Estás seguro de que quieres eliminar tu cuenta?
+            </p>
+
+            <div className="flex flex-col min-[566px]:flex-row justify-center gap-6">
+              <button
+                className="font-lato font-bold text-heading bg-lima-100  min-w-40 rounded-md p-2 min-[566px]:w-48  duration-300 hover:scale-110"
+                onClick={() => navigate(-1)}
+              >
+                Vover
+              </button>
+              <button
+                className="font-lato font-bold text-heading bg-[#F73B3B]  min-w-40 rounded-md p-2 min-[566px]:w-48  duration-300 hover:scale-110 text-white"
+                onClick={handleDeleteUser}
+              >
+                Eliminar
+              </button>
+            </div>
           </div>
-
+          <ToastContainer />
         </div>
-        <ToastContainer />
       </div>
-
-    </div>
-  )
-}
+    </>
+  );
+};

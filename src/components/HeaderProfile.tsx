@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Configuration } from "./";
-import {
-  ColonSVG,
-  ConfigurationToolSVG,
-  LeftArrowSVG,
-} from "../icons";
+import { ColonSVG, ConfigurationToolSVG, LeftArrowSVG } from "../icons";
 
 type HeaderProfilePropsTypes = {
   closeButton: boolean;
@@ -25,23 +21,14 @@ export const HeaderProfile = ({
     setIsOpen(!isOpen);
   };
 
-
-  /*
-
-  FUNCION PARA ENCONTRAR AL LOGUEADO
-
-  const { dataUser } = useUser();
-
-  const user = dataUser.find((user) => user.auth === true);
-
-  */
-
   return (
     <header className="relative z-10 flex flex-row w-full justify-between items-center pt-14 px-6 min-[566px]:max-w-xl">
       <button
         onClick={() => handleClick()}
         className={`
-          ${closeButton ? 'border-white cursor-auto' : 'cursor-pointer'} min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center `}
+          ${
+            closeButton ? "border-white cursor-auto" : "cursor-pointer"
+          } min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center `}
       >
         {!closeButton && <LeftArrowSVG />}
       </button>
