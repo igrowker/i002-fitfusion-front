@@ -10,6 +10,8 @@ import {
 import GreenButton from "./GreenButton";
 import { Link, useNavigate } from "react-router-dom";
 import { getLocalSUserInfo, localStorageUserData } from "../services/handleLocalStorage";
+import { APP_STATUS, AppStatusType } from "../types/generalTypes.ts";
+import { Spinner } from "./Spinner.tsx";
 
 // importamos de forma dinámica el componente 
 const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
@@ -21,6 +23,7 @@ type ConfigurationProps = {
 };
 
 export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
+  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
   const [isEditing, setIsEditing] = useState(false);
 
   const editing = () => {
@@ -30,6 +33,8 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    setAppStatus(APP_STATUS.LOADING)
+    localStorage.clear()
     navigate("/auth");
   };
 
@@ -37,6 +42,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
 
   return (
     <div className="flex flex-col min-[566px]:max-w-xl m-auto justify-between min-[566px]:pt-[50px]">
+      {appStatus === APP_STATUS.LOADING && <Spinner /> }
       <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
         <p className=" font-bold text-base text-black font-lato"></p>
         <button
