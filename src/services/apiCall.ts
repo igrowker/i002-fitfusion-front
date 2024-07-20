@@ -1,4 +1,5 @@
 import { environment } from "./constants"
+import Cookies from 'js-cookie';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -12,7 +13,7 @@ interface apiCallProps {
 
 export const  apiCall = async ({ url , method , body , headers } : apiCallProps ) => {
 
-    const token = localStorage.getItem("token");
+    const token = Cookies.get('authToken');
 
     return fetch(`${environment.API_URL}${url}`,{
       method : method, 

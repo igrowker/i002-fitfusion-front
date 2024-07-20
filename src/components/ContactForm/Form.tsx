@@ -27,14 +27,12 @@ export const Form = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setAppStatus(APP_STATUS.LOADING)
-    console.log({form})
     const body = form
     apiCall({ url: `/services/sendEmail`, method: "POST" , body})
     .then((res) => {
       return res.json();
     })
     .then((data) => {
-      console.log('data' ,data )
       if (data.includes('Email sent:')) {
         const notify = createSuccessToast({message : 'El formulario se envio correctamente'});
         notify();
@@ -47,9 +45,9 @@ export const Form = () => {
         setAppStatus(APP_STATUS.READY_USAGE)
     })
     .catch((error) => {
+      console.log(error)
       const notify = createErrorToast({message : 'Ocurrio un error al enviar el formulario'});
       notify();
-      console.log(error)
     }).finally(() => {
       setForm({
         subject: "",
