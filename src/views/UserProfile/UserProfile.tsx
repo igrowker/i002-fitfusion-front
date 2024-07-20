@@ -1,5 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import {  Header, HeaderProfile, ProfileData, Spinner, Switch } from "../../components";
+import {
+  Header,
+  HeaderProfile,
+  ProfileData,
+  Spinner,
+  Switch,
+} from "../../components";
 import { useEffect, useState } from "react";
 import { apiCall } from "../../services/apiCall";
 import { adaptUserFormat } from "../../services/adaptUserFormat";
@@ -11,7 +17,7 @@ export const UserProfile = () => {
     navigate("");
   };
 
-  const [user, setUser] = useState<User>()
+  const [user, setUser] = useState<User>();
 
   useEffect(() => {
     apiCall({ url: `/users/me`, method: "GET" })
@@ -19,14 +25,13 @@ export const UserProfile = () => {
         return res.json();
       })
       .then((data) => {
-
         const adaptedUser = adaptUserFormat(data);
 
         setUser(adaptedUser);
       })
       .catch((error) => console.log(error));
   }, []);
-  
+
   return (
     <>
       {user !== undefined ? (
@@ -46,12 +51,10 @@ export const UserProfile = () => {
 
             <Switch />
           </main>
-          {/* <div className=" hidden min-[566px]:flex min-[566px]:w-full min-[566px]:bg-black-bg  min-[566px]:bottom-0  ">
-            <Footer />
-          </div> */}
         </>
-
-      ) : <Spinner/>}
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };

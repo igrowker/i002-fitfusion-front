@@ -11,7 +11,10 @@ import { adaptUserFormat } from "../services/adaptUserFormat";
 import { useNavigate } from "react-router-dom";
 import { APP_STATUS, AppStatusType } from "../types/generalTypes";
 import { Spinner } from ".";
-import { createErrorToast, createSuccessToast } from "../services/toastCreation";
+import {
+  createErrorToast,
+  createSuccessToast,
+} from "../services/toastCreation";
 import { ToastContainer } from "react-toastify";
 
 type ConfigurationFormProfileProps = {
@@ -21,88 +24,91 @@ type ConfigurationFormProfileProps = {
 const ConfigurationFormProfile = ({
   editing,
 }: ConfigurationFormProfileProps) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [user, setuserEdit] = useState<User | undefined>();
-  const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
 
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-    reset
+    reset,
   } = useForm<User>({ defaultValues: user });
 
   useEffect(() => {
-    setAppStatus(APP_STATUS.LOADING)
+    setAppStatus(APP_STATUS.LOADING);
     apiCall({ url: `/users/me`, method: "GET" })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-
-      const adaptedUsers = adaptUserFormat(data)
-      setuserEdit(adaptedUsers)
-      reset(adaptedUsers)
-      setAppStatus(APP_STATUS.READY_USAGE)
-    })
-    .catch((error) => {
-      console.log(error)
-      setAppStatus(APP_STATUS.ERROR)
-    });
-  }, [])
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const adaptedUsers = adaptUserFormat(data);
+        setuserEdit(adaptedUsers);
+        reset(adaptedUsers);
+        setAppStatus(APP_STATUS.READY_USAGE);
+      })
+      .catch((error) => {
+        console.log(error);
+        setAppStatus(APP_STATUS.ERROR);
+      });
+  }, []);
 
   const onSubmit = (data: User) => {
-    setAppStatus(APP_STATUS.LOADING)
-    
+    setAppStatus(APP_STATUS.LOADING);
+
     const body = {
-      Name : data.name,
-      Email : data.email,
-      Age : data.age,
-      Residence : data.residence,
-      Weight : data.weight,
-      Height : data.height,
-      Password : data.current_password?.trim(),
-      NewPassword : data.new_password?.trim(), 
-      teacherInfo : { }
-    }
-    apiCall({ url: `/users/me`, method: "PUT" , body})
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
+      Name: data.name,
+      Email: data.email,
+      Age: data.age,
+      Residence: data.residence,
+      Weight: data.weight,
+      Height: data.height,
+      Password: data.current_password?.trim(),
+      NewPassword: data.new_password?.trim(),
+      teacherInfo: {},
+    };
+    apiCall({ url: `/users/me`, method: "PUT", body })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.message === "User updated successfully") {
+          const adaptedUsers = adaptUserFormat(data.user);
+          setuserEdit(adaptedUsers);
+          const notify = createSuccessToast({
+            message: "Los datos se actualizaron con éxito",
+          });
+          notify();
+          reset(adaptedUsers);
+        } else if (data?.errors?.length > 0) {
+          const notify = createErrorToast({
+            message: "Completa todos los datos por favor",
+          });
+          notify();
+        }
 
-      if (data.message === "User updated successfully") {
-        const adaptedUsers = adaptUserFormat(data.user)
-        setuserEdit(adaptedUsers)
-        const notify = createSuccessToast({message : 'Los datos se actualizaron con éxito'});
+        setAppStatus(APP_STATUS.READY_USAGE);
+      })
+      .catch((error) => {
+        const notify = createErrorToast({
+          message: "Ocurrio un error al actualizar los datos",
+        });
         notify();
-        reset(adaptedUsers)
-        
-      } else if (data?.errors?.length > 0 ) {
-        const notify = createErrorToast({message : 'Completa todos los datos por favor'});
-        notify();
-      }  
-        
-        setAppStatus(APP_STATUS.READY_USAGE)
-    })
-    .catch((error) => {
-      const notify = createErrorToast({message : 'Ocurrio un error al actualizar los datos'});
-      notify();
-      console.log(error)
-    });
+        console.log(error);
+      });
   };
-  
-    const password = watch("new_password");
-    const current_password = watch("current_password");
-    const new_password = watch("new_password");
 
+  const password = watch("new_password");
+  const current_password = watch("current_password");
+  const new_password = watch("new_password");
 
-  
   return (
     <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
       <ToastContainer />
-      {appStatus === APP_STATUS.LOADING ? <Spinner /> : (
+      {appStatus === APP_STATUS.LOADING ? (
+        <Spinner />
+      ) : (
         <>
           <ToastContainer />
           <div className=" flex flex-row justify-between items-center pt-14 px-6 ">
@@ -118,10 +124,10 @@ const ConfigurationFormProfile = ({
           </div>
           <div className=" flex flex-col items-center mb-10">
             <div className=" relative cursor-pointer ">
-              <img 
-                src={user?.image || '/profile.jfif'}
+              <img
+                src={user?.image || "/profile.jfif"}
                 alt="Imagen de perfil de usuario"
-                className=" rounded-full bg-cover w-32 h-32  mt-5 bg-center" 
+                className=" rounded-full bg-cover w-32 h-32  mt-5 bg-center"
               />
 
               <div className=" rounded-full bg-lima-100 border-2 h-9 w-9 absolute right-0 bottom-0 flex items-center justify-center">
@@ -161,7 +167,9 @@ const ConfigurationFormProfile = ({
                   },
                 })}
               />
-              {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+              {errors.name && (
+                <ErrorMessage>{errors.name.message}</ErrorMessage>
+              )}
             </div>
 
             <div className="mb-5 space-y-3">
@@ -169,12 +177,12 @@ const ConfigurationFormProfile = ({
                 className="font-lato font-black text-heading-sm text-gray-500"
                 htmlFor="residence"
               >
-                Ubicacion
+                Ubicación
               </label>
               <input
                 id="residence"
                 type="text"
-                placeholder="Cambiar ubicacion"
+                placeholder="Cambiar ubicación"
                 className={`w-full p-3  border border-gray-100 rounded-lg ${
                   errors.residence && " outline-[#F73B3B]"
                 }`}
@@ -293,7 +301,9 @@ const ConfigurationFormProfile = ({
                   },
                 })}
               />
-              {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+              {errors.email && (
+                <ErrorMessage>{errors.email.message}</ErrorMessage>
+              )}
             </div>
 
             <div className="mb-5 space-y-3">
@@ -383,7 +393,10 @@ const ConfigurationFormProfile = ({
             />
           </form>
 
-          <RedButton onClick={() => navigate('/deleteAccount')} text={"Eliminar cuenta"} />
+          <RedButton
+            onClick={() => navigate("/deleteAccount")}
+            text={"Eliminar cuenta"}
+          />
         </>
       )}
     </div>

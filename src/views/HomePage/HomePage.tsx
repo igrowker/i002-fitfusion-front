@@ -18,7 +18,7 @@ export const HomePage = () => {
             REVOLUCIONA TU FORMA DE ENTRENAR
           </h1>
           <p className="text-heading font-normal font-lato">
-            Clases personalizadas y apoyo profesional desde donde quieras!
+          ¡Clases personalizadas y apoyo profesional desde donde quieras!
           </p>
         </div>
         <Link to="/auth/" className=" md:z-30">
@@ -47,8 +47,8 @@ export const HomePage = () => {
       </div>
       <Link to="/auth/">
         <div className="text-center w-full px-8 py-4 text-black bg-lima-100">
-          <h2 className="font-lato text-heading-md font-extrabold">
-            ¡REGISTRATE AHORA!
+          <h2 className="font-lato text-heading-md font-extrabold uppercase">
+          ¡Regístrate ahora!
           </h2>
           <p className="font-lato text-heading-md font-normal">
             Y obtén 7 días gratis, vive la experiencia de entrenar con un
