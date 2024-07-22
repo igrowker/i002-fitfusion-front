@@ -60,7 +60,7 @@ export const TrainerProfilePage = () => {
             <div className="w-40 h-40 rounded-full overflow-hidden mt-7 mb-16">
               <img
                 className="w-full h-full object-cover"
-                src={instructor?.image || ''}
+                src={instructor?.image || '/avatarnone.png'}
                 alt="Imagen del profesor"
               />
             </div>

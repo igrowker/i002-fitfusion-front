@@ -73,7 +73,7 @@ export const TeacherBanner = () => {
           >
             <div className=" flex flex-row gap-4 items-center">
               <img
-                src={`${user.image}`}
+                src={`${user.image || '/avatarnone.png'}`}
                 className={`rounded-full bg-cover w-14 h-14 bg-center ]`}
               />
               <div className=" flex flex-col justify-start">
