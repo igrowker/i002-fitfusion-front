@@ -51,6 +51,8 @@ export const TeacherBanner = () => {
     navigate("/classes");
   };
 
+  console.log(classes);
+
   return (
     <>
       <button
@@ -65,7 +67,7 @@ export const TeacherBanner = () => {
         classesSlice.map((user) => (
           <article
             // onClick={() => filterItem(user.id)}
-            onClick={() => navigate(`/trainer-profile/${user.instructor.id}`)}
+            onClick={() => navigate(`/class-detail/${user.id}`)}
             key={user.id}
             className={` cursor-pointer flex flex-row gap-4 p-2 rounded-full justify-between items-center w-80 ${
               user.id % 2 !== 0 ? " bg-lima-200" : " bg-black-bg"
@@ -73,7 +75,7 @@ export const TeacherBanner = () => {
           >
             <div className=" flex flex-row gap-4 items-center">
               <img
-                src={`${user.image || '/avatarnone.png'}`}
+                src={`${user.image || "/avatarnone.png"}`}
                 className={`rounded-full bg-cover w-14 h-14 bg-center ]`}
               />
               <div className=" flex flex-col justify-start">
