@@ -99,7 +99,7 @@ const ConfigurationFormProfile = ({
       });
   };
 
-  const password = watch("new_password");
+  // const password = watch("new_password");
   const current_password = watch("current_password");
   const new_password = watch("new_password");
 
@@ -160,7 +160,7 @@ const ConfigurationFormProfile = ({
                   errors.name && " outline-[#F73B3B]"
                 }`}
                 {...register("name", {
-                  required: "El campo es requerido",
+                  // required: "El campo es requerido",
                   pattern: {
                     value: /^([a-zA-Z0-9_\s]+).{2,}$/,
                     message: "No es un nombre permitido",
@@ -187,7 +187,7 @@ const ConfigurationFormProfile = ({
                   errors.residence && " outline-[#F73B3B]"
                 }`}
                 {...register("residence", {
-                  required: "El campo es requerido",
+                  // required: "El campo es requerido",
                   pattern: {
                     value: /^([a-zA-Z0-9_\s]+).{2,}$/,
                     message: "No es una ubicacion permitida",
@@ -214,7 +214,7 @@ const ConfigurationFormProfile = ({
                   errors.age && " outline-[#F73B3B]"
                 }`}
                 {...register("age", {
-                  required: "El campo es requerido",
+                  // required: "El campo es requerido",
                   pattern: {
                     value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
                     message: "No es una edad permitida",
@@ -239,7 +239,7 @@ const ConfigurationFormProfile = ({
                   errors.weight && " outline-[#F73B3B]"
                 }`}
                 {...register("weight", {
-                  required: "El campo es requerido",
+                  // required: "El campo es requerido",
                   pattern: {
                     value: /^(0?[1-9]|[1-9][0-9]|1[1-9][1-9]|200)(\.\d{1,2})?$/,
                     message: "No es un peso permitido",
@@ -266,7 +266,7 @@ const ConfigurationFormProfile = ({
                   errors.height && " outline-[#F73B3B]"
                 }`}
                 {...register("height", {
-                  required: "El campo es requerido",
+                  // required: "El campo es requerido",
                   pattern: {
                     value: /^(0?[1-9]|[1-9][0-9]|1[1-9][1-9]|200)(\.\d{1,2})?$/,
                     message: "No es una altura permitida",
@@ -293,7 +293,7 @@ const ConfigurationFormProfile = ({
                   errors.email && " outline-[#F73B3B]"
                 }`}
                 {...register("email", {
-                  required: "El campo es requerido",
+                  // required: "El campo es requerido",
                   pattern: {
                     value:
                       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -344,6 +344,9 @@ const ConfigurationFormProfile = ({
                   errors.new_password && " outline-[#F73B3B]"
                 }`}
                 {...register("new_password", {
+                  validate: (value) =>
+                    value !== current_password ||
+                    "El Password no puede ser igual al actual...",
                   pattern: {
                     value: /^(?=.*[0-9])(?=.*[a-z]).{8,}$/,
                     message:
@@ -372,14 +375,12 @@ const ConfigurationFormProfile = ({
                     errors.password && " outline-[#F73B3B]"
                   }`}
                   {...register("password", {
-                    required: "El password actual es obligatorio",
                     validate: (value) =>
-                      (value === password &&
-                        "El Password no coincide..." &&
-                        value !== current_password) ||
-                      "El Password no puede ser igual al actual...",
+                      value !== new_password && "El Password no coincide...",
+                    required: "El password actual es obligatorio",
                   })}
                 />
+
                 {errors.password && (
                   <ErrorMessage>{errors.password.message}</ErrorMessage>
                 )}

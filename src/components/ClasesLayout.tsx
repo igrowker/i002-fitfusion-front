@@ -21,7 +21,7 @@ export const ClasesLayout = ({
             <div key={payedClass.Id} className="p-6 shadow-lg flex flex-col">
               <div className=" flex flex-row justify-center gap-6  items-center border-b-2 border-gray-100 pb-2">
                 <img
-                  src={payedClass.Class.Image}
+                  src={payedClass.Class.Image || '/avatarnone.png'}
                   className=" rounded-full bg-cover w-14 h-14  bg-center"
                 />
                 <div className=" text-center">

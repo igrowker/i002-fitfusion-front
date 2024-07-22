@@ -150,6 +150,11 @@ export const PayPage = ({ item, setItem, selectedDate }: PayPageProps) => {
           >
             <CardElement className="bg-white rounded w-full p-4 text-black" />
 
+            <p className=" flex flex-col text-lima-100 text-[12px] font-lato min-[566px]:max-w-xl text-center px-6 ">
+              Puedes utilizar el número de tarjeta válida:{" "}
+              <span className="text-[14px]">4242 4242 4242 4242</span>
+            </p>
+
             <GreenButton text="Confirmar clase" handleClick={handleConfirm} />
             <ToastContainer />
           </form>
