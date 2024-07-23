@@ -51,7 +51,6 @@ export const TeacherBanner = () => {
     navigate("/classes");
   };
 
-  console.log(classes);
 
   return (
     <>
