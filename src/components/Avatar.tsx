@@ -1,10 +1,12 @@
 import React from "react";
 import AvatarEditor from "react-avatar-editor";
 import { LeftArrowSVG, RightArrowSVG } from "../icons";
-import { createSuccessToast } from "../services/toastCreation";
-import { ToastContainer } from "react-toastify";
 
-export default class App extends React.Component {
+interface AppProps {
+  setImage: (data:string) => void
+}
+
+export default class App extends React.Component<AppProps> {
   state = {
     image: "",
     allowZoomOut: false,
@@ -47,7 +49,7 @@ export default class App extends React.Component {
     const img = this.editor.getImageScaledToCanvas().toDataURL();
     const rect = this.editor.getCroppingRect();
 
-    console.log(img);
+    // console.log( 'img' , img);
 
     this.setState({
       preview: {
@@ -60,10 +62,8 @@ export default class App extends React.Component {
       },
     });
 
-    const notify = createSuccessToast({
-      message: "Imagen actualizada",
-    });
-    notify();
+    this.props.setImage(img);
+
   };
   editor: any;
 
@@ -84,6 +84,7 @@ export default class App extends React.Component {
   };
 
   render() {
+
     return (
       <>
         <div className=" flex flex-col justify-center items-center px-6 gap-6">
@@ -98,7 +99,7 @@ export default class App extends React.Component {
             borderRadius={this.state.width / (100 / this.state.borderRadius)}
             image={this.state.image}
           />
-          <input type="file" onChange={this.handleNewImage} />
+          <input type="file" accept=".jpg, .jpeg, .png" onChange={this.handleNewImage} />
 
           <p className=" font-bold text-base text-black font-lato">
             Agranda o achica tu imagen:
@@ -140,7 +141,6 @@ export default class App extends React.Component {
 
           {/* {!!this.state.preview && <img src={this.state.preview.img} />} */}
         </div>
-        <ToastContainer/>
       </>
     );
   }

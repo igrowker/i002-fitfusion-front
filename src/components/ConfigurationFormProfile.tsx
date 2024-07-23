@@ -29,6 +29,7 @@ const ConfigurationFormProfile = ({
   const navigate = useNavigate();
   const [user, setuserEdit] = useState<User | undefined>();
   const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
   const {
     register,
@@ -68,6 +69,7 @@ const ConfigurationFormProfile = ({
       Height: data.height,
       Password: data.current_password?.trim(),
       NewPassword: data.new_password?.trim(),
+      Image : profileImage,
       teacherInfo: {},
     };
     apiCall({ url: `/users/me`, method: "PUT", body })
@@ -110,6 +112,17 @@ const ConfigurationFormProfile = ({
   const handleEditAvatar = () => {
     setEditAvatar(!editAvatar);
   };
+  const notify = createSuccessToast({
+    message: "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
+  });
+
+  const setImage = (data : string) => {
+    setProfileImage(data)
+    setEditAvatar(!editAvatar);
+
+    notify();
+  }
+
 
   return (
     <>
@@ -118,7 +131,7 @@ const ConfigurationFormProfile = ({
           !editAvatar ? "w-0 hidden" : " block w-[100vw]"
         } flex felx-col fixed top-0 left-0 bottom-0  justify-center  bg-white z-[60] overflow-x-hidden origin-left duration-500 px-6`}
       >
-        <AvatarContainer setEditAvatar={setEditAvatar } editAvatar={editAvatar}/>
+        <AvatarContainer setEditAvatar={setEditAvatar } setImage ={setImage} editAvatar={editAvatar}/>
       </nav>
 
       <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
