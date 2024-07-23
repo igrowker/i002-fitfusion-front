@@ -34,7 +34,6 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log('SE EJECUTA ESTO?')
     setAppStatus(APP_STATUS.LOADING)
     Cookies.remove('authToken');
     localStorage.clear()
@@ -136,7 +135,10 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
         <p className=" font-lato font-black text-heading px-6">Cuenta</p>
         <div className=" flex px-6 items-center mt-5 justify-between cursor-pointer">
           <div className="flex gap-3 items-center">
-            <img className=" rounded-full bg-cover w-14 h-14 bg-[url('/profile.jfif')] bg-center" />
+            {/* <img 
+              src={userData?. || "/avatarnone.png"}
+              className=" rounded-full bg-cover w-14 h-14 bg-[url('/profile.jfif')] bg-center" 
+            /> */}
             <div>
               <p className=" font-lato font-bold text-heading">
                 {userData.name}

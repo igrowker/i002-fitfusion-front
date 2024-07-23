@@ -54,7 +54,7 @@ const CaloriesProfile = () => {
             </p>
           </div>
 
-          {payedClasses.length > 0 ? (
+          {payedClasses.length > 1 ? (
             <div className="  flex flex-col  items-center">
               <div className="flex items-center justify-center max-w-[85vw]">
                 <Chart payedClasses={payedClasses} />

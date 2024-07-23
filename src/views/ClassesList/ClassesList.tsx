@@ -115,7 +115,7 @@ export const ClassesList = () => {
                   onClick={() => handleClick(fitClass.id)}
                 >
                   <img
-                    src={fitClass.image}
+                    src={fitClass.image || '/avatarnone.png'}
                     className="w-36 h-36 rounded-large object-cover"
                   />
                   <div className="flex flex-col items-start justify-start gap-1 hover:cursor-pointer ">
