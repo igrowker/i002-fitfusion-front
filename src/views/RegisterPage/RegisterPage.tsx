@@ -132,7 +132,7 @@ export const RegisterPage = () => {
         </div>
         <div className="w-full">
           <label className="text-gray-500" htmlFor="repeatedPassword">
-            Contraseña
+            Repetir Contraseña
           </label>
           <input
             className={`rounded w-full  p-2 text-black border-spacing-1 ${

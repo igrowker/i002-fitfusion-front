@@ -4,11 +4,13 @@ import { CloseButtonProfileSVG } from "../icons";
 type AvatarContainerProps = {
   setEditAvatar: React.Dispatch<React.SetStateAction<boolean>>;
   editAvatar: boolean;
+  setImage: (data:string) => void
 };
 
 export const AvatarContainer = ({
   setEditAvatar,
   editAvatar,
+  setImage
 }: AvatarContainerProps) => {
   return (
     <div className=" px-6  min-[566px]:max-w-xl">
@@ -24,7 +26,7 @@ export const AvatarContainer = ({
         </button>
       </div>
 
-      <MyEditor />
+      <MyEditor setImage ={setImage} />
     </div>
   );
 };
