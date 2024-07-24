@@ -24,12 +24,14 @@ type ConfigurationFormProfileProps = {
 };
 
 const ConfigurationFormProfile = ({
-  editing,
-}: ConfigurationFormProfileProps) => {
+  // editing,
+}) => {
+// }: ConfigurationFormProfileProps) => {
   const navigate = useNavigate();
   const [user, setuserEdit] = useState<User | undefined>();
   const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [editAvatar, setEditAvatar] = useState(false);
 
   const {
     register,
@@ -107,8 +109,7 @@ const ConfigurationFormProfile = ({
   const current_password = watch("current_password");
   const new_password = watch("new_password");
 
-  const [editAvatar, setEditAvatar] = useState(false);
-
+  
   const handleEditAvatar = () => {
     setEditAvatar(!editAvatar);
   };
@@ -118,7 +119,7 @@ const ConfigurationFormProfile = ({
 
   const setImage = (data : string) => {
     setProfileImage(data)
-    setEditAvatar(!editAvatar);
+    // setEditAvatar(!editAvatar);
 
     notify();
   }
@@ -147,7 +148,8 @@ const ConfigurationFormProfile = ({
               </p>
               <button
                 className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
-                onClick={editing}
+                // onClick={editing}
+                onClick={() => navigate('/classes')}
               >
                 <CloseButtonProfileSVG />
               </button>
