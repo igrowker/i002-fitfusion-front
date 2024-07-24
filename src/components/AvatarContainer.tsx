@@ -26,7 +26,7 @@ export const AvatarContainer = ({
         </button>
       </div>
 
-      <MyEditor setImage ={setImage} />
+      <MyEditor setImage ={setImage} setEditAvatar={setEditAvatar} />
     </div>
   );
 };

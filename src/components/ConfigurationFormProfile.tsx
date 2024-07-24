@@ -113,15 +113,15 @@ const ConfigurationFormProfile = ({
   const handleEditAvatar = () => {
     setEditAvatar(!editAvatar);
   };
-  const notify = createSuccessToast({
-    message: "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
-  });
+  // const notify = createSuccessToast({
+  //   message: "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
+  // });
 
   const setImage = (data : string) => {
     setProfileImage(data)
     // setEditAvatar(!editAvatar);
 
-    notify();
+    // notify();
   }
 
 
@@ -136,7 +136,7 @@ const ConfigurationFormProfile = ({
       </nav>
 
       <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         {appStatus === APP_STATUS.LOADING ? (
           <Spinner />
         ) : (
