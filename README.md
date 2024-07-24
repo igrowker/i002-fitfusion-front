@@ -1,28 +1,43 @@
-# Fit Fusion
+# Fit Fusion Frontend
 
-Este proyecto tiene como objetivo crear una plataforma que responda a las necesidades de las personas que buscan opciones de ejercicio
-accesibles y personalizadas, contribuyendo a generar impacto social positivo, combinado con viabilidad técnica y comercial.
+This project aims to create a platform that meets the needs of people looking for accessible and personalized exercise options, contributing to generating positive social impact, combined with technical and commercial feasibility.
 
-## Comenzando 🚀
+## Tech Stack 🛠️
 
-Estas instrucciones son la guia para levantar localmente el proyecto
+- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+- ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+- ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-### Pre requisitos 📋
+## Pre-requisites 📋
 
-Tener instalado NodeJs y npm funcionando
-Comprobarlo por consola
+- Node.js
+- NPM
 
-### Instalando dependencias 🔧
+## Installation 🔧
 
-Desde terminal instalar dependencias:
+To install the dependencies, you must run the following commands:
 
+1. Clone the repository:
+
+```
+git clone https://github.com/igrowker/i002-fitfusion-front.git
+```
+
+2. Enter the project folder:
+```
+cd i002-fitfusion-front
+```
+
+3. Install the dependencies:
 ```
 npm install
 ```
 
-## Construido con 🛠️
+## Running the project 🚀
 
-- React
-- Vite
-- Typescript
-- TailwindCss
+To run the project, you must run the following command:
+
+```
+npm run dev
+```
