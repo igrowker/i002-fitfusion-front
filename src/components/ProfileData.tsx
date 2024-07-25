@@ -1,18 +1,19 @@
 import { User } from "../types/userTypes";
 
-type ProfileData ={
-  user : User
-}
+type ProfileData = {
+  user: User;
+};
 
-export const ProfileData = ({user} : ProfileData ) => {
-
-
+export const ProfileData = ({ user }: ProfileData) => {
   return (
     <>
-      <img className=" rounded-full bg-cover  w-32 h-32 bg-[url('/profile.jfif')] mt-5 bg-center" />
+      <img
+        className=" rounded-full bg-cover  w-32 h-32  mt-5 bg-center"
+        src={user?.image || "/avatarnone.png"}
+      />
 
       <p className=" font-bold text-heading-lg text-black mt-4 font-lato">
-        {user.name || '/avatarnone.png'}
+        {user.name}
       </p>
 
       {/* <div className=" flex flex-row w-full justify-center items-center pt-8 px-6">
@@ -38,6 +39,6 @@ export const ProfileData = ({user} : ProfileData ) => {
       </div> */}
     </>
   );
-}
+};
 
 export default ProfileData;

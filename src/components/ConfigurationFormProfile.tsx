@@ -18,12 +18,12 @@ import {
 import { ToastContainer } from "react-toastify";
 import AvatarContainer from "./AvatarContainer";
 
-
-
-const ConfigurationFormProfile = ({
-  // editing,
-}) => {
-// }: ConfigurationFormProfileProps) => {
+const ConfigurationFormProfile = (
+  {
+    // editing,
+  }
+) => {
+  // }: ConfigurationFormProfileProps) => {
   const navigate = useNavigate();
   const [user, setuserEdit] = useState<User | undefined>();
   const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
@@ -49,9 +49,7 @@ const ConfigurationFormProfile = ({
         setuserEdit(adaptedUsers);
         reset(adaptedUsers);
         if (profileImage === null || profileImage === undefined) {
-          
-          setProfileImage(adaptedUsers.image)
-          
+          setProfileImage(adaptedUsers.image);
         }
         setAppStatus(APP_STATUS.READY_USAGE);
       })
@@ -111,17 +109,13 @@ const ConfigurationFormProfile = ({
   const current_password = watch("current_password");
   const new_password = watch("new_password");
 
-  
   const handleEditAvatar = () => {
-    setEditAvatar(prev => !prev);
+    setEditAvatar((prev) => !prev);
   };
 
-  const setImage = (data : string) => {
-    setProfileImage(data)
-
-  }
-
-
+  const setImage = (data: string) => {
+    setProfileImage(data);
+  };
 
   return (
     <>
@@ -130,7 +124,7 @@ const ConfigurationFormProfile = ({
           !editAvatar ? "w-0 hidden" : " block w-[100vw]"
         } flex felx-col fixed top-0 left-0 bottom-0  justify-center  bg-white z-[60] overflow-x-hidden origin-left duration-500 px-6`}
       >
-        <AvatarContainer setEditAvatar={handleEditAvatar } setImage ={setImage}/>
+        <AvatarContainer setEditAvatar={handleEditAvatar} setImage={setImage} />
       </nav>
 
       <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
@@ -147,7 +141,7 @@ const ConfigurationFormProfile = ({
               <button
                 className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
                 // onClick={editing}
-                onClick={() => navigate('/classes')}
+                onClick={() => navigate("/profile")}
               >
                 <CloseButtonProfileSVG />
               </button>
@@ -193,7 +187,7 @@ const ConfigurationFormProfile = ({
                     errors.name && " outline-[#F73B3B]"
                   }`}
                   {...register("name", {
-                    // required: "El campo es requerido",
+                    required: "El campo es requerido",
                     pattern: {
                       value: /^([a-zA-Z0-9_\s]+).{2,}$/,
                       message: "No es un nombre permitido",
@@ -220,7 +214,7 @@ const ConfigurationFormProfile = ({
                     errors.residence && " outline-[#F73B3B]"
                   }`}
                   {...register("residence", {
-                    // required: "El campo es requerido",
+                    required: "El campo es requerido",
                     pattern: {
                       value: /^([a-zA-Z0-9_\s]+).{2,}$/,
                       message: "No es una ubicacion permitida",
@@ -247,7 +241,7 @@ const ConfigurationFormProfile = ({
                     errors.age && " outline-[#F73B3B]"
                   }`}
                   {...register("age", {
-                    // required: "El campo es requerido",
+                    required: "El campo es requerido",
                     pattern: {
                       value: /^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$/,
                       message: "No es una edad permitida",
@@ -274,7 +268,7 @@ const ConfigurationFormProfile = ({
                     errors.weight && " outline-[#F73B3B]"
                   }`}
                   {...register("weight", {
-                    // required: "El campo es requerido",
+                    required: "El campo es requerido",
                     pattern: {
                       value:
                         /^(0?[1-9]|[1-9][0-9]|1[1-9][1-9]|200)(\.\d{1,2})?$/,
@@ -302,7 +296,7 @@ const ConfigurationFormProfile = ({
                     errors.height && " outline-[#F73B3B]"
                   }`}
                   {...register("height", {
-                    // required: "El campo es requerido",
+                    required: "El campo es requerido",
                     pattern: {
                       value:
                         /^(0?[1-9]|[1-9][0-9]|1[1-9][1-9]|200)(\.\d{1,2})?$/,
@@ -330,7 +324,7 @@ const ConfigurationFormProfile = ({
                     errors.email && " outline-[#F73B3B]"
                   }`}
                   {...register("email", {
-                    // required: "El campo es requerido",
+                    required: "El campo es requerido",
                     pattern: {
                       value:
                         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
