@@ -13,7 +13,7 @@ export const ProfileData = ({ user }: ProfileData) => {
       />
 
       <p className=" font-bold text-heading-lg text-black mt-4 font-lato">
-        {user.name || "/avatarnone.png"}
+        {user.name}
       </p>
 
       {/* <div className=" flex flex-row w-full justify-center items-center pt-8 px-6">
