@@ -19,17 +19,16 @@ import { ToastContainer } from "react-toastify";
 import AvatarContainer from "./AvatarContainer";
 
 
-type ConfigurationFormProfileProps = {
-  editing: () => void;
-};
 
 const ConfigurationFormProfile = ({
-  editing,
-}: ConfigurationFormProfileProps) => {
+  // editing,
+}) => {
+// }: ConfigurationFormProfileProps) => {
   const navigate = useNavigate();
   const [user, setuserEdit] = useState<User | undefined>();
-  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [editAvatar, setEditAvatar] = useState(false);
 
   const {
     register,
@@ -49,6 +48,11 @@ const ConfigurationFormProfile = ({
         const adaptedUsers = adaptUserFormat(data);
         setuserEdit(adaptedUsers);
         reset(adaptedUsers);
+        if (profileImage === null || profileImage === undefined) {
+          
+          setProfileImage(adaptedUsers.image)
+          
+        }
         setAppStatus(APP_STATUS.READY_USAGE);
       })
       .catch((error) => {
@@ -107,21 +111,16 @@ const ConfigurationFormProfile = ({
   const current_password = watch("current_password");
   const new_password = watch("new_password");
 
-  const [editAvatar, setEditAvatar] = useState(false);
-
+  
   const handleEditAvatar = () => {
-    setEditAvatar(!editAvatar);
+    setEditAvatar(prev => !prev);
   };
-  // const notify = createSuccessToast({
-  //   message: "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
-  // });
 
   const setImage = (data : string) => {
     setProfileImage(data)
-    setEditAvatar(!editAvatar);
 
-    // notify();
   }
+
 
 
   return (
@@ -131,7 +130,7 @@ const ConfigurationFormProfile = ({
           !editAvatar ? "w-0 hidden" : " block w-[100vw]"
         } flex felx-col fixed top-0 left-0 bottom-0  justify-center  bg-white z-[60] overflow-x-hidden origin-left duration-500 px-6`}
       >
-        <AvatarContainer setEditAvatar={setEditAvatar } setImage ={setImage} editAvatar={editAvatar}/>
+        <AvatarContainer setEditAvatar={handleEditAvatar } setImage ={setImage}/>
       </nav>
 
       <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
@@ -147,7 +146,8 @@ const ConfigurationFormProfile = ({
               </p>
               <button
                 className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
-                onClick={editing}
+                // onClick={editing}
+                onClick={() => navigate('/classes')}
               >
                 <CloseButtonProfileSVG />
               </button>
@@ -158,7 +158,7 @@ const ConfigurationFormProfile = ({
                 onClick={() => handleEditAvatar()}
               >
                 <img
-                  src={user?.image || "/avatarnone.png"}
+                  src={profileImage || user?.image || "/avatarnone.png"}
                   alt="Imagen de perfil de usuario"
                   className=" rounded-full bg-cover w-32 h-32  mt-5 bg-center"
                 />

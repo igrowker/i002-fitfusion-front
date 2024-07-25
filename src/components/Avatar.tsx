@@ -5,7 +5,7 @@ import { createSuccessToast } from "../services/toastCreation";
 
 interface AppProps {
   setImage: (data: string) => void;
-  setEditAvatar: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditAvatar: () => void;
 }
 
 export default class App extends React.Component<AppProps> {
@@ -68,6 +68,7 @@ export default class App extends React.Component<AppProps> {
     const notify = createSuccessToast({
       message:
         "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
+      onClose : this.props.setEditAvatar
     });
     notify();
   };
