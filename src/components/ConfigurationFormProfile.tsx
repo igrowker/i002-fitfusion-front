@@ -63,15 +63,15 @@ const ConfigurationFormProfile = (
     setAppStatus(APP_STATUS.LOADING);
 
     const body = {
-      name: data.name,
-      email: data.email,
-      age: data.age,
-      residence: data.residence,
-      weight: data.weight,
-      height: data.height,
-      password: data.current_password?.trim(),
-      newPassword: data.new_password?.trim(),
-      image: profileImage,
+      Name: data.name,
+      Email: data.email,
+      Age: data.age,
+      Residence: data.residence,
+      Weight: data.weight,
+      Height: data.height,
+      Password: data.current_password?.trim(),
+      NewPassword: data.new_password?.trim(),
+      Image : profileImage,
       teacherInfo: {},
     };
     apiCall({ url: `/users/me`, method: "PUT", body })
