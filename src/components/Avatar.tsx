@@ -1,9 +1,11 @@
 import React from "react";
 import AvatarEditor from "react-avatar-editor";
 import { LeftArrowSVG, RightArrowSVG } from "../icons";
+import { createSuccessToast } from "../services/toastCreation";
 
 interface AppProps {
-  setImage: (data:string) => void
+  setImage: (data: string) => void;
+  setEditAvatar: () => void;
 }
 
 export default class App extends React.Component<AppProps> {
@@ -63,7 +65,12 @@ export default class App extends React.Component<AppProps> {
     });
 
     this.props.setImage(img);
-
+    const notify = createSuccessToast({
+      message:
+        "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
+      onClose : this.props.setEditAvatar
+    });
+    notify();
   };
   editor: any;
 
@@ -84,7 +91,6 @@ export default class App extends React.Component<AppProps> {
   };
 
   render() {
-
     return (
       <>
         <div className=" flex flex-col justify-center items-center px-6 gap-6">
@@ -99,7 +105,11 @@ export default class App extends React.Component<AppProps> {
             borderRadius={this.state.width / (100 / this.state.borderRadius)}
             image={this.state.image}
           />
-          <input type="file" accept=".jpg, .jpeg, .png" onChange={this.handleNewImage} />
+          <input
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            onChange={this.handleNewImage}
+          />
 
           <p className=" font-bold text-base text-black font-lato">
             Agranda o achica tu imagen:

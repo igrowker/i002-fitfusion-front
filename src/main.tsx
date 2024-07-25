@@ -29,6 +29,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Error404 from "./components/Error404";
 import Layout from "./components/Layout";
+import ConfigurationFormProfile from "./components/ConfigurationFormProfile";
 
 
 const router = createBrowserRouter([
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <UserProfile />,
+      },
+      {
+        path: "editProfile",
+        element: <ConfigurationFormProfile />,
       },
       {
         path: "trainer-profile/:id",

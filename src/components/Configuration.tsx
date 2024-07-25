@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 import {
   CloseButtonProfileSVG,
   DinnerSVG,
@@ -15,7 +15,7 @@ import { Spinner } from "./Spinner.tsx";
 import Cookies from 'js-cookie';
 
 // importamos de forma dinámica el componente 
-const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
+// const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
 
 
 type ConfigurationProps = {
@@ -26,12 +26,13 @@ type ConfigurationProps = {
 export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
   const [appStatus , setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE)
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   const editing = () => {
     setIsEditing(!isEditing);
+    navigate('/editProfile')
   };
 
-  const navigate = useNavigate();
 
   const handleClick = () => {
     setAppStatus(APP_STATUS.LOADING)
@@ -155,7 +156,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
 
       <GreenButton text={"Cerrar Sesion"} handleClick={handleClick} />
 
-      <nav
+      {/* <nav
         className={`${
           !isEditing ? "w-0" : "w-[100vw]"
         }  fixed top-0 left-0 bottom-0  justify-center items-center bg-white z-[60] overflow-x-hidden origin-left duration-500 `}
@@ -164,7 +165,7 @@ export const Configuration = ({ toggleMenu }: ConfigurationProps) => {
         {isEditing && <ConfigurationFormProfile editing={editing} />}
       </Suspense>
         
-      </nav>
+      </nav> */}
     </div>
   );
 };
