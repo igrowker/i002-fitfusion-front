@@ -2,14 +2,12 @@ import MyEditor from "./Avatar";
 import { CloseButtonProfileSVG } from "../icons";
 
 type AvatarContainerProps = {
-  setEditAvatar: React.Dispatch<React.SetStateAction<boolean>>;
-  editAvatar: boolean;
+  setEditAvatar: () => void;
   setImage: (data:string) => void
 };
 
 export const AvatarContainer = ({
   setEditAvatar,
-  editAvatar,
   setImage
 }: AvatarContainerProps) => {
   return (
@@ -20,7 +18,7 @@ export const AvatarContainer = ({
         </p>
         <button
           className="min-h-14 min-w-14 rounded-full border-2 border-gray-300 flex justify-center items-center cursor-pointer"
-          onClick={() => setEditAvatar(!editAvatar)}
+          onClick={setEditAvatar}
         >
           <CloseButtonProfileSVG />
         </button>

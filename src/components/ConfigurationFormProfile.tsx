@@ -19,9 +19,6 @@ import { ToastContainer } from "react-toastify";
 import AvatarContainer from "./AvatarContainer";
 
 
-type ConfigurationFormProfileProps = {
-  editing: () => void;
-};
 
 const ConfigurationFormProfile = ({
   // editing,
@@ -29,7 +26,7 @@ const ConfigurationFormProfile = ({
 // }: ConfigurationFormProfileProps) => {
   const navigate = useNavigate();
   const [user, setuserEdit] = useState<User | undefined>();
-  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.IDLE);
+  const [appStatus, setAppStatus] = useState<AppStatusType>(APP_STATUS.LOADING);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [editAvatar, setEditAvatar] = useState(false);
 
@@ -51,6 +48,11 @@ const ConfigurationFormProfile = ({
         const adaptedUsers = adaptUserFormat(data);
         setuserEdit(adaptedUsers);
         reset(adaptedUsers);
+        if (profileImage === null || profileImage === undefined) {
+          
+          setProfileImage(adaptedUsers.image)
+          
+        }
         setAppStatus(APP_STATUS.READY_USAGE);
       })
       .catch((error) => {
@@ -111,18 +113,14 @@ const ConfigurationFormProfile = ({
 
   
   const handleEditAvatar = () => {
-    setEditAvatar(!editAvatar);
+    setEditAvatar(prev => !prev);
   };
-  // const notify = createSuccessToast({
-  //   message: "La imagen fue generada, no olvides enviar el formulario de edicion para que se guarde",
-  // });
 
   const setImage = (data : string) => {
     setProfileImage(data)
-    // setEditAvatar(!editAvatar);
 
-    // notify();
   }
+
 
 
   return (
@@ -132,7 +130,7 @@ const ConfigurationFormProfile = ({
           !editAvatar ? "w-0 hidden" : " block w-[100vw]"
         } flex felx-col fixed top-0 left-0 bottom-0  justify-center  bg-white z-[60] overflow-x-hidden origin-left duration-500 px-6`}
       >
-        <AvatarContainer setEditAvatar={setEditAvatar } setImage ={setImage} editAvatar={editAvatar}/>
+        <AvatarContainer setEditAvatar={handleEditAvatar } setImage ={setImage}/>
       </nav>
 
       <div className="min-[566px]:max-w-xl flex flex-col justify-between m-auto">
@@ -160,7 +158,7 @@ const ConfigurationFormProfile = ({
                 onClick={() => handleEditAvatar()}
               >
                 <img
-                  src={user?.image || "/avatarnone.png"}
+                  src={profileImage || user?.image || "/avatarnone.png"}
                   alt="Imagen de perfil de usuario"
                   className=" rounded-full bg-cover w-32 h-32  mt-5 bg-center"
                 />

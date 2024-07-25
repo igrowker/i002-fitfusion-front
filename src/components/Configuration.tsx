@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState } from "react";
 import {
   CloseButtonProfileSVG,
   DinnerSVG,
@@ -15,7 +15,7 @@ import { Spinner } from "./Spinner.tsx";
 import Cookies from 'js-cookie';
 
 // importamos de forma dinámica el componente 
-const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
+// const ConfigurationFormProfile = lazy(() => import('./ConfigurationFormProfile.tsx'))
 
 
 type ConfigurationProps = {
